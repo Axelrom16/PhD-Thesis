@@ -1,0 +1,33 @@
+%************************************************
+\chapter{Disentanglement}\label{ch:disentanglement}
+%************************************************
+
+Disentanglement Representation Learning (DRL) is a learning paradigm in which models are designed to extract and disentangle the 
+hidden factors of variation in the data, $\mathbf{z}\in\mathbb{R}^c$, given an input observation $\mathbf{x}\in\mathbb{R}^d$. 
+These generative factors are often called latent variables. The formal definition of DRL proposed in \cite{RepresentationLearning} 
+is that "Disentangled representation should separate the distinct, independent and informative generative factors of variation in 
+the data. Single latent variables are sensitive to changes in single underlying generative factors, while being relatively invariant 
+to changes in other factors". This organisation of the latent space into explainable semantic representations improves the following 
+properties of a generative model: 
+\begin{itemize}
+    \item \textbf{Explanability}: the meaningful and independent representations are aligned semantically with latent generative factors. 
+    \item \textbf{Generalizability}: the representations are well separated from the original entangled input, which improves the generalization ability for the generation of new samples. 
+    \item \textbf{Controllability}: DRL allows for controllable generation by manipulating the learned disentangled representations of the latent space.  
+\end{itemize}
+There are several disentanglement methods in the current literature, which can be grouped based on the generative model they use.\cite{wang2024disentangledrepresentationlearning}    
+
+
+\section{VAE-Based Models}  
+
+
+\section{Diffusion/Flow-Based Models}  
+
+
+\section{Metrics} 
+
+
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************

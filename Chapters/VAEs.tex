@@ -1,0 +1,328 @@
+%************************************************
+\chapter{Variational Autoencoders}\label{ch:vaes}
+%************************************************
+
+The core initial idea for the understanding of the Variational Autoencoders (VAEs) is the concept of \textbf{Autoencoders} (AEs). 
+This are a type of model that contains two elements, the encoder and the decoder. The encoder is a function that maps the input data 
+$\mathbf{x}\in\mathbb{R}^d$ to a low-dimensional representation $\mathbf{z}\in\mathbb{R}^k$, which is usually much more smaller than
+the input dimension, $k<<d$. This representations live in a space with a more compact and interpretable structure, called the latent space. 
+Then, the decoder is a function that maps the latent representation $\mathbf{z}$ back to the input space, trying to reconstruct the 
+original data point $\mathbf{x}$. \\
+Once we have an autoencoder model trained, a natural question is how to use it as a generative model. One idea is to randomly sample
+a point $\mathbf{z}$ from the latent space and then pass it through the decoder to get a synthetic data point $\mathbf{x'}$. This method will 
+not produce realistic samples because the latent space is disorganized and irregular. Another option is to encode and image and sample 
+neighboring points in the latent space that could generate similar samples, but the reality is that the output are not meaningful samples. This 
+shows how poorly structured the latent space is. The aim of VAEs is to transform the latent space of an autoencoder into a well-structured space 
+that follows a prior distribution, which allows us to sample from it and generate realistic samples. \\
+\\
+It is also important to introduce the concept of latent variable models. This type of variables are part of the model 
+but are not observed in the data, usually denoted as $\mathbf{z}$, which are the hidden factors of variation. The goal of latent variable models is to 
+learn the joint distribution $p_{\theta}(\mathbf{x}, \mathbf{z})$ of the observed data $\mathbf{x}$ and the latent variables $\mathbf{z}$. 
+The marginal likelihood, model evidence or marginal distribution over the observed data is given by:
+\begin{equation}\label{eq:p_x}
+    p_{\theta}(\mathbf{x}) = \int p_{\theta}(\mathbf{x}, \mathbf{z}) d\mathbf{z}.
+\end{equation}
+When we use neural networks to parameterize the latent variable models we call them \textbf{Deep Latent Variable Models} (DLVMs). 
+The simple and most common DLVM is given by the following factorization:
+\begin{equation}
+    p_{\theta}(\mathbf{x}, \mathbf{z}) = p(\mathbf{z}) p_{\theta}(\mathbf{x} | \mathbf{z}),
+\end{equation}
+where $p(\mathbf{z})$ is the \textit{prior distribution} over the latent variables and $p_{\theta}(\mathbf{x} | \mathbf{z})$ 
+is the likelihood of the data given the latent variables, also called the \textit{generator distribution}. The joint distribution $p_{\theta}(\mathbf{x}, \mathbf{z})$ 
+is related through the Bayes' rule to the following posterior distribution:
+\begin{equation}
+    p_{\theta}(\mathbf{z} | \mathbf{x}) = \frac{p_{\theta}(\mathbf{x} | \mathbf{z}) p(\mathbf{z})}{p_{\theta}(\mathbf{x})},
+\end{equation}
+where we have an intractability problem due to the marginal likelihood $p_{\theta}(\mathbf{x})$ which is given by an integral over the latent variables (eq \ref{eq:p_x}). 
+To overcome this problem we can use variational inference (VI) which is a technique to approximate the posterior distribution $p_{\theta}(\mathbf{z} | \mathbf{x})$ 
+with a simpler distribution $q_{\phi}(\mathbf{z} | \mathbf{x})$ that is parameterized by $\phi$.  \\
+\\
+This is the main idea behind \textbf{Variational Autoencoders} (VAEs) \cite{kingma2022autoencodingvariationalbayes} which are a type of DLVMs that use VI to learn the latent variable model. It defines a 
+parametric inference model $q_{\phi}(\mathbf{z} | \mathbf{x})$, also called an \textit{encoder}, where $\phi$ are the parameters. The idea is to optimize the parameters such that: 
+\begin{equation}
+    q_{\phi}(\mathbf{z} | \mathbf{x}) \approx p_{\theta}(\mathbf{z} | \mathbf{x}).
+\end{equation}
+This VAE formulation allows us to transform an autoencoder model with an unstructured latent space into a generative model with a latent space that follows a prior 
+distribution, typically a Gaussian distribution $p_{\theta}(\mathbf{z}) = \mathcal{N}(\mathbf{z}; \mathbf{0}, \mathbf{I})$, which is easy to sample from. \\
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[
+    >=Stealth,
+    node distance=1.0cm, % Very tight spacing
+    % Styles for nodes
+    block/.style={draw=blue!70!black, fill=blue!5, rectangle, minimum height=1cm, minimum width=2.2cm, align=center, rounded corners=2pt, thick, font=\small\bfseries},
+    latentblock/.style={draw=green!70!black, fill=green!5, circle, minimum size=0.8cm, align=center, thick, font=\small},
+    io/.style={draw=black!80, fill=white, circle, inner sep=1pt, minimum size=0.8cm, align=center, thick, font=\small}
+]
+
+    % Nodes with labels placed below them compactly
+    \node (input) [io, label=below:{\scriptsize Input}] {$x$};
+    
+    \node (encoder) [block, right=of input] {Encoder \\[-0.5ex] \scriptsize $q_{\phi}(z|x)$};
+    
+    \node (z) [latentblock, right=of encoder, label=below:{\scriptsize Latent}] {$z$};
+    
+    \node (decoder) [block, right=of z] {Decoder \\[-0.5ex] \scriptsize $p_{\theta}(x|z)$};
+    
+    \node (output) [io, right=of decoder, label=below:{\scriptsize Recon}] {$x'$};
+
+    % Compact Arrows
+    \draw [->, thick, draw=black!70] (input) -- (encoder);
+    \draw [->, thick, draw=black!70] (encoder) -- (z);
+    \draw [->, thick, draw=black!70] (z) -- (decoder);
+    \draw [->, thick, draw=black!70] (decoder) -- (output);
+
+    \path ([yshift=0.8cm]current bounding box.north);
+
+\end{tikzpicture}
+\caption{Simplified Variational Autoencoder (VAE) architecture mapping an input $x$ to a latent representation $z$, and decoding it to a reconstruction $x'$.}\label{diag:vae}
+\end{figure}
+
+
+% ******
+% Training 
+% ******
+\section{Training of VAEs} 
+For the training of the VAEs we can not directly optimize the marginal likelihood $p_{\theta}(\mathbf{x})$ due to the intractability problem, but we can optimize a lower bound of the marginal likelihood
+called the \textbf{Evidence Lower Bound} (ELBO). Let's derive the log-likelihood of the data point $\mathbf{x}$ and see how we can get the ELBO using the Jensen's inequality \cite{Kingma_2019}:
+\begin{align}
+    \log p_{\theta}(\mathbf{x}) &= \log\int p_{\theta}(\mathbf{x},\mathbf{z})d\mathbf{z} \\ %= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z} | \mathbf{x})} \left[\log p_{\theta}(\mathbf{x})\right] \\
+    &= \log\int q_{\phi}(\mathbf{z}|\mathbf{x})\frac{p_{\theta}(\mathbf{x}, \mathbf{z})}{q_{\phi}(\mathbf{z}|\mathbf{x})}d\mathbf{z} \\
+    &= \log \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\frac{p_{\theta}(\mathbf{x},\mathbf{z})}{q_{\phi}(\mathbf{z}|\mathbf{x})}\right] \\
+    &\geq \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log \frac{p_{\theta}(\mathbf{x},\mathbf{z})}{q_{\phi}(\mathbf{z}|\mathbf{x})}\right] \\
+    &= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log \frac{p_{\theta}(\mathbf{x}|\mathbf{z})p(\mathbf{z})}{q_{\phi}(\mathbf{z}|\mathbf{x})}\right] \\
+    &= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log \frac{p_{\theta}(\mathbf{x}|\mathbf{z})}{\frac{q_{\phi}(\mathbf{z}|\mathbf{x})}{p(\mathbf{z})}}\right] \\
+    &= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log p_{\theta}(\mathbf{x}|\mathbf{z}) - \log \frac{q_{\phi}(\mathbf{z}|\mathbf{x})}{p(\mathbf{z})}\right] \\
+    &= \underbrace{\mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right]}_{\text{Reconstruction}} - \underbrace{\mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log \frac{q_{\phi}(\mathbf{z}|\mathbf{x})}{p(\mathbf{z})}\right]}_{\text{KL Divergence}}
+    %&= \mathbb{E}_{\mathbf{z}\sim q_{\theta}(\mathbf{z}|\mathbf{x})} \left[ \log \left[ \frac{p_{\theta}(\mathbf{x},\mathbf{z})}{q_{\phi}(\mathbf{z} | \mathbf{x})} \frac{q_{\phi}(\mathbf{z}|\mathbf{x})}{p_{\theta}(\mathbf{z}|\mathbf{x})} \right] \right] \\
+    %&= \underbrace{\mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[ \log \frac{p_{\theta}(\mathbf{x}, \mathbf{z})}{q_{\phi}(\mathbf{z}|\mathbf{x})} \right]}_{\text{ELBO Term}} + \underbrace{\mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[ \log \frac{q_{\phi}(\mathbf{z}|\mathbf{x})}{p_{\theta}(\mathbf{z}|\mathbf{x})} \right]}_{\text{KL Divergence}}.
+\end{align}
+We can see that for any data point $\mathbf{x}$, the log-likelihood satisfies: 
+\begin{align}
+    \log p_{\theta}(\mathbf{x}) &\geq \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) \\
+    & = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - \mathcal{D}_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x}) || p(\mathbf{z})).
+\end{align}
+%The first term is the variational lower bound (ELBO), which can be expressed as:
+%\begin{equation}\label{eq:elbos}
+%    \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[ \log p_{\theta}(\mathbf{x},\mathbf{z}) - \log q_{\phi}(\mathbf{z}|\mathbf{x}) \right]
+%\end{equation}
+%The second term is the KL Divergence between the approximate posterior and the true posterior, $D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x}) || p_{\theta}(\mathbf{z}|\mathbf{x}))$, which is always non-negative. 
+%Because of this, eq. (\ref{eq:elbos}) is a lower bound of the log-likelihood of the data point $\mathbf{x}$: 
+%\begin{equation}
+%    \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = \log p_{\theta}(\mathbf{x}) - D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x}) || p_{\theta}(\mathbf{z}|\mathbf{x})) \leq \log p_{\theta}(\mathbf{x}).
+%\end{equation}
+If we maximize the previous loss with respect to the parameters $\theta$ and $\phi$, we are optimizing: 
+\begin{itemize}
+    \item \textbf{Reconstruction}: the first term encourage to maximize the likelihood $p_{\theta}(\mathbf{x}|\mathbf{z})$, which corresponds to the reconstruction of the data point $\mathbf{x}$ from the latent variables $\mathbf{z}$. Optimizing this term alone risks memorizing the training data, so we need extra regularization. 
+    \item \textbf{Latent KL Regularization}: the second term encourages the encoder distribution $q_{\phi}(\mathbf{z}|\mathbf{x})$ to be close to the prior distribution $p(\mathbf{z})$, which is easy to sample from. 
+\end{itemize}
+Once we have the definition of the training objective, we can use stochastic gradient descent (SGD) to perform joint optimization w.r.t. all parameters $\theta$ and $\phi$. 
+However, we have a problem with the first term of the ELBO because we can not backpropagate through the sampling process of $\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})$, 
+as we can see in the left part of Figure \ref{fig:reparameterization}. To solve this problem we can use the \textbf{reparameterization trick} which consists in expressing the sampling 
+process as a deterministic function of the parameters and some noise. For example, if we assume that $q_{\phi}(\mathbf{z}|\mathbf{x})$ is a Gaussian distribution with mean $\mu$ and 
+variance $\sigma^2$, we can sample from it as follows: 
+\begin{equation}
+    \mathbf{z} = \mu + \sigma \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I).
+\end{equation}
+This way, we can backpropagate through the deterministic function and optimize the parameters $\phi$ of the encoder. This is shown in the right part of Figure \ref{fig:reparameterization}.
+
+\begin{figure}   
+\centering
+\begin{tikzpicture}[
+    >=Stealth,
+    node distance=2.0cm, 
+    % Scaled-down styles for nodes
+    block/.style={draw=blue!70!black, fill=blue!5, rectangle, minimum height=0.9cm, minimum width=2.6cm, align=center, rounded corners=2pt, thick, font=\footnotesize},
+    stoch_node/.style={draw=red!70!black, fill=red!5, circle, minimum size=1.5cm, align=center, thick, text width=1.3cm, font=\scriptsize},
+    math_op/.style={draw=green!70!black, fill=green!5, diamond, minimum size=1.6cm, align=center, thick, inner sep=0pt, font=\footnotesize},
+    io/.style={font=\footnotesize\bfseries},
+    % Arrow styles
+    forward_arrow/.style={->, thick, draw=black!80},
+    grad_fail/.style={->, thick, dashed, draw=red!70!black},
+    grad_success/.style={->, thick, dashed, draw=green!60!black}
+]
+
+    % ==================== Flow 1: Direct Sampling (LEFT COLUMN) ====================
+    % Center of left column is at x=0
+    \node (title1) at (0, 0) [font=\footnotesize\bfseries] {1. Direct Sampling};
+
+    \node (encoder1) [block, below=0.3cm of title1] {Encoder\\$x \rightarrow \mu, \sigma^2$};
+    \node (mu_sigma1) [below=0.3cm of encoder1, font=\footnotesize] {$\mu, \sigma^2$};
+    \node (sampling1) [stoch_node, below=0.3cm of mu_sigma1] {Stochastic\\Sampling};
+    \node (z1) [io, below=0.3cm of sampling1] {$z$};
+    \node (decoder1) [block, below=0.3cm of z1] {Decoder\\$z \rightarrow \hat{x}$};
+
+    % Forward Arrows (Left)
+    \draw [forward_arrow] (encoder1) -- (mu_sigma1);
+    \draw [forward_arrow] (mu_sigma1) -- (sampling1);
+    \draw [forward_arrow] (sampling1) -- (z1);
+    \draw [forward_arrow] (z1) -- (decoder1);
+
+    % Compact Gradient Bus (Routed cleanly on the left)
+    \coordinate (grad_bus1) at ($(decoder1.west) + (-1.0cm, 0)$);
+    
+    \draw [grad_fail] (decoder1.west) -- (grad_bus1) node[midway, above, font=\tiny\bfseries, text=red!70!black, inner sep=1pt] {Backprop} -- (grad_bus1 |- sampling1.west) -- (sampling1.west);
+    \draw [grad_fail] (grad_bus1 |- z1.west) -- (z1.west);
+    
+    % Broken gradient indicator (Fixed alignment and overlap)
+    \draw [grad_fail] (sampling1.north west) -- ++(-0.4cm,0.4cm) node[above left, font=\tiny\bfseries, text=red!70!black, inner sep=1pt, xshift=0.1cm, yshift=-0.1cm] {Broken};
+    \coordinate (break_pt1) at ($(sampling1.north west) + (-0.2cm, 0.2cm)$);
+    \draw [thick, red!70!black] ($(break_pt1)+(-0.1cm,-0.1cm)$) -- +(0.2cm,0.2cm);
+    \draw [thick, red!70!black] ($(break_pt1)+(-0.1cm,0.1cm)$) -- +(0.2cm,-0.2cm);
+
+
+    % ==================== Flow 2: Reparameterization (RIGHT COLUMN) ====================
+    % Center of right column is slightly wider to give the green gradient bus room
+    \node (title2) at (5.4cm, 0) [font=\footnotesize\bfseries] {2. Reparameterization};
+
+    \node (encoder2) [block, below=0.3cm of title2] {Encoder\\$x \rightarrow \mu, \sigma^2$};
+    \node (mu_sigma2) [below=0.3cm of encoder2, font=\footnotesize] {$\mu, \sigma^2$};
+    
+    \node (math_op2) [math_op, below=0.3cm of mu_sigma2] {$ \mu \!+\! \sigma \epsilon $};
+    
+    % Noise Node
+    \node (epsilon2) [stoch_node, right=0.5cm of math_op2] {Noise $\epsilon$\\ \tiny $\mathcal{N}(0, I)$};
+
+    \node (z2) [io, below=0.3cm of math_op2] {$z$};
+    \node (decoder2) [block, below=0.3cm of z2] {Decoder\\$z \rightarrow \hat{x}$};
+
+    % Forward Arrows (Right)
+    \draw [forward_arrow] (encoder2) -- (mu_sigma2);
+    \draw [forward_arrow] (mu_sigma2) -- (math_op2);
+    
+    % FIXED: Split the bidirectional arrows between Diamond and Noise so they don't overlap
+    % 1. Forward stochastic path (Shifted slightly up)
+    \draw [forward_arrow] ([yshift=3pt]epsilon2.west) -- ([yshift=3pt]math_op2.east) node[midway, above, font=\tiny, inner sep=1pt] {Stoch.};
+    
+    % FIXED: "Det." text moved slightly right so it doesn't clip the diamond
+    \draw [forward_arrow] (math_op2.south) -- (z2.north) node[midway, right, font=\tiny, inner sep=2pt] {Det.};
+    \draw [forward_arrow] (z2) -- (decoder2);
+
+    % Compact Gradient Bus (Right) - Now sitting comfortably on the left of the blocks
+    \coordinate (grad_bus2) at ($(decoder2.west) + (-1.0cm, 0)$);
+    \coordinate (grad_bus2_top) at ($(encoder2.west) + (-1.0cm, 0)$);
+    
+    \draw [grad_success] (decoder2.west) -- (grad_bus2) node[midway, above, font=\tiny\bfseries, text=green!60!black, inner sep=1pt] {Backprop} -- (grad_bus2_top) -- (encoder2.west);
+    
+    % Connecting intermediate nodes to success bus
+    \draw [grad_success] (grad_bus2 |- z2.west) -- (z2.west);
+    \draw [grad_success] (grad_bus2 |- math_op2.west) -- (math_op2.west);
+    \draw [grad_success] (grad_bus2 |- mu_sigma2.west) -- (mu_sigma2.west);
+    
+    % FIXED: Backward gradient fail path (Shifted slightly down to separate from forward path)
+    \draw [grad_fail] ([yshift=-3pt]math_op2.east) -- ([yshift=-3pt]epsilon2.west) node[midway, below, font=\tiny\bfseries, text=red!70!black, inner sep=1pt] {No grad};
+    
+    % Cross mark correctly positioned directly on the shifted "No grad" line
+    \coordinate (cross_pt) at ($([yshift=-3pt]math_op2.east)!0.5!([yshift=-3pt]epsilon2.west)$);
+    \draw [thick, red!70!black] ($(cross_pt)+(-0.1cm,-0.1cm)$) -- +(0.2cm,0.2cm);
+    \draw [thick, red!70!black] ($(cross_pt)+(-0.1cm,0.1cm)$) -- +(0.2cm,-0.2cm);
+
+    % Divider line perfectly centered between the two column bounding boxes
+    \draw [dashed, draw=gray!40, thick] (2.7cm, 0.2cm) -- (2.7cm, -7.2cm);
+
+\end{tikzpicture}
+\caption{Reparameterization Trick in VAEs}
+\label{fig:reparameterization}
+\end{figure}
+
+
+% ******
+% Gaussian VAEs 
+% ******
+\section{Gaussian VAEs}
+The common choice for both the encoder and the decoder distributions in VAEs is the Gaussian distribution. This is because it allows us to use the reparameterization trick and 
+also because it has a closed-form expression for the KL divergence. \\
+The \textbf{encoder} $q_{\phi}(\mathbf{z}|\mathbf{x})$ is modelled as a Gaussian distribution defined as:
+\begin{equation}
+    q_{\phi}(\mathbf{z}|\mathbf{x}) = \mathcal{N} \left(\mathbf{z}; \mu_{\phi}(\mathbf{x}), \text{diag}(\sigma^2_{\phi}(\mathbf{x})) \right),
+\end{equation}
+where $\mu_{\phi}(\mathbf{x})$ and $\sigma^2_{\phi}(\mathbf{x})$ are the mean and variance of the Gaussian distribution, which are parameterized by a neural network with parameters $\phi$. \\
+The \textbf{decoder} $p_{\theta}(\mathbf{x}|\mathbf{z})$ is also modelled as a Gaussian distribution defined as:
+\begin{equation}
+    p_{\theta}(\mathbf{x}|\mathbf{z}) = \mathcal{N} \left(\mathbf{x}; \mu_{\theta}(\mathbf{z}), \sigma^2\mathbf{I} \right),
+\end{equation}
+where $\mu_{\theta}(\mathbf{z})$ is the mean of the Gaussian distribution, which is parameterized by a neural network with parameters $\theta$, and $\sigma^2\mathbf{I}$ is the covariance matrix, 
+which is usually fixed to be a diagonal matrix with constant variance. \\ 
+\\
+Under this Gaussian assumption, we can obtain a closed-form expression for the ELBO loss function. The reconstruction term can be expressed as:
+\begin{equation}
+    \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] = -\frac{1}{2\sigma^2} \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[||\mathbf{x} - \mu_{\theta}(\mathbf{z})||^2\right] + C,
+\end{equation}
+where $C$ is a constant that does not depend on the parameters. The KL divergence term can be expressed as:
+\begin{equation}
+    \mathcal{D}_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x}) || p(\mathbf{z})) = \frac{1}{2} \sum_{i=1}^k \left( \sigma^2_{\phi,i}(\mathbf{x}) + \mu^2_{\phi,i}(\mathbf{x}) - 1 - \log \sigma^2_{\phi,i}(\mathbf{x}) \right),
+\end{equation}
+where $k$ is the dimension of the latent space. Therefore, the ELBO loss function can be expressed as:
+\begin{align}
+    \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) &= -\frac{1}{2\sigma^2} \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[||\mathbf{x} - \mu_{\theta}(\mathbf{z})||^2\right] \\ 
+    &- \frac{1}{2} \sum_{i=1}^k \left( \sigma^2_{\phi,i}(\mathbf{x}) + \mu^2_{\phi,i}(\mathbf{x}) - 1 - \log \sigma^2_{\phi,i}(\mathbf{x}) \right) + C.
+\end{align} 
+Despite their mathematical elegance and continuous latent spaces, standard Gaussian Variational Autoencoders notoriously suffer from generating blurry images. 
+This limitation fundamentally stems from the VAE objective function and its underlying statistical assumptions. The problem can be attributed to four primary factors:
+\begin{itemize}
+    \item \textbf{MSE Loss}: In a standard Gaussian VAE with a fixed variance $\sigma^2 \mathbf{I}$, maximizing the likelihood $p_\theta(\mathbf{x}|\mathbf{z})$ is mathematically equivalent to 
+    minimizing the $\mathcal{L}_2$ distance between the input $\mathbf{x}$ and the reconstruction $\hat{\mathbf{x}}$:
+    \begin{equation}
+        \log p_\theta(\mathbf{x}|\mathbf{z}) \propto -||\mathbf{x} - \mu_\theta(\mathbf{z})||^2_2
+        \label{eq:vae_mse}
+    \end{equation}
+    The $\mathcal{L}_2$ loss heavily penalizes large pixel-wise deviations. When the model is uncertain about the exact location of high-frequency details (such as sharp edges), it outputs the statistical 
+    mean of all plausible variations to minimize the overall penalty. This phenomenon, known as \textit{mode averaging}, results in safe, blurry predictions rather than rendering sharp, distinct features.
+    \item \textbf{Information Bottleneck}: The ELBO includes a regularization term that minimizes the KL divergence between the approximate posterior and the prior:
+    \begin{equation}
+        \mathcal{D}_{\text{KL}}(q_\phi(\mathbf{z}|\mathbf{x}) \parallel p(\mathbf{z}))
+        \label{eq:vae_kl}
+    \end{equation}
+    This term acts as an information bottleneck, forcing the encoded latent representations to closely match the simple prior, typically $\mathcal{N}(\mathbf{0}, \mathbf{I})$. Consequently, the encoder 
+    discards complex, high-frequency spatial features that are difficult to compress, prioritizing global structures and low-frequency components instead.
+    \item \textbf{Posterior Collapse}: Furthermore, consistent with findings in \cite{bowman2016generatingsentencescontinuousspace} and \cite{sonderby2016howtrain}, stochastic optimization using the unmodified lower bound objective frequently 
+    gets stuck in an undesirable stable equilibrium. At the onset of training, the reconstruction likelihood term $\log p_\theta(\mathbf{x}|\mathbf{z})$ is relatively weak. Consequently, an initially 
+    attractive state for the network is to aggressively minimize the latent cost, driving the approximate posterior to match the prior, $q_\phi(\mathbf{z}|\mathbf{x}) \approx p(\mathbf{z})$. This results 
+    in a stable equilibrium---often termed \textit{posterior collapse}---from which the model struggles to escape, yielding uninformative latent representations and contributing to poor generation quality. 
+    To mitigate this, a common solution proposed by \cite{bowman2016generatingsentencescontinuousspace} and \cite{sonderby2016howtrain} is to implement an optimization schedule (KL annealing) where the weight of the latent cost 
+    $\mathcal{D}_{\text{KL}}(q_\phi(\mathbf{z}|\mathbf{x}) \parallel p(\mathbf{z}))$ is slowly annealed from 0 to 1 over multiple epochs.
+\end{itemize}
+
+
+
+
+% ******
+% DDPMs 
+% ******
+\section{Denoising Diffusion Probabilistic Models}
+
+
+
+\begin{summarybox}[label={box:latent_math}]{VAEs and DDPMs}
+    This box summarizes the main mathematical equations of VAEs and DDPMs:
+
+    \medskip
+    \textbf{1. Training Objective of VAEs:}
+    \begin{equation}
+        \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - \mathcal{D}_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x}) || p(\mathbf{z})).
+    \end{equation}
+    
+    \medskip
+    \textbf{2. Reparameterization Trick:}
+    \begin{equation}
+        \mathbf{z} = \mu + \sigma \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I).
+    \end{equation}
+
+    \medskip
+    \textbf{3. Training Objective of Gaussian VAEs:}
+    \begin{align}
+        &\mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = -\frac{1}{2\sigma^2} \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[||\mathbf{x} - \mu_{\theta}(\mathbf{z})||^2\right] \\ 
+        &- \frac{1}{2} \sum_{i=1}^k \left( \sigma^2_{\phi,i}(\mathbf{x}) + \mu^2_{\phi,i}(\mathbf{x}) - 1 - \log \sigma^2_{\phi,i}(\mathbf{x}) \right) + C.
+    \end{align} 
+    
+    %\vsub
+    {\small \color{boxaccent}\textbf{Note:} Ensure latent dimensions $z_i$ and $z_j$ maintain near-zero mutual information to preserve explainability.}
+\end{summarybox} 
+
+
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************

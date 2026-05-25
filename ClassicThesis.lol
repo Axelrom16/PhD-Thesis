@@ -1,0 +1,11 @@
+\babel@toc {american}{}\relax 
+\deactivateaddvspace 
+\babel@toc {american}{}\relax 
+\babel@toc {ngerman}{}\relax 
+\babel@toc {american}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {lstlisting}{\numberline {1}A floating example (\texttt {listings} manual)}{17}{lstlisting.1}%

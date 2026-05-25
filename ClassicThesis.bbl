@@ -1,0 +1,841 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nyt/global//global/global}
+  \entry{RepresentationLearning}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BY}{%
+         family={Bengio},
+         familyi={B\bibinitperiod},
+         given={Yoshua},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Courville},
+         familyi={C\bibinitperiod},
+         given={Aaron},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=VP}{%
+         family={Vincent},
+         familyi={V\bibinitperiod},
+         given={Pascal},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Learning systems;Machine learning;Abstracts;Feature
+  extraction;Manifolds;Neural networks;Speech recognition;Deep
+  learning;representation learning;feature learning;unsupervised
+  learning;Boltzmann machine;autoencoder;neural nets}
+    \strng{namehash}{BYCAVP1}
+    \strng{fullhash}{BYCAVP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1109/TPAMI.2013.50
+    \endverb
+    \field{number}{8}
+    \field{pages}{1798\bibrangedash 1828}
+    \field{title}{Representation Learning: A Review and New Perspectives}
+    \field{volume}{35}
+    \field{journaltitle}{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}
+    \field{year}{2013}
+  \endentry
+
+  \entry{bowman2016generatingsentencescontinuousspace}{misc}{}
+    \name{author}{6}{}{%
+      {{hash=BSR}{%
+         family={Bowman},
+         familyi={B\bibinitperiod},
+         given={Samuel\bibnamedelima R.},
+         giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=VL}{%
+         family={Vilnis},
+         familyi={V\bibinitperiod},
+         given={Luke},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=VO}{%
+         family={Vinyals},
+         familyi={V\bibinitperiod},
+         given={Oriol},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=DAM}{%
+         family={Dai},
+         familyi={D\bibinitperiod},
+         given={Andrew\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=JR}{%
+         family={Jozefowicz},
+         familyi={J\bibinitperiod},
+         given={Rafal},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Bengio},
+         familyi={B\bibinitperiod},
+         given={Samy},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BSR+1}
+    \strng{fullhash}{BSRVLVODAMJRBS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{eprint}
+    \verb 1511.06349
+    \endverb
+    \field{title}{Generating Sentences from a Continuous Space}
+    \verb{url}
+    \verb https://arxiv.org/abs/1511.06349
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Espinosa_Zarlenga_2023}{article}{}
+    \name{author}{7}{}{%
+      {{hash=EZM}{%
+         family={Espinosa\bibnamedelima Zarlenga},
+         familyi={E\bibinitperiod\bibinitdelim Z\bibinitperiod},
+         given={Mateo},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Barbiero},
+         familyi={B\bibinitperiod},
+         given={Pietro},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SZ}{%
+         family={Shams},
+         familyi={S\bibinitperiod},
+         given={Zohreh},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kazhdan},
+         familyi={K\bibinitperiod},
+         given={Dmitry},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=BU}{%
+         family={Bhatt},
+         familyi={B\bibinitperiod},
+         given={Umang},
+         giveni={U\bibinitperiod},
+      }}%
+      {{hash=WA}{%
+         family={Weller},
+         familyi={W\bibinitperiod},
+         given={Adrian},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jamnik},
+         familyi={J\bibinitperiod},
+         given={Mateja},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Association for the Advancement of Artificial Intelligence (AAAI)}%
+    }
+    \strng{namehash}{EZM+1}
+    \strng{fullhash}{EZMBPSZKDBUWAJM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \verb{doi}
+    \verb 10.1609/aaai.v37i10.26392
+    \endverb
+    \field{issn}{2159-5399}
+    \field{number}{10}
+    \field{pages}{11791–11799}
+    \field{title}{Towards Robust Metrics for Concept Representation Evaluation}
+    \verb{url}
+    \verb http://dx.doi.org/10.1609/aaai.v37i10.26392
+    \endverb
+    \field{volume}{37}
+    \field{journaltitle}{Proceedings of the AAAI Conference on Artificial
+  Intelligence}
+    \field{year}{2023}
+  \endentry
+
+  \entry{ismail2024concept}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=IAA}{%
+         family={Ismail},
+         familyi={I\bibinitperiod},
+         given={Aya\bibnamedelima Abdelsalam},
+         giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=AJ}{%
+         family={Adebayo},
+         familyi={A\bibinitperiod},
+         given={Julius},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BHC}{%
+         family={Bravo},
+         familyi={B\bibinitperiod},
+         given={Hector\bibnamedelima Corrada},
+         giveni={H\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=RS}{%
+         family={Ra},
+         familyi={R\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CK}{%
+         family={Cho},
+         familyi={C\bibinitperiod},
+         given={Kyunghyun},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{IAA+1}
+    \strng{fullhash}{IAAAJBHCRSCK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{I}
+    \field{sortinithash}{I}
+    \field{booktitle}{The Twelfth International Conference on Learning
+  Representations}
+    \field{title}{Concept Bottleneck Generative Models}
+    \verb{url}
+    \verb https://openreview.net/forum?id=L9U5MJJleF
+    \endverb
+    \field{year}{2024}
+  \endentry
+
+  \entry{Kingma_2019}{article}{}
+    \name{author}{2}{}{%
+      {{hash=KDP}{%
+         family={Kingma},
+         familyi={K\bibinitperiod},
+         given={Diederik\bibnamedelima P.},
+         giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=WM}{%
+         family={Welling},
+         familyi={W\bibinitperiod},
+         given={Max},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Emerald}%
+    }
+    \strng{namehash}{KDPWM2}
+    \strng{fullhash}{KDPWM2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{doi}
+    \verb 10.1561/2200000056
+    \endverb
+    \field{issn}{1935-8245}
+    \field{number}{4}
+    \field{pages}{307–392}
+    \field{title}{An Introduction to Variational Autoencoders}
+    \verb{url}
+    \verb http://dx.doi.org/10.1561/2200000056
+    \endverb
+    \field{volume}{12}
+    \field{journaltitle}{Foundations and Trends® in Machine Learning}
+    \field{month}{11}
+    \field{year}{2019}
+  \endentry
+
+  \entry{kingma2022autoencodingvariationalbayes}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=KDP}{%
+         family={Kingma},
+         familyi={K\bibinitperiod},
+         given={Diederik\bibnamedelima P},
+         giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=WM}{%
+         family={Welling},
+         familyi={W\bibinitperiod},
+         given={Max},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KDPWM1}
+    \strng{fullhash}{KDPWM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 1312.6114
+    \endverb
+    \field{title}{Auto-Encoding Variational Bayes}
+    \verb{url}
+    \verb https://arxiv.org/abs/1312.6114
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{stat.ML}
+    \field{year}{2022}
+  \endentry
+
+  \entry{koh2020conceptbottleneckmodels}{misc}{}
+    \name{author}{7}{}{%
+      {{hash=KPW}{%
+         family={Koh},
+         familyi={K\bibinitperiod},
+         given={Pang\bibnamedelima Wei},
+         giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=NT}{%
+         family={Nguyen},
+         familyi={N\bibinitperiod},
+         given={Thao},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=TYS}{%
+         family={Tang},
+         familyi={T\bibinitperiod},
+         given={Yew\bibnamedelima Siang},
+         giveni={Y\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Mussmann},
+         familyi={M\bibinitperiod},
+         given={Stephen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=PE}{%
+         family={Pierson},
+         familyi={P\bibinitperiod},
+         given={Emma},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=KB}{%
+         family={Kim},
+         familyi={K\bibinitperiod},
+         given={Been},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Liang},
+         familyi={L\bibinitperiod},
+         given={Percy},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KPW+1}
+    \strng{fullhash}{KPWNTTYSMSPEKBLP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 2007.04612
+    \endverb
+    \field{title}{Concept Bottleneck Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2007.04612
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2020}
+  \endentry
+
+  \entry{lai2025principlesdiffusionmodels}{misc}{}
+    \name{author}{5}{}{%
+      {{hash=LCH}{%
+         family={Lai},
+         familyi={L\bibinitperiod},
+         given={Chieh-Hsin},
+         giveni={C\bibinithyphendelim H\bibinitperiod},
+      }}%
+      {{hash=SY}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={Yang},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kim},
+         familyi={K\bibinitperiod},
+         given={Dongjun},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MY}{%
+         family={Mitsufuji},
+         familyi={M\bibinitperiod},
+         given={Yuki},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ES}{%
+         family={Ermon},
+         familyi={E\bibinitperiod},
+         given={Stefano},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LCH+1}
+    \strng{fullhash}{LCHSYKDMYES1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 2510.21890
+    \endverb
+    \field{title}{The Principles of Diffusion Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2510.21890
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2025}
+  \endentry
+
+  \entry{mahinpei2021promisespitfallsblackboxconcept}{misc}{}
+    \name{author}{5}{}{%
+      {{hash=MA}{%
+         family={Mahinpei},
+         familyi={M\bibinitperiod},
+         given={Anita},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CJ}{%
+         family={Clark},
+         familyi={C\bibinitperiod},
+         given={Justin},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LI}{%
+         family={Lage},
+         familyi={L\bibinitperiod},
+         given={Isaac},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=DVF}{%
+         family={Doshi-Velez},
+         familyi={D\bibinithyphendelim V\bibinitperiod},
+         given={Finale},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=PW}{%
+         family={Pan},
+         familyi={P\bibinitperiod},
+         given={Weiwei},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MA+1}
+    \strng{fullhash}{MACJLIDVFPW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \verb{eprint}
+    \verb 2106.13314
+    \endverb
+    \field{title}{Promises and Pitfalls of Black-Box Concept Learning Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2106.13314
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2021}
+  \endentry
+
+  \entry{margeloiu2021conceptbottleneckmodelslearn}{misc}{}
+    \name{author}{6}{}{%
+      {{hash=MA}{%
+         family={Margeloiu},
+         familyi={M\bibinitperiod},
+         given={Andrei},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Ashman},
+         familyi={A\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BU}{%
+         family={Bhatt},
+         familyi={B\bibinitperiod},
+         given={Umang},
+         giveni={U\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Yanzhi},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jamnik},
+         familyi={J\bibinitperiod},
+         given={Mateja},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WA}{%
+         family={Weller},
+         familyi={W\bibinitperiod},
+         given={Adrian},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MA+2}
+    \strng{fullhash}{MAAMBUCYJMWA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \verb{eprint}
+    \verb 2105.04289
+    \endverb
+    \field{title}{Do Concept Bottleneck Models Learn as Intended?}
+    \verb{url}
+    \verb https://arxiv.org/abs/2105.04289
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2021}
+  \endentry
+
+  \entry{parisini2026leakageinterpretabilityconceptbasedmodels}{misc}{}
+    \name{author}{5}{}{%
+      {{hash=PE}{%
+         family={Parisini},
+         familyi={P\bibinitperiod},
+         given={Enrico},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=CT}{%
+         family={Chakraborti},
+         familyi={C\bibinitperiod},
+         given={Tapabrata},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=HC}{%
+         family={Harbron},
+         familyi={H\bibinitperiod},
+         given={Chris},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=MBD}{%
+         family={MacArthur},
+         familyi={M\bibinitperiod},
+         given={Ben\bibnamedelima D.},
+         giveni={B\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=BCRS}{%
+         family={Banerji},
+         familyi={B\bibinitperiod},
+         given={Christopher R.\bibnamedelima S.},
+         giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim
+  S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PE+1}
+    \strng{fullhash}{PECTHCMBDBCRS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \verb{eprint}
+    \verb 2504.14094
+    \endverb
+    \field{title}{Leakage and Interpretability in Concept-Based Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2504.14094
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2026}
+  \endentry
+
+  \entry{shin2022a}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=SS}{%
+         family={Shin},
+         familyi={S\bibinitperiod},
+         given={Sungbin},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=JY}{%
+         family={Jo},
+         familyi={J\bibinitperiod},
+         given={Yohan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=AS}{%
+         family={Ahn},
+         familyi={A\bibinitperiod},
+         given={Sungsoo},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LN}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Namhoon},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SS+1}
+    \strng{fullhash}{SSJYASLN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{Workshop on Trustworthy and Socially Responsible Machine
+  Learning, NeurIPS 2022}
+    \field{title}{A Closer Look at the Intervention Procedure of Concept
+  Bottleneck Models}
+    \verb{url}
+    \verb https://openreview.net/forum?id=PUspzfGsgY
+    \endverb
+    \field{year}{2022}
+  \endentry
+
+  \entry{sonderby2016howtrain}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=SC}{%
+         family={S{\o}nderby},
+         familyi={S\bibinitperiod},
+         given={\{Casper Kaae\}},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=RT}{%
+         family={Raiko},
+         familyi={R\bibinitperiod},
+         given={Tapani},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=ML}{%
+         family={Maal{\o}e},
+         familyi={M\bibinitperiod},
+         given={Lars},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={S{\o}nderby},
+         familyi={S\bibinitperiod},
+         given={\{S{\o}ren Kaae\}},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WO}{%
+         family={Winther},
+         familyi={W\bibinitperiod},
+         given={Ole},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {English}%
+    }
+    \strng{namehash}{SC+1}
+    \strng{fullhash}{SCRTMLSSWO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    Variational autoencoders are a powerful framework for unsupervised
+  learning. However, previous work has been restricted to shallow models with
+  one or two layers of fully factorized stochastic latent variables, limiting
+  the flexibility of the latent representation. We propose three advances in
+  training algorithms of variational autoencoders, for the first time allowing
+  to train deep models of up to five stochastic layers, (1) using a structure
+  similar to the Ladder network as the inference model, (2) warm-up period to
+  support stochastic units staying active in early training, and (3) use of
+  batch normalization. Using these improvements we show state-of-the-art
+  log-likelihood results for generative modeling on several benchmark
+  datasets.%
+    }
+    \field{booktitle}{Proceedings of the 33rd International Conference on
+  Machine Learning (ICML 2016)}
+    \field{note}{33rd International Conference on Machine Learning (ICML 2016),
+  ICML ; Conference date: 19-06-2016 Through 24-06-2016}
+    \field{series}{JMLR: Workshop and Conference Proceedings}
+    \field{title}{How to Train Deep Variational Autoencoders and Probabilistic
+  Ladder Networks}
+    \verb{url}
+    \verb http://icml.cc/2016/
+    \endverb
+    \field{year}{2016}
+  \endentry
+
+  \entry{wang2024disentangledrepresentationlearning}{misc}{}
+    \name{author}{5}{}{%
+      {{hash=WX}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Xin},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=CH}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Hong},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=TS}{%
+         family={Tang},
+         familyi={T\bibinitperiod},
+         given={Si'ao},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WZ}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Zihao},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=ZW}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Wenwu},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WX+1}
+    \strng{fullhash}{WXCHTSWZZW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \verb{eprint}
+    \verb 2211.11695
+    \endverb
+    \field{title}{Disentangled Representation Learning}
+    \verb{url}
+    \verb https://arxiv.org/abs/2211.11695
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2024}
+  \endentry
+
+  \entry{zarlenga2022conceptembeddingmodelsaccuracyexplainability}{misc}{}
+    \name{author}{12}{}{%
+      {{hash=ZME}{%
+         family={Zarlenga},
+         familyi={Z\bibinitperiod},
+         given={Mateo\bibnamedelima Espinosa},
+         giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Barbiero},
+         familyi={B\bibinitperiod},
+         given={Pietro},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=CG}{%
+         family={Ciravegna},
+         familyi={C\bibinitperiod},
+         given={Gabriele},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=MG}{%
+         family={Marra},
+         familyi={M\bibinitperiod},
+         given={Giuseppe},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=GF}{%
+         family={Giannini},
+         familyi={G\bibinitperiod},
+         given={Francesco},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=DM}{%
+         family={Diligenti},
+         familyi={D\bibinitperiod},
+         given={Michelangelo},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SZ}{%
+         family={Shams},
+         familyi={S\bibinitperiod},
+         given={Zohreh},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=PF}{%
+         family={Precioso},
+         familyi={P\bibinitperiod},
+         given={Frederic},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Melacci},
+         familyi={M\bibinitperiod},
+         given={Stefano},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WA}{%
+         family={Weller},
+         familyi={W\bibinitperiod},
+         given={Adrian},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Lio},
+         familyi={L\bibinitperiod},
+         given={Pietro},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jamnik},
+         familyi={J\bibinitperiod},
+         given={Mateja},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZME+1}
+    \strng{fullhash}{ZMEBPCGMGGFDMSZPFMSWALPJM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \verb{eprint}
+    \verb 2209.09056
+    \endverb
+    \field{title}{Concept Embedding Models: Beyond the Accuracy-Explainability
+  Trade-Off}
+    \verb{url}
+    \verb https://arxiv.org/abs/2209.09056
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2022}
+  \endentry
+\enddatalist
+\endinput

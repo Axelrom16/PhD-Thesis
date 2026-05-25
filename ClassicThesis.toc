@@ -1,0 +1,48 @@
+\babel@toc {american}{}\relax 
+\vspace {-\cftbeforepartskip }
+\babel@toc {american}{}\relax 
+\babel@toc {ngerman}{}\relax 
+\babel@toc {american}{}\relax 
+\contentsline {chapter}{\numberline {1}\spacedlowsmallcaps {Introduction}}{1}{chapter.1}%
+\contentsline {part}{\numberline {i}\spacedlowsmallcaps {Foundations and Literature Review}}{3}{part.1}%
+\contentsline {chapter}{\numberline {2}\spacedlowsmallcaps {Deep Generative Models}}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Training of DGM}{5}{section.2.1}%
+\contentsline {chapter}{\numberline {3}\spacedlowsmallcaps {Variational Autoencoders}}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Training of VAEs}{8}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Gaussian VAEs}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Denoising Diffusion Probabilistic Models}{12}{section.3.3}%
+\contentsline {chapter}{\numberline {4}\spacedlowsmallcaps {Energy-Based Models}}{13}{chapter.4}%
+\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {Normalizing Flows}}{15}{chapter.5}%
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {Disentanglement}}{17}{chapter.6}%
+\contentsline {section}{\numberline {6.1}VAE-Based Models}{17}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Diffusion/Flow-Based Models}{17}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Metrics}{17}{section.6.3}%
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Compositionality}}{19}{chapter.7}%
+\contentsline {chapter}{\numberline {8}\spacedlowsmallcaps {Concept Bottleneck Models}}{21}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Information Leakage}{23}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Recent CBMs}{25}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Concept Bottleneck Generative Models}{25}{section.8.3}%
+\contentsline {part}{\numberline {ii}\spacedlowsmallcaps {Methods}}{27}{part.2}%
+\contentsline {chapter}{\numberline {9}\spacedlowsmallcaps {Proposal}}{29}{chapter.9}%
+\contentsline {chapter}{\numberline {10}\spacedlowsmallcaps {Data}}{31}{chapter.10}%
+\contentsline {part}{\numberline {iii}\spacedlowsmallcaps {Experiments and Results}}{33}{part.3}%
+\contentsline {part}{\numberline {iv}\spacedlowsmallcaps {Research Plan}}{35}{part.4}%
+\contentsline {chapter}{\numberline {11}\spacedlowsmallcaps {Examples}}{37}{chapter.11}%
+\contentsline {section}{\numberline {11.1}A New Section}{37}{section.11.1}%
+\contentsline {subsection}{\numberline {11.1.1}Test for a Subsection}{37}{subsection.11.1.1}%
+\contentsline {subsection}{\numberline {11.1.2}Autem Timeam}{37}{subsection.11.1.2}%
+\contentsline {section}{\numberline {11.2}Another Section in This Chapter}{38}{section.11.2}%
+\contentsline {subsection}{\numberline {11.2.1}Personas Initialmente}{38}{subsection.11.2.1}%
+\contentsline {subsubsection}{\numberline {11.2.1.1}A Subsubsection}{38}{subsubsection.11.2.1.1}%
+\contentsline {paragraph}{A Paragraph Example}{38}{Item.2}%
+\contentsline {subsection}{\numberline {11.2.2}Linguistic Registrate}{39}{subsection.11.2.2}%
+\contentsline {chapter}{\numberline {12}\spacedlowsmallcaps {Math Test Chapter}}{41}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Some Formulas}{41}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Various Mathematical Examples}{42}{section.12.2}%
+\contentsline {part}{\numberline {v}\spacedlowsmallcaps {Appendix}}{43}{part.5}%
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Appendix Test}}{45}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Appendix Section Test}{45}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Another Appendix Section Test}{45}{section.A.2}%
+\vspace {\beforebibskip }
+\contentsline {chapter}{\spacedlowsmallcaps {Bibliography}}{47}{dummy.5}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

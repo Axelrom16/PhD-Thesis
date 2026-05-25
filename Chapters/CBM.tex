@@ -1,0 +1,178 @@
+%************************************************
+\chapter{Concept Bottleneck Models}\label{ch:cbm}
+%************************************************
+
+Concept Bottleneck Models (CBMs) were first introduced in \cite{koh2020conceptbottleneckmodels} with the idea 
+to easily interact with state-of-the-art models using high-level concepts that are understandable for the researchers. 
+The general idea is to first predict an intermediate set of human-specified concepts $\mathbf{c}$ based on the input images 
+and then use the concepts $\mathbf{c}$ to predict the target label $\mathbf{y}$. The objective is to address three desiderata: 
+\cite{margeloiu2021conceptbottleneckmodelslearn}
+\begin{itemize}
+    \item \textbf{Interpretability}: Being able to note which concepts are important for the targets. 
+    \item \textbf{Predictability}: Being able to predict the targets from the concepts alone. 
+    \item \textbf{Intervenability}: Being able to replace predicted concept values with ground truth values to improve predictive performance. 
+\end{itemize}
+These types of models are trained on datapoints $\{(x^{(i)}, c^{(i)}, y^{(i)})\}^n_{i=1}$ where each input $x$ (usually 
+an image $x\in\mathbb{R}^{H\times W\times C}$) is annotated with the set of concepts $c\in\mathbb{R}^k$ with $k$ concepts 
+and the target $y\in\mathbb{R}$. We can define the bottleneck model as $f(g(x))$ where $g: \mathbb{R}^{H\times W\times C} 
+\rightarrow \mathbb{R}^k$ maps an input $x$ into the concept space and then $f: \mathbb{R}^k\rightarrow\mathbb{R}$ maps 
+concepts into the target prediction. The bottleneck is performed when the target prediction $\hat y=f(\hat c)$ relies only 
+on the concept predictions $\hat c=g(x)$ based on the inputs. For the training of these models, we have three different strategies: 
+\begin{itemize}
+    \item \textbf{Independent}: learn $\hat f$ and $\hat g$ independently. For $\hat {f} $, minimise the task loss $L_Y$, 
+    which measures the discrepancy between predicted and true targets. Then, for $\hat g$, minimise the concept loss 
+    $L_{C_j}$ for each concept $j$, which measures the discrepancy between predicted and real $j$-th concept. 
+    \item \textbf{Sequential}: first learn $\hat g$ and then use the predictions to learn $\hat f$. 
+    \item \textbf{Joint}: minimises the weighted sum of both task and concept losses with the hyperparameter $\lambda$, 
+    which controls the tradeoff between concept vs. task loss. 
+\end{itemize}
+One important property of these models is the ability to perform interventions by editing the concept predictions $\hat c$ and 
+propagating these changes to the target prediction $\hat y$. This property also makes these models more interpretable in terms 
+of high-level concepts since we can see the importance and effect of the inclusion or removal of some concepts for the final 
+response. In the original paper, the concept intervention method is applied randomly without any specific criteria or using 
+expert knowledge. In a recent paper \cite{shin2022a}, different intervention methods were evaluated to minimise the number of 
+concepts to intervene on while maximising task accuracy. The method that achieves the best performance is the one where we 
+first intervene on the concepts with the highest predictive uncertainty from the concept predictor $g$, i.e. it first intervenes 
+on the concept with the maximum value of $1 / |\hat c_i - 0.5|$. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{gfx/cbm/cbm1.png}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{tikzpicture}[
+    >=Stealth,
+    % Styles
+    box/.style={draw=blue!70!black, rectangle, rounded corners, align=center, minimum height=1.5cm, minimum width=3.5cm, fill=blue!5, thick},
+    concept/.style={draw=green!70!black, circle, align=center, minimum size=0.8cm, fill=green!5, thick},
+    io/.style={align=center, font=\large\bfseries}
+    ]
+
+    % 1. Input
+    \node (input) [io] {$X$ \\ \normalsize (Input)};
+
+    % 2. Concept Predictor g(x)
+    \node (g) [box, below=1.2cm of input] {$g(x)$ \\ \textbf{Concept Predictor} \\ \small (e.g., CNN / Extractor)};
+
+    % 3. Concept Bottleneck
+    % Increased spacing below g(x) to give the arrow and 'Predicts' text room to breathe
+    \node (c2) [concept, below=2.2cm of g, xshift=-0.5cm] {$c_2$};
+    \node (c1) [concept, left=0.4cm of c2] {$c_1$};
+    \node (cdots) [right=0.4cm of c2] {$\dots$};
+    \node (ck) [concept, right=0.4cm of cdots] {$c_k$};
+
+    % Group the concepts inside a dashed box
+    \node[draw=black!60, rectangle, dashed, rounded corners, fit=(c1) (c2) (cdots) (ck), inner sep=0.4cm, thick] (c_box) {};
+
+    % Place the label ON the top border (acting as a title between the arrow and the concepts)
+    \node (c_label) [fill=white, font=\bfseries, inner sep=0.15cm] at (c_box.north) {Concept Bottleneck $\hat{C}$};
+
+    % 4. Label Predictor f(c)
+    \node (f) [box, below=1.5cm of c_box] {$f(c)$ \\ \textbf{Label Predictor} \\ \small (e.g., Linear Model)};
+
+    % 5. Output
+    \node (output) [io, below=1.2cm of f] {$\hat{Y}$ \\ \normalsize (Prediction)};
+
+    % Connections / Arrows
+    \draw[->, thick, draw=black!70] (input) -- (g);
+    % Arrow points directly to the top of the new label
+    \draw[->, thick, draw=black!70] (g) -- (c_label.north) node[midway, right, font=\small, text=black!70] {Predicts};
+    \draw[->, thick, draw=black!70] (c_box.south) -- (f.north);
+    \draw[->, thick, draw=black!70] (f.south) -- (output.north) node[midway, right, font=\small, text=black!70] {Predicts};
+
+    % Descriptive Annotations (Anchored to the left)
+    \node[left=0.8cm of g, text width=3.2cm, align=right, font=\footnotesize, color=gray!80!black] {Maps raw data to \\ high-dimensional \\ uninterpretable space};
+    
+    \node[left=0.8cm of c_box, text width=3.5cm, align=right, font=\footnotesize, color=green!60!black] {Human-understandable \\ concepts \\ (e.g., "has wings")};
+    
+    \node[left=0.8cm of f, text width=3.2cm, align=right, font=\footnotesize, color=gray!80!black] {Transparent / simple \\ decision rules based \\ \textbf{only} on concepts};
+
+    \node (caption) [below=1cm of output, text width=10cm, align=justify, font=\small] {\textbf{Figure 1:} Architecture of a Concept Bottleneck Model (CBM). The model maps raw inputs $X$ to an interpretable intermediate concept space $\hat{C}$ before making the final prediction $\hat{Y}$.};
+
+\end{tikzpicture}
+
+\section{Information Leakage}   
+For these types of models, it may often be unrealistic to assume that we will have access to concepts which fully capture the 
+relationship between the inputs and targets. Several recent papers have studied the problem of information leakage in these types 
+of models based on the previous assumption. This information leakage is usually observed in CBMs trained sequentially or jointly 
+\cite{margeloiu2021conceptbottleneckmodelslearn, mahinpei2021promisespitfallsblackboxconcept}, and it appears when the intermediate 
+representations encode information that is not present in the concepts $c$, which contains information to predict the final target 
+rather than only focusing on getting the concept correct. This leakage has a negative impact on the interpretability and intervenability 
+of the model. A CBM model with information leakage may be unsafe for critical decision-making applications, such as clinical scenarios. 
+\cite{parisini2026leakageinterpretabilityconceptbasedmodels} We can identify two main types of leakage:   
+\begin{itemize}
+    \item \textbf{Concept-task leakage}: additional information about the task is stored in the learnt concepts. If concept-task 
+    leakage is present, then the learned concept-task mutual information (MI) will be higher than ground-truth concept-task MI. 
+    \item \textbf{Interconcept leakage}: additional information about the other concepts is stored in each learned concept. Learned 
+    concepts are more predictive of the value of the other learned concepts, resulting in a learned interconcept MI being higher 
+    than the ground-truth. 
+\end{itemize} 
+Several measures of leakage have been proposed in the literature, but none of them has successfully integrated the information-theoretic 
+nature of leakage in these types of models. 
+\begin{itemize}
+    \item \textbf{Concept Performance Metrics}: these are the metrics that indicate the quality of the concept learning, such as for example 
+    concept accuracy, precision, recall, F1 score and AUC. These metrics are not sensitive to leakage. Two models can have similar concept 
+    performance but have different degrees of information leakage. Concept AUC has more sensitivity in this problem since it contains more 
+    information about the concept distribution. 
+    \item \textbf{Oracle Impurity Score (OIS)}: this metric was defined in \cite{Espinosa_Zarlenga_2023} to capture leakage. The idea is to 
+    train $k(k-1)$ additional simple MLP $\psi_{i,j}$, whose objective is to predict the value of the ground-truth concept $j$ from the 
+    learnt representation of concept $i$. This will create the Purity Matrix, defined as $\pi(\hat c, c) = AUC(\psi_{i,j}(\hat c_i), c_j)$. 
+    The $(i,j)$-th entry contains the AUC when predicting the ground truth value of concept $j$ given the $i$-th concept representation. 
+    The OIS metric is the average difference between the predictivities of learnt and ground truth concepts over pairs of concepts, defined 
+    as $$OIS(\hat c, c) = \frac{2}{k} ||\pi(\hat c, c) - \pi(c,c)||_F$$, where the Frobenius norm ensures $0\leq OIS\leq 1$. The value of 
+    1 represents a complete misalignment; the $i$-th concept can predict all other concepts except its corresponding one. A value of 0 
+    represents a perfect alignment; the $i$-th concept does not encode any unnecessary information for predicting concept $i$. A limitation 
+    is the stochasticity of the metric, which involves training neural networks, which is very variable when we evaluate the model several 
+    times at test time. 
+    \item \textbf{Niche Impurity Score (NIS)}: 
+    \item \textbf{Intervention}: the intervention of the predicted concepts with the ground-truth values can be used to evaluate the 
+    interpretability and the leakage. A task accuracy that decreases after intervention indicates that the task head expects extra information 
+    that is not present in the ground-truth concepts. Models with higher leakage have worse intervention performance. This metric is unable 
+    to distinguish between interconcept and concept-task leakage; also, when we have a large number of concepts, the computation is very expensive. 
+\end{itemize}
+
+
+
+
+\section{Recent CBMs}  
+
+
+\section{Concept Bottleneck Generative Models}
+
+
+All the previous models presented in this document are focused on classification or regression problems, which are the original implementations 
+of concept bottleneck models. The next step is to combine this idea with generative models to develop a method for interpreting and intervening 
+in them, called Concept Bottleneck Generative Models (CBGMs)\cite{ismail2024concept}. This method allows us to steer the generative model, since 
+we can change the concept of the image while preserving the image quality, and understand the model by identifying the important concepts that 
+are responsible for the output. \\
+The general idea is to insert a concept bottleneck (CB) layer into a generative model, which is divided in two parts: the pre-concept bottleneck 
+part and the post-concept bottleneck part. The partition depends on the generative model we use (GANs, VAEs, Diffusion). The authors decided to 
+use the Concept Embedding framework \cite{zarlenga2022conceptembeddingmodelsaccuracyexplainability} for the concept bottleneck layer and also 
+argue that it is unrealistic to expect that the pre-defined human concepts are complete, so they also added a set of unknown concepts that might 
+also be required for generation. \\
+Each concept is represented with two embeddings: $w_i^+,w_i^- \in \mathbb{R}^m$ representing the active and inactive concept states, respectively. 
+The output of the pre-concept bottleneck part of the model, the embedding $h$, is fed into several context networks $\phi$ that map $h$ to the 
+two embeddings per concept. Then, a network $\Psi$ is trained to predict the probability of concept $c_i$ from the joint embedding space, 
+$\hat c_i = \Psi_i([w_i^+, w_i^-]^T)\in[0,1]$. The final context embedding $w_i$ is defined as a weighted mixture of the two embeddings as 
+$w_i=(\hat c_i w_i^+ + (1-\hat c_i)w_i^-)$. All the $k$ concept embeddings are concatenated to obtain the final vector that is fed to the 
+post-concept network. For the intervention, we simply have to modify the concept probability $\hat c_i$ to $\bar c_i$ in the weighted mixture of 
+$w_i$. \\
+The loss function is defined as $$\mathcal{L} = \mathcal{L}_{task} + \alpha\mathcal{L}_{con} + \beta\mathcal{L}_{orth},$$ where $\alpha$ and 
+$\beta$ are hyperparameters that control the importance of the concept and orthogonality loss, respectively. As we can see, the loss consists 
+of three parts: 
+\begin{itemize}
+    \item \textbf{Task Loss}: the base objective function of the generative model family. 
+    \item \textbf{Concept Loss}: is the binary cross-entropy loss between the predicted and real concept probabilities. 
+    \item \textbf{Concept Orthogonality Loss}: encourage the unknown concepts to be orthogonal to the outputs of each concept network using an orthogonality constraint defined as: $$\mathcal{L}_{orth} = \sum_{f\in B}\frac{\sum_{i=1}^{i=k}|\langle w_i, w_{k+1} \rangle|}{\sum_{i=1}^{i=k}1},$$ where $\langle \cdot, \cdot \rangle$ is the cosine similarity and $j$ denotes each sample in the mini-batch of size $B$. 
+\end{itemize} 
+
+
+
+
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************

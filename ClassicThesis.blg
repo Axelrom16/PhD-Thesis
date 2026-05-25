@@ -1,0 +1,100 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: ClassicThesis.aux
+The style file: biblatex.bst
+A level-1 auxiliary file: FrontBackmatter/Titlepage.aux
+A level-1 auxiliary file: FrontBackmatter/Titleback.aux
+A level-1 auxiliary file: FrontBackmatter/Abstract.aux
+A level-1 auxiliary file: FrontBackmatter/Acknowledgments.aux
+A level-1 auxiliary file: FrontBackmatter/Contents.aux
+A level-1 auxiliary file: Chapters/Introduction.aux
+A level-1 auxiliary file: Chapters/DGMs.aux
+A level-1 auxiliary file: Chapters/VAEs.aux
+A level-1 auxiliary file: Chapters/EBMs.aux
+A level-1 auxiliary file: Chapters/NFs.aux
+A level-1 auxiliary file: Chapters/Disentanglement.aux
+A level-1 auxiliary file: Chapters/Compositionality.aux
+A level-1 auxiliary file: Chapters/CBM.aux
+A level-1 auxiliary file: Chapters/Proposal.aux
+A level-1 auxiliary file: Chapters/Data.aux
+A level-1 auxiliary file: Chapters/Chapter02.aux
+A level-1 auxiliary file: Chapters/Chapter03.aux
+A level-1 auxiliary file: Chapters/Chapter0A.aux
+A level-1 auxiliary file: FrontBackmatter/Bibliography.aux
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ClassicThesis-blx.bib
+Database file #2: Bibliography.bib
+Warning--string name "june" is undefined
+--line 167 of file Bibliography.bib
+Database file #3: AMiede_Publications.bib
+Warning--I didn't find a database entry for "knuth:1974"
+Warning--I didn't find a database entry for "lecun1998mnist"
+Warning--I didn't find a database entry for "locatello2019challenging"
+Warning--I didn't find a database entry for "dsprites17"
+Warning--I didn't find a database entry for "liu2015faceattributes"
+Warning--I didn't find a database entry for "karras2017progressive"
+Warning--I didn't find a database entry for "taleb:2012"
+Warning--I didn't find a database entry for "bentley:1999"
+Warning--I didn't find a database entry for "cormen:2001"
+Warning--I didn't find a database entry for "dueck:trio"
+Warning--I didn't find a database entry for "knuth:1976"
+Warning--I didn't find a database entry for "sommerville:1992"
+Biblatex version: 3.17
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 16 entries,
+            6399 wiz_defined-function locations,
+            1343 strings with 14678 characters,
+and the built_in function-call counts, 203111 in all, are:
+= -- 17667
+> -- 2548
+< -- 661
++ -- 6950
+- -- 1218
+* -- 15677
+:= -- 25617
+add.period$ -- 0
+call.type$ -- 16
+change.case$ -- 15
+chr.to.int$ -- 50
+cite$ -- 30
+duplicate$ -- 21367
+empty$ -- 15989
+format.name$ -- 1655
+if$ -- 39624
+int.to.chr$ -- 0
+int.to.str$ -- 36
+missing$ -- 0
+newline$ -- 818
+num.names$ -- 710
+pop$ -- 6261
+preamble$ -- 1
+purify$ -- 380
+quote$ -- 0
+skip$ -- 3582
+stack$ -- 0
+substring$ -- 33863
+swap$ -- 3170
+text.length$ -- 665
+text.prefix$ -- 15
+top$ -- 1
+type$ -- 532
+warning$ -- 0
+while$ -- 3190
+width$ -- 0
+write$ -- 803
+(There were 13 warnings)

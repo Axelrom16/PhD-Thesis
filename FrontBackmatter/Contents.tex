@@ -1,0 +1,90 @@
+%*******************************************************
+% Table of Contents
+%*******************************************************
+%\phantomsection
+\refstepcounter{dummy}
+\pdfbookmark[1]{\contentsname}{tableofcontents}
+\setcounter{tocdepth}{2} % <-- 2 includes up to subsections in the ToC
+\setcounter{secnumdepth}{3} % <-- 3 numbers up to subsubsections
+\manualmark
+\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
+\tableofcontents 
+\automark[section]{chapter}
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
+%*******************************************************
+% List of Figures and of the Tables
+%*******************************************************
+\clearpage
+
+\begingroup 
+    \let\clearpage\relax
+    \let\cleardoublepage\relax
+    \let\cleardoublepage\relax
+    %*******************************************************
+    % List of Figures
+    %*******************************************************    
+    %\phantomsection 
+    \refstepcounter{dummy}
+    %\addcontentsline{toc}{chapter}{\listfigurename}
+    \pdfbookmark[1]{\listfigurename}{lof}
+    \listoffigures
+
+    \vspace{6ex}
+
+    %*******************************************************
+    % List of Tables
+    %*******************************************************
+    %\phantomsection 
+    \refstepcounter{dummy}
+    %\addcontentsline{toc}{chapter}{\listtablename}
+    \pdfbookmark[1]{\listtablename}{lot}
+    \listoftables
+        
+    \vspace{6ex}
+%   \newpage
+    
+    %*******************************************************
+    % List of Listings
+    %*******************************************************      
+      %\phantomsection 
+    %\refstepcounter{dummy}
+        %\addcontentsline{toc}{chapter}{\lstlistlistingname}
+    %\pdfbookmark[1]{\lstlistlistingname}{lol}
+    %\lstlistoflistings 
+
+    %\vspace{6ex}
+       
+    %*******************************************************
+    % Acronyms
+    %*******************************************************
+    %\phantomsection 
+    %\refstepcounter{dummy}
+    %\pdfbookmark[1]{Acronyms}{acronyms}
+    %\markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
+    %\chapter*{Acronyms}
+    %\begin{acronym}[UMLX]
+    %    \acro{DRY}{Don't Repeat Yourself}
+    %    \acro{API}{Application Programming Interface}
+    %    \acro{UML}{Unified Modeling Language}
+    %\end{acronym}            
+    
+    %*******************************************************
+    % Notation 
+    %*******************************************************
+    \refstepcounter{dummy}
+    \pdfbookmark[1]{Notation}{notation}
+    \chapter*{Notation}
+    \begin{itemize}
+        \item \textbf{Scalars} are denoted by lowercase letters, e.g. $x\in\mathbb{R}$.
+        \item \textbf{Vectors} are denoted by bold lowercase letters, e.g. $\mathbf{x}\in\mathbb{R}^n$.
+        \item \textbf{Matrices} are denoted by bold uppercase letters, e.g. $\mathbf{X}\in\mathbb{R}^{m\times n}$.
+        \item \textbf{Sets} are denoted by calligraphic uppercase letters, e.g. $\mathcal{X}$.
+        \item $\mathbf{X}^\top$ denotes the transpose of a matrix $\mathbf{X}$.
+        \item $\mathbf{I}$ denotes the identity matrix.
+        \item $\mathbb{E}_{\mathbf{x}\sim p}[f(\mathbf{x})]$ denotes the expected value of a function $f(\mathbf{x})$ with respect to a probability distribution $p$ over $\mathbf{x}$.
+        \item $\mathrm{Var}_{\mathbf{x}\sim p}[f(\mathbf{x})]$ denotes the variance of a function $f(\mathbf{x})$ with respect to a probability distribution $p$ over $\mathbf{x}$.
+        \item $\nabla_{\theta} f(\theta)$ denotes the gradient of a function $f(\theta)$ with respect to the parameters $\theta$.   
+    \end{itemize}
+
+\endgroup

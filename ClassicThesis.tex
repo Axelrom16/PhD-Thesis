@@ -1,0 +1,143 @@
+% **************************************************************************************************************
+% A Classic Thesis Style
+% An Homage to The Elements of Typographic Style
+%
+% Copyright (C) 2015 André Miede http://www.miede.de
+%
+% If you like the style then I would appreciate a postcard. My address 
+% can be found in the file ClassicThesis.pdf. A collection of the 
+% postcards I received so far is available online at 
+% http://postcards.miede.de
+%
+% License:
+% This program is free software; you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation; either version 2 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; see the file COPYING.  If not, write to
+% the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+% Boston, MA 02111-1307, USA.
+%
+% **************************************************************************************************************
+\RequirePackage{fix-cm} % fix some latex issues see: http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf
+\documentclass[ twoside,openright,titlepage,numbers=noenddot,headinclude,%1headlines,% letterpaper a4paper
+                footinclude=true,cleardoublepage=empty,abstractoff, % <--- obsolete, remove (todo)
+                BCOR=5mm,paper=a4,fontsize=11pt,%11pt,a4paper,%
+                ngerman,american,%
+                ]{scrreprt}
+
+%********************************************************************
+% Note: Make all your adjustments in here
+%*******************************************************
+\input{classicthesis-config}
+
+%********************************************************************
+% Bibliographies
+%*******************************************************
+\addbibresource{Bibliography.bib}
+\addbibresource[label=ownpubs]{AMiede_Publications.bib}
+
+%********************************************************************
+% Hyphenation
+%*******************************************************
+%\hyphenation{put special hyphenation here}
+
+% --- Create the Custom Equation Box Environment ---
+\usepackage[most]{tcolorbox}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, fit, backgrounds, calc}
+\definecolor{boxback}{RGB}{242, 247, 250}   % Very light blue-gray background
+\definecolor{boxframe}{RGB}{24, 76, 120}    % Deep navy clinical blue for frame
+\definecolor{boxaccent}{RGB}{43, 122, 119}  % Deep teal for subtitle text
+\newtcolorbox[auto counter, number within=chapter]{summarybox}[2][]{%
+    enhanced,
+    colback=boxback,
+    colframe=boxframe,
+    fonttitle=\bfseries\sffamily,
+    coltitle=white,
+    title={Summary of Key Equations: #2},
+    arc=5pt,
+    boxrule=1.5pt,
+    drop shadow, % Adds a subtle academic depth shadow
+    attach boxed title to top left={yshift=-2mm, xshift=5mm},
+    boxed title style={colback=boxframe, arc=3pt},
+    #1 % Allows adding a label or custom tweaks later
+}
+
+% ********************************************************************
+% GO!GO!GO! MOVE IT!
+%*******************************************************
+\begin{document}
+\frenchspacing
+\raggedbottom
+\selectlanguage{american} % american ngerman
+%\renewcommand*{\bibname}{new name}
+%\setbibpreamble{}
+\pagenumbering{roman}
+\pagestyle{plain}
+%********************************************************************
+% Frontmatter
+%*******************************************************
+%\include{FrontBackmatter/DirtyTitlepage}
+\include{FrontBackmatter/Titlepage}
+\include{FrontBackmatter/Titleback}
+%\cleardoublepage\include{FrontBackmatter/Dedication}
+%\cleardoublepage\include{FrontBackmatter/Foreword}
+\cleardoublepage\include{FrontBackmatter/Abstract}
+%\cleardoublepage\include{FrontBackmatter/Publications}
+\cleardoublepage\include{FrontBackmatter/Acknowledgments}
+\pagestyle{scrheadings}
+\cleardoublepage\include{FrontBackmatter/Contents}
+%********************************************************************
+% Mainmatter
+%*******************************************************
+\cleardoublepage\pagenumbering{arabic}
+%\setcounter{page}{90}
+% use \cleardoublepage here to avoid problems with pdfbookmark
+\cleardoublepage 
+\include{Chapters/Introduction}
+\part{Foundations and Literature Review}
+\include{Chapters/DGMs}
+\include{Chapters/VAEs}
+%\include{Chapters/Diffusion}
+\include{Chapters/EBMs}
+\include{Chapters/NFs}
+\include{Chapters/Disentanglement}
+\include{Chapters/Compositionality}
+\include{Chapters/CBM}
+\cleardoublepage
+%\ctparttext{}
+\part{Methods}
+\include{Chapters/Proposal}
+\include{Chapters/Data}
+\part{Experiments and Results}
+\part{Research Plan}
+\include{Chapters/Chapter02}
+%\addtocontents{toc}{\protect\clearpage} % <--- just debug stuff, ignore
+\include{Chapters/Chapter03}
+%\include{multiToC} % <--- just debug stuff, ignore for your documents
+% ********************************************************************
+% Backmatter
+%*******************************************************
+\appendix
+%\renewcommand{\thechapter}{\alph{chapter}}
+\cleardoublepage
+\part{Appendix}
+\include{Chapters/Chapter0A}
+%********************************************************************
+% Other Stuff in the Back
+%*******************************************************
+\cleardoublepage\include{FrontBackmatter/Bibliography}
+%\cleardoublepage\include{FrontBackmatter/Declaration}
+%\cleardoublepage\include{FrontBackmatter/Colophon}
+% ********************************************************************
+% Game Over: Restore, Restart, or Quit?
+%*******************************************************
+\end{document}
+% ********************************************************************
