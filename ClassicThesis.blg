@@ -56,45 +56,45 @@ Warning--I didn't find a database entry for "sommerville:1992"
 Biblatex version: 3.17
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 16 entries,
+You've used 19 entries,
             6399 wiz_defined-function locations,
-            1343 strings with 14678 characters,
-and the built_in function-call counts, 203111 in all, are:
-= -- 17667
-> -- 2548
-< -- 661
-+ -- 6950
-- -- 1218
-* -- 15677
-:= -- 25617
+            1359 strings with 15240 characters,
+and the built_in function-call counts, 229069 in all, are:
+= -- 19731
+> -- 2935
+< -- 760
++ -- 7751
+- -- 1398
+* -- 17672
+:= -- 28665
 add.period$ -- 0
-call.type$ -- 16
-change.case$ -- 15
+call.type$ -- 19
+change.case$ -- 18
 chr.to.int$ -- 50
-cite$ -- 30
-duplicate$ -- 21367
-empty$ -- 15989
-format.name$ -- 1655
-if$ -- 39624
+cite$ -- 36
+duplicate$ -- 24154
+empty$ -- 18164
+format.name$ -- 1901
+if$ -- 44788
 int.to.chr$ -- 0
-int.to.str$ -- 36
+int.to.str$ -- 42
 missing$ -- 0
-newline$ -- 818
-num.names$ -- 710
-pop$ -- 6261
+newline$ -- 935
+num.names$ -- 833
+pop$ -- 7370
 preamble$ -- 1
-purify$ -- 380
+purify$ -- 428
 quote$ -- 0
-skip$ -- 3582
+skip$ -- 4166
 stack$ -- 0
-substring$ -- 33863
-swap$ -- 3170
-text.length$ -- 665
-text.prefix$ -- 15
+substring$ -- 37679
+swap$ -- 3665
+text.length$ -- 770
+text.prefix$ -- 18
 top$ -- 1
-type$ -- 532
+type$ -- 634
 warning$ -- 0
-while$ -- 3190
+while$ -- 3568
 width$ -- 0
-write$ -- 803
+write$ -- 917
 (There were 13 warnings)

@@ -285,15 +285,102 @@ This limitation fundamentally stems from the VAE objective function and its unde
 \end{itemize}
 
 
-
-
 % ******
 % DDPMs 
 % ******
 \section{Denoising Diffusion Probabilistic Models}
+One important technique developed to enhance the performance of VAEs and overcome the main limitations was \textbf{Hierarchical Variational Autoencoders} (HVAEs) \cite{vahdat2021nvaedeephierarchicalvariational} which are a type of VAE that uses a hierarchical 
+structure in the latent space. This hierarchical structure allows the model to capture more complex and high-frequency details in the data, which can help to reduce the blurriness of the generated images. A visualization of the 
+architecture of HVAEs is shown in Figure \ref{fig:hvvae}. In this architecture, we have $L$ layers of latent variables $\mathbf{z}_1, \mathbf{z}_2, \dots, \mathbf{z}_L$, where each layer captures different levels of abstraction. \\
+In this setup, we can define the following factorization of the joint distribution: 
+\begin{equation}
+    p_{\theta}(\mathbf{x},\mathbf{z}_{1:L}) = p_{\theta}(\mathbf{x}|\mathbf{z}_1)\prod_{i=2}^{L} p_{\theta}(\mathbf{z}_{i-1}|\mathbf{z}_i)p(\mathbf{z}_L),
+\end{equation}
+and the marginal distribution of the data point $\mathbf{x}$ can be expressed as:
+\begin{equation}
+    p_{\theta}(\mathbf{x}) = \int p_{\theta}(\mathbf{x},\mathbf{z}_{1:L})d\mathbf{z}_{1:L},
+\end{equation}
+where the generation is performed progressively from the latent variable $\mathbf{z}_L$, which follows the prio distribution $p(\mathbf{z}_L)$, to the data point $\mathbf{x}$, which is generated from the latent variable $\mathbf{z}_1$.
+The inference model can be defined as: 
+\begin{equation}
+    q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x}) = q_{\phi}(\mathbf{z}_1|\mathbf{x})\prod_{i=2}^{L} q_{\phi}(\mathbf{z}_i|\mathbf{z}_{i-1}),
+\end{equation}
+where the inference is performed progressively from the data point $\mathbf{x}$ to the latent variable $\mathbf{z}_L$. \\
+The ELBO loss is very similar to the one of the standard VAE, but we have to consider all the layers of latent variables:
+\begin{align}
+    \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) &= \mathbb{E}_{\mathbf{z}_{1:L}\sim q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x})} \left[\log \frac{p_{\theta}(\mathbf{x},\mathbf{z}_{1:L})}{q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x})} \right],
+\end{align}
+which can also be decomposed into the reconstruction term and the KL divergence term. \\
+\\
+This method of deep, stacked layers revolutionized the field of generative modeling and is the basis for many state-of-the-art models. The training of HVAEs present several challenges because the encoder 
+and decoder must be trained jointly and learning becamoes unstable. A clever twist to solve the main problems and maintain the hierarchical structure is the \textbf{Denoising Diffusion Probabilistic Models} (DDPMs)
+\cite{sohldickstein2015deepunsupervisedlearningusing, ho2020denoisingdiffusionprobabilisticmodels}, the next step in generative modeling.  
+
+
+\begin{figure}   
+\centering
+\begin{tikzpicture}[
+    % Tighter styles for narrower fit
+    block/.style={
+        draw,
+        thick,
+        rectangle,
+        rounded corners=1mm,
+        minimum width=1.1cm,
+        minimum height=1.8cm,
+        fill=black!5,
+        font=\large,
+        align=center
+    },
+    arr/.style={->, thick, >=Stealth},
+    revarr/.style={<-, thick, >=Stealth},
+    % Added a label style to make the math font slightly smaller and reduce padding
+    lbl/.style={midway, font=\footnotesize, inner sep=5.5pt} 
+]
+
+    % --- Nodes ---
+    \node[block] (x) {$\mathbf{x}$};
+    \node[block, right=1.5cm of x] (z1) {$\mathbf{z}_1$};
+    \node[block, right=1.5cm of z1] (z2) {$\mathbf{z}_2$};
+    
+    % Reduced the space around the ellipsis
+    \node[right=0.7cm of z2, font=\Large, inner xsep=0mm] (dots) {$\dots$};
+    
+    \node[block, right=1.8cm of dots] (zl) {$\mathbf{z}_L$};
+
+    % --- Edges ---
+    % Brought the arrows slightly closer together (yshift=3.5mm instead of 5mm)
+    
+    % Connections between x and z1
+    \draw[arr]    ([yshift=3.5mm]x.east) -- ([yshift=3.5mm]z1.west)
+        node[lbl, above] {$q_\theta(\mathbf{z}_1|\mathbf{x})$};
+    \draw[revarr] ([yshift=-3.5mm]x.east) -- ([yshift=-3.5mm]z1.west)
+        node[lbl, below] {$p_\phi(\mathbf{x}|\mathbf{z}_1)$};
+
+    % Connections between z1 and z2
+    \draw[arr]    ([yshift=3.5mm]z1.east) -- ([yshift=3.5mm]z2.west)
+        node[lbl, above] {$q_\theta(\mathbf{z}_2|\mathbf{z}_1)$};
+    \draw[revarr] ([yshift=-3.5mm]z1.east) -- ([yshift=-3.5mm]z2.west)
+        node[lbl, below] {$p_\phi(\mathbf{z}_1|\mathbf{z}_2)$};
+
+    % Connections entering the ellipsis from z2
+    \draw[arr]    ([yshift=3.5mm]z2.east) -- ([yshift=3.5mm]dots.west);
+    \draw[revarr] ([yshift=-3.5mm]z2.east) -- ([yshift=-3.5mm]dots.west);
+
+    % Connections leaving the ellipsis to zL
+    \draw[arr]    ([yshift=3.5mm]dots.east) -- ([yshift=3.5mm]zl.west)
+        node[lbl, above] {$q_\theta(\mathbf{z}_L|\mathbf{z}_{L-1})$};
+    \draw[revarr] ([yshift=-3.5mm]dots.east) -- ([yshift=-3.5mm]zl.west)
+        node[lbl, below] {$p_\phi(\mathbf{z}_{L-1}|\mathbf{z}_L)$};
+
+\end{tikzpicture}
+\caption{Hierarchical VAE architecture with $L$ layers of latent variables. Each layer captures different levels of abstraction, allowing for richer representations and improved generation quality.}
+\label{fig:hvvae}
+\end{figure}
 
 
 
+\newpage
 \begin{summarybox}[label={box:latent_math}]{VAEs and DDPMs}
     This box summarizes the main mathematical equations of VAEs and DDPMs:
 

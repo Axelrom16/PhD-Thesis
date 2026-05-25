@@ -187,6 +187,45 @@
     \field{year}{2023}
   \endentry
 
+  \entry{ho2020denoisingdiffusionprobabilisticmodels}{misc}{}
+    \name{author}{3}{}{%
+      {{hash=HJ}{%
+         family={Ho},
+         familyi={H\bibinitperiod},
+         given={Jonathan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=JA}{%
+         family={Jain},
+         familyi={J\bibinitperiod},
+         given={Ajay},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=AP}{%
+         family={Abbeel},
+         familyi={A\bibinitperiod},
+         given={Pieter},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HJJAAP1}
+    \strng{fullhash}{HJJAAP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{eprint}
+    \verb 2006.11239
+    \endverb
+    \field{title}{Denoising Diffusion Probabilistic Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2006.11239
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2020}
+  \endentry
+
   \entry{ismail2024concept}{inproceedings}{}
     \name{author}{5}{}{%
       {{hash=IAA}{%
@@ -625,6 +664,52 @@
     \field{year}{2022}
   \endentry
 
+  \entry{sohldickstein2015deepunsupervisedlearningusing}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=SDJ}{%
+         family={Sohl-Dickstein},
+         familyi={S\bibinithyphendelim D\bibinitperiod},
+         given={Jascha},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=WEA}{%
+         family={Weiss},
+         familyi={W\bibinitperiod},
+         given={Eric\bibnamedelima A.},
+         giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=MN}{%
+         family={Maheswaranathan},
+         familyi={M\bibinitperiod},
+         given={Niru},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Ganguli},
+         familyi={G\bibinitperiod},
+         given={Surya},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SDJ+1}
+    \strng{fullhash}{SDJWEAMNGS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{eprint}
+    \verb 1503.03585
+    \endverb
+    \field{title}{Deep Unsupervised Learning using Nonequilibrium
+  Thermodynamics}
+    \verb{url}
+    \verb https://arxiv.org/abs/1503.03585
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2015}
+  \endentry
+
   \entry{sonderby2016howtrain}{inproceedings}{}
     \name{author}{5}{}{%
       {{hash=SC}{%
@@ -691,6 +776,39 @@
     \verb http://icml.cc/2016/
     \endverb
     \field{year}{2016}
+  \endentry
+
+  \entry{vahdat2021nvaedeephierarchicalvariational}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=VA}{%
+         family={Vahdat},
+         familyi={V\bibinitperiod},
+         given={Arash},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KJ}{%
+         family={Kautz},
+         familyi={K\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VAKJ1}
+    \strng{fullhash}{VAKJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \verb{eprint}
+    \verb 2007.03898
+    \endverb
+    \field{title}{NVAE: A Deep Hierarchical Variational Autoencoder}
+    \verb{url}
+    \verb https://arxiv.org/abs/2007.03898
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{stat.ML}
+    \field{year}{2021}
   \endentry
 
   \entry{wang2024disentangledrepresentationlearning}{misc}{}

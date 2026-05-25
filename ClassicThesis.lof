@@ -9,20 +9,21 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2}{\ignorespaces Simplified Variational Autoencoder (VAE) architecture mapping an input $x$ to a latent representation $z$, and decoding it to a reconstruction $x'$.\relax }}{8}{figure.caption.9}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Reparameterization Trick in VAEs\relax }}{10}{figure.caption.10}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Hierarchical VAE architecture with $L$ layers of latent variables. Each layer captures different levels of abstraction, allowing for richer representations and improved generation quality.\relax }}{13}{figure.caption.11}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4}{\ignorespaces Caption\relax }}{22}{figure.caption.11}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Caption\relax }}{24}{figure.caption.12}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5}{\ignorespaces Tu duo titulo debitas latente}}{39}{figure.caption.15}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Asia personas duo.}}}{39}{subfigure.5.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Pan ma signo.}}}{39}{subfigure.5.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Methodicamente o uno.}}}{39}{subfigure.5.3}%
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Titulo debitas.}}}{39}{subfigure.5.4}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Tu duo titulo debitas latente}}{41}{figure.caption.16}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Asia personas duo.}}}{41}{subfigure.6.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Pan ma signo.}}}{41}{subfigure.6.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Methodicamente o uno.}}}{41}{subfigure.6.3}%
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Titulo debitas.}}}{41}{subfigure.6.4}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
