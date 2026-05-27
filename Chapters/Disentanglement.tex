@@ -7,48 +7,149 @@ hidden factors of variation in the data, $\mathbf{z}\in\mathbb{R}^c$, given an i
 These generative factors are often called latent variables. The formal definition of DRL proposed in \cite{RepresentationLearning} 
 is that "Disentangled representation should separate the distinct, independent and informative generative factors of variation in 
 the data. Single latent variables are sensitive to changes in single underlying generative factors, while being relatively invariant 
-to changes in other factors". This organisation of the latent space into explainable semantic representations improves the following 
-properties of a generative model: 
+to changes in other factors". An important property is that latent variables are statistically independent. This organisation of the 
+latent space into explainable semantic representations improves the following properties of a generative model: 
 \begin{itemize}
     \item \textbf{Explanability}: the meaningful and independent representations are aligned semantically with latent generative factors. 
     \item \textbf{Generalizability}: the representations are well separated from the original entangled input, which improves the generalization ability for the generation of new samples. 
     \item \textbf{Controllability}: DRL allows for controllable generation by manipulating the learned disentangled representations of the latent space.  
 \end{itemize}
-There are several disentanglement methods in the current literature, which can be grouped based on the generative model they use.\cite{wang2024disentangledrepresentationlearning}    
+There are several disentanglement methods in the current literature, which can be grouped based on the generative model they use \cite{wang2024disentangledrepresentationlearning}, which will be
+explained in the following sections. \\
+One important aspect of DRL is the     
 
 
 \section{VAE-Based Models}  
-In Section -- we defined the Variational Autoencoder (VAE) model, where the loss function is defined in Equation --. This type of model has the potential to learn disentangled representations in simple datasets, adding some extra regularisations to the original loss function. \\
+In Section -- we defined the Variational Autoencoder (VAE) model, where the loss function is defined in Equation --. This type of model 
+has the potential to learn disentangled representations in simple datasets, because of the choose of the prior distribution $p(\mathbf{z})$ 
+as a normal distribution, which imposes independence constraints. In more complex datasets, the disentanglement capability presented in this model 
+is poor. \\
+\\
 One of the first methods was $\beta$\textbf{-VAE} \cite{higgins2017betavae}, which introduces a $\beta$ penalty hyperparameter before the KL term in the ELBO loss. The new training objective is defined as 
 \begin{equation}
-    \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z}) - \beta D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z}))\right],
+    \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - \beta D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z})),
 \end{equation}
-where a value of $\beta=1$ corresponds to the original VAE implementation and larger values of $\beta>1$ encourage learning more disentangled representations, adding more pressure to the latent bottleneck to be more factorised, while reducing the performance of reconstruction. This shows an important trade-off between reconstruction accuracy and the disentanglement quality of the latent representation. \\
-We can gain deep insight into this trade-off by breaking down the KL term of the loss function as in --
-\begin{equation}
-    \mathbb{E}_{p_{data}(\mathbf{x})}\left[ KL(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z})) \right] = I(\mathbf{x};\mathbf{z}) + KL(q_{\phi}(\mathbf{z})||p(\mathbf{z})),
-\end{equation}
-where $I(\mathbf{x};\mathbf{z})$ is the mutual information between $\mathbf{x}$ and $\mathbf{z}$ under the joint distribution $p_{data}(\mathbf{x})q_{\phi}(\mathbf{z}|\mathbf{x})$. Here we can clearly see that making $\beta$ larger pushes $q(\mathbf{z})$ towards the factorial prior $p(\mathbf{x})$, improving the disentanglement, but reduces the amount of information about $\mathbf{x}$ stored in $\mathbf{z}$, producing a poor reconstruction. \\ 
+where a value of $\beta=1$ corresponds to the original VAE implementation and larger values of $\beta>1$ encourage learning more disentangled representations, adding more pressure to the latent bottleneck 
+to be more factorised, while reducing the performance of reconstruction. This shows an important trade-off between reconstruction accuracy and the disentanglement quality of the latent representation. \\
 \\
-This trade-off between reconstruction and disentanglement is the main motivation for the development of new methods based on VAEs and other generative models. \\
-Based on the previous decomposition of the KL term, \textbf{FactorVAE} \cite{disen} proposed a method that only penalises the components that encourage independence in the latent space. The loss function in this method is defined as:
+Several studies have analized this trade-off and the effect of the $\beta$ hyperparameter in the disentanglement performance. First, we can define the marginal posterior distribution as 
+\begin{equation}
+    q_{\phi}(\mathbf{z}) = \mathbb{E}_{p_{data}(\mathbf{x})}\left[q_{\phi}(\mathbf{z}|\mathbf{x})\right] = \int q_{\phi}(\mathbf{z}|\mathbf{x})p_{data}(\mathbf{x})d\mathbf{x},
+\end{equation}
+where a disentangled representation is achieved when $q_{\phi}(\mathbf{z})$ is close to the factorial prior $p(\mathbf{z})$, which means we want a factorial distribution $q_{\phi}(\mathbf{z}) = \prod_j q_{\phi}(z_j)$.
+To gain a deep insight about the trade-off, we can break down the KL term of the loss function as
+proposed in several papers \cite{hoffman2016elbo, chen2019isolatingsourcesdisentanglementvariational}
 \begin{align}
-    \mathcal{L}_{ELBO}(\theta,\phi;\mathbf{x}) &= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z}) - D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z}))\right] \\
-    &- \gamma D_{KL}(q_{\phi}(\mathbf{z}||\bar q_{\phi}(\mathbf{z}))),
+    \mathbb{E}_{p_{data}(\mathbf{x})}\left[ KL(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z})) \right] = &\underbrace{I(\mathbf{x};\mathbf{z})}_{\text{(i) Mutual Information}} \\
+    & + \underbrace{D_{KL}(q_{\phi}(\mathbf{z})||\bar q_{\phi}(\mathbf{z}))}_{\text{(ii) Total Correlation}}, \\
+    & + \underbrace{D_{KL}(q_{\phi}(\mathbf{z})||p(\mathbf{z}))}_{\text{(iii) Prior KL}},
 \end{align}
-where the last component is the Total Correlation (TC) and $\bar q_{\phi}(\mathbf{z}) = \prod_j q_{\phi}(z_j)$. TC measures the dependencies between the variables in the latent representation. Penalising this specific term encourages the latent dimensions to be statistically independent, which is the core mathematical interpretation of disentanglement. \\
-Because the Total Correlation is computationally intractable to evaluate directly over the entire dataset, FactorVAE employs an adversarial training approach. A discriminator network is trained to distinguish between samples drawn from the aggregated posterior $q_{\phi}(\mathbf{z})$ and samples drawn from the product of its marginals $\prod_j q_{\phi}(z_j)$, effectively estimating and minimizing the density ratio. This approach achieves better disentanglement than $\beta$-VAE while preserving a higher reconstruction quality.
+where $I(\mathbf{x};\mathbf{z})$ is the mutual information between $\mathbf{x}$ and $\mathbf{z}$, Total Correlation (TC) is a measure of dependence between the variables and the prior KL prevents 
+the latents to deviate too far from the prior. Here we can clearly see that making $\beta$ larger pushes $q_{\phi}(\mathbf{z})$ towards the factorial prior $p(\mathbf{x})$ and pushes the model to find
+statistically independent factoes, improving the disentanglement, but reduces the amount of information about $\mathbf{x}$ stored in $\mathbf{z}$, producing a poor reconstruction. \\ 
+\\
+This trade-off between reconstruction and disentanglement is the main motivation for the development of new methods based on the previous decomposition of the KL term. For example, the 
+\textbf{DIP-VAE-I} and \textbf{DIP-VAE-II} \cite{kumar2018variationalinferencedisentangledlatent} methods proposed a regularization term on the third element of the KL decomposition.
+The objective function can be defined as 
+\begin{align}
+    \mathcal{L}_{ELBO}(\theta,\phi;\mathbf{x}) &= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z})) \\
+    &- \lambda D_{KL}(q_{\phi}(\mathbf{z})||p(\mathbf{z})).
+\end{align}
+This objective function imposes independence on the variational marginal distribution $q_{\phi}(\mathbf{z})$. To minimize the distance, they force the covariance of $q_{\phi}(\mathbf{z})$ to be close to the identity matrix. 
+The covariance is defined as 
+\begin{equation}
+    \text{Cov}_{q_{\phi}(\mathbf{z})}[\mathbf{z}] = \mathbb{E}_{p_{data}(\mathbf{x})}\left[ \Sigma_{\phi}(\mathbf{x}) \right] + \text{Cov}_{p_{data}(\mathbf{x})}\left[ \mu_{\phi}(\mathbf{x}) \right].
+\end{equation}
+The two variations of DIP-VAE differ in the way they penalise the covariance:
+\begin{align}
+    & D_{KL}(q_{\phi}(\mathbf{z})||p(\mathbf{z})) = \\
+    &\underbrace{ = \lambda_{od} \sum_{i\neq j} [\text{Cov}_{p_{data}}[\mu_{\phi}(\mathbf{x})]]^2_{ij} + \lambda_d \sum_i \left(\text{Cov}_{p_{data}}[\mu_{\phi}(\mathbf{x})]_{ij} - 1\right)^2}_{\text{DIP-VAE-I}}, \\
+    & or \\
+    &\underbrace{= \lambda_{od} \sum_{i\neq j} [\text{Cov}_{q_{\phi}(\mathbf{z})}[\mathbf{z}]]^2_{ij} + \lambda_d \sum_i \left([\text{Cov}_{q_{\phi}(\mathbf{z})}[\mathbf{z}]]_{ij} - 1\right)^2}_{\text{DIP-VAE-II}},
+\end{align}
+where $\lambda_{od}$ and $\lambda_d$ are the hyperparameters that control the strength of the regularization. \\
+\\
+The next method, \textbf{FactorVAE} \cite{kim2019disentanglingfactorising}, proposed to only penalises the second component of the KL decomposition, the Total Correlation (TC), which encourage independence in the 
+latent space. The loss function in this method is defined as:
+\begin{align}
+    \mathcal{L}_{ELBO}(\theta,\phi;\mathbf{x}) &= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z})) \\
+    &- \gamma D_{KL}(q_{\phi}(\mathbf{z})||\bar q_{\phi}(\mathbf{z})),
+\end{align}
+where $\bar q_{\phi}(\mathbf{z}) = \prod_j q_{\phi}(z_j)$. TC measures the dependencies between the variables in the latent representation. Penalising this specific term encourages the latent dimensions to be 
+statistically independent, which is the core mathematical interpretation of disentanglement. \\
+Because the Total Correlation is computationally intractable to evaluate directly over the entire dataset, FactorVAE employs an adversarial training approach. A discriminator network is trained to distinguish 
+between samples drawn from the aggregated posterior $q_{\phi}(\mathbf{z})$ and samples drawn from the product of its marginals $\prod_j q_{\phi}(z_j)$, effectively estimating and minimizing the density ratio. 
+This approach achieves better disentanglement than $\beta$-VAE while preserving a higher reconstruction quality. \\
+\\
+The paper that proposed the decomposition of the KL term \cite{chen2019isolatingsourcesdisentanglementvariational} also proposed a method called $\beta$-\textbf{TCVAE}, which penalize 
+all the terms of the KL decomposition independently, with different hyperparameters. The loss function is defined as
+\begin{align}
+   &\mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] \\
+   & - \alpha I(\mathbf{x};\mathbf{z}) - \beta D_{KL}(q_{\phi}(\mathbf{z})||\bar q_{\phi}(\mathbf{z})) - \gamma D_{KL}(q_{\phi}(\mathbf{z})||p(\mathbf{z})),
+\end{align}
+All the previous methods are unsupervised with the common idea of adding extra regularization terms to the original VAE loss function to encourage disentanglement.  
 
 
 \section{Diffusion/Flow-Based Models}  
-Diffusion and Flow models are a more recent and advanced class of generative models that have drawn a lot of attention in recent years because of their remarkable performance. Disentangled representation learning can also be applied to these types of models. \\
+Diffusion and Flow models are a more recent and advanced class of generative models that have drawn a lot of attention in recent years because of their remarkable performance. 
+Disentangled representation learning can also be applied to these types of models. \\
 \\
-One of the first approaches was DisDiff \cite{yang2023disdiffunsuperviseddisentanglementdiffusion}, which learns a disentangled representation and a disentangled gradient field for each generative factor. Assume the data samples are generated by $N$ underlying ground truth factors $f^c$, $c\in\{1, \dots, N\}$. Each factor $c$ follows the distribution $p(f^c)$. We can modify the original score function (Equation --) with the conditioning of the factors using the Bayes' Rule as follows: $$\nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t|f^c) = \nabla_{\mathbf{x}_t}\log p(f^c|\mathbf{x}_t) + \nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t),$$ where we already have the score $\nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t)$ from a pretrained unconditional model and we only have to learn $\nabla_{\mathbf{x}_t}\log p(f^c|\mathbf{x}_t)$. Since we are in an unsupervised setting, we do not know $f^c$. We have to learn a set of representations $\{z^c|c=1,\dots,N\}$ that must encompass all information of the original samples $\mathbf{x}_0$ and represent the true factors of variations $f^c$. To obtain these representations we use a set of encoders with learnable parameters $\phi$, defined as $E_{\phi}(\mathbf{x}_0)=\{E_{\phi}^1(\mathbf{x}_0), \dots E_{\phi}^N(\mathbf{x}_0)\}=\{z^1,\dots,z^N\}$. Then, assume we have a factor subset $\mathcal{S}\subseteq\mathcal{C}$ with $z^{\mathcal{S}}=\{z^c|c\in\mathcal{S}\}$, the gradient field can be defined as $$\nabla_{\mathbf{x}_t}\log p(z^{\mathcal{S}}|\mathbf{x}_t) = \sum_{c\in\mathcal{S}}\nabla_{\mathbf{x}_t}\log p(z^c|\mathbf{x}_t).$$ Finally, to estimate the gradient fields, they used a network $G_{\psi}(\mathbf{x}_t, z^c, t)$ and the reconstruction loss is defined as $$\mathcal{L}_r = \mathbb{E}_{\mathbf{x}_0,t,\epsilon} ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t, t) + \frac{\sqrt{\alpha_t}\sqrt{1-\bar\alpha_t}}{\beta_t}\sigma_t\sum_{c\in\mathcal{C}}G_{\psi}(\mathbf{x}_t,z^c,t)||.$$ This loss formulation alone does not guarantee disentanglement among the representations $z^c$. The authors proposed a disentanglement loss that minimizes the upper bound for the mutual information between $z^c$ and $z^j$, where $c\neq j$, defined as $$\mathcal{L}_{dis}=\min_{i,j,\mathbf{x}_0,\mathbf{\hat x}_0^j} ||\hat z^{c|j}-\hat z^c|| - ||\hat z^{c|j} - z^c|| + ||\hat z^{j|j} - z^j||,$$ where $\mathbf{\hat x}_0^j$ is conditioned on $z^j$, $\hat z^c = E_{\phi}^c(\mathbf{\hat x}_0)$ and $\hat z^{c|j} = E_{\phi}^c(\mathbf{\hat x^j_0})$ where $\mathbf{\hat x}_0$ is a sampled data from the pretrained model. \\
-\\
+One of the first approaches was DisDiff \cite{yang2023disdiffunsuperviseddisentanglementdiffusion}, which learns a disentangled representation and a disentangled gradient field 
+for each generative factor. Assume the data samples are generated by $N$ underlying ground truth factors $f^c$, $c\in\{1, \dots, N\}$. Each factor $c$ follows the distribution 
+$p(f^c)$. We can modify the original score function (Equation --) with the conditioning of the factors using the Bayes' Rule as follows: 
+\begin{equation}
+    \nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t|f^c) = \nabla_{\mathbf{x}_t}\log p(f^c|\mathbf{x}_t) + \nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t),
+\end{equation}
+where we already have the score $\nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t)$ from a pretrained unconditional model and we only have to learn $\nabla_{\mathbf{x}_t}\log p(f^c|\mathbf{x}_t)$. 
+Since we are in an unsupervised setting, we do not know $f^c$. We have to learn a set of representations $\{z^c|c=1,\dots,N\}$ that must encompass all information of the original 
+samples $\mathbf{x}_0$ and represent the true factors of variations $f^c$. To obtain these representations we use a set of encoders with learnable parameters $\phi$, defined 
+as $E_{\phi}(\mathbf{x}_0)=\{E_{\phi}^1(\mathbf{x}_0), \dots E_{\phi}^N(\mathbf{x}_0)\}=\{z^1,\dots,z^N\}$. Then, assume we have a factor subset $\mathcal{S}\subseteq\mathcal{C}$ 
+with $z^{\mathcal{S}}=\{z^c|c\in\mathcal{S}\}$, the gradient field can be defined as 
+\begin{equation}
+    \nabla_{\mathbf{x}_t}\log p(z^{\mathcal{S}}|\mathbf{x}_t) = \sum_{c\in\mathcal{S}}\nabla_{\mathbf{x}_t}\log p(z^c|\mathbf{x}_t).
+\end{equation}
+Finally, to estimate the gradient fields, they used a network $G_{\psi}(\mathbf{x}_t, z^c, t)$ and the reconstruction loss is defined as 
+\begin{equation}
+    \mathcal{L}_r = \mathbb{E}_{\mathbf{x}_0,t,\epsilon} ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t, t) + \frac{\sqrt{\alpha_t}\sqrt{1-\bar\alpha_t}}{\beta_t}\sigma_t\sum_{c\in\mathcal{C}}G_{\psi}(\mathbf{x}_t,z^c,t)||.
+\end{equation}
+This loss formulation alone does not guarantee disentanglement among the representations $z^c$. The authors proposed a disentanglement loss that minimizes the upper bound for 
+the mutual information between $z^c$ and $z^j$, where $c\neq j$, defined as
+\begin{equation}
+    \mathcal{L}_{dis}=\min_{i,j,\mathbf{x}_0,\mathbf{\hat x}_0^j} ||\hat z^{c|j}-\hat z^c|| - ||\hat z^{c|j} - z^c|| + ||\hat z^{j|j} - z^j||,
+\end{equation}
+where $\mathbf{\hat x}_0^j$ is conditioned on $z^j$, $\hat z^c = E_{\phi}^c(\mathbf{\hat x}_0)$ and $\hat z^{c|j} = E_{\phi}^c(\mathbf{\hat x^j_0})$ where $\mathbf{\hat x}_0$ is 
+a sampled data from the pretrained model. 
+\begin{figure}[htbp]
+     \centering
+     % First Image (a)
+     \subfloat[DisDiff Framework]{
+         \includegraphics[width=0.7\textwidth]{gfx/disentanglement/disdiff.png}
+     }
+     \hfill
+     % Second Image (b)
+     \subfloat[EncDiff Framework]{
+         \includegraphics[width=0.7\textwidth]{gfx/disentanglement/encdiff.png}
+     }
+     \caption{Illustrations of the frameworks for the (a) DisDiff model \cite{yang2023disdiffunsuperviseddisentanglementdiffusion} and the (b) EncDiff model. \cite{yang2024diffusionmodelcrossattention}}
+     \label{fig:disen1}
+\end{figure}
 EncDiff \cite{yang2024diffusionmodelcrossattention} is an improvement of the previous method where an image encoder $\tau_{\phi}$ aims to provide a set of concept tokens $\mathcal{S}=\{s_1,\dots,s_N\}$. Each dimension of the encoded feature vectors is treated as a disentangled factor and maps each to a vector using a non-shared MLP layer. Then, based on Latent Diffusion Models \cite{rombach2022highresolutionimagesynthesislatent}, the idea is to use the cross-attention mechanism to map the tokens to the intermediate representations of the U-Net model. The general framework of this method is illustrated in Figure \ref{fig:encdiff}. \\
 \\
-DisenBooth \cite{chen2024disenboothidentitypreservingdisentangledtuning} \\
-\\
+DisenBooth \cite{chen2024disenboothidentitypreservingdisentangledtuning} 
+\begin{figure}[htbp]
+     \centering
+     % First Image (a)
+     \subfloat[DisenBooth Framework]{
+         \includegraphics[width=0.7\textwidth]{gfx/disentanglement/DisenBooth.png}
+     }
+     \hfill
+     % Second Image (b)
+     \subfloat[FM Disentanglement Framework]{
+         \includegraphics[width=0.7\textwidth]{gfx/disentanglement/DisenFlow.png}
+     }
+     \caption{Illustrations of the frameworks for the (a) DisenBooth model \cite{chen2024disenboothidentitypreservingdisentangledtuning} and the (b) FM Disentanglement model. \cite{chi2026disentangledrepresentationlearningflow}}
+     \label{fig:disen1}
+\end{figure}
 Flow Matching-Based disentanglement method \cite{chi2026disentangledrepresentationlearningflow}
 
 

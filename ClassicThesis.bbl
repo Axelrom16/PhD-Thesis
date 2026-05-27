@@ -117,6 +117,186 @@
     \field{year}{2016}
   \endentry
 
+  \entry{chen2024disenboothidentitypreservingdisentangledtuning}{misc}{}
+    \name{author}{7}{}{%
+      {{hash=CH}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Hong},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yipeng},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Simin},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WX}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Xin},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=DX}{%
+         family={Duan},
+         familyi={D\bibinitperiod},
+         given={Xuguang},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Yuwei},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZW}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Wenwu},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CH+1}
+    \strng{fullhash}{CHZYWSWXDXZYZW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{eprint}
+    \verb 2305.03374
+    \endverb
+    \field{title}{DisenBooth: Identity-Preserving Disentangled Tuning for
+  Subject-Driven Text-to-Image Generation}
+    \verb{url}
+    \verb https://arxiv.org/abs/2305.03374
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2024}
+  \endentry
+
+  \entry{chen2019isolatingsourcesdisentanglementvariational}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=CRTQ}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Ricky T.\bibnamedelima Q.},
+         giveni={R\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim
+  Q\bibinitperiod},
+      }}%
+      {{hash=LX}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Xuechen},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=GR}{%
+         family={Grosse},
+         familyi={G\bibinitperiod},
+         given={Roger},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=DD}{%
+         family={Duvenaud},
+         familyi={D\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CRTQ+1}
+    \strng{fullhash}{CRTQLXGRDD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{eprint}
+    \verb 1802.04942
+    \endverb
+    \field{title}{Isolating Sources of Disentanglement in Variational
+  Autoencoders}
+    \verb{url}
+    \verb https://arxiv.org/abs/1802.04942
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2019}
+  \endentry
+
+  \entry{chi2026disentangledrepresentationlearningflow}{misc}{}
+    \name{author}{8}{}{%
+      {{hash=CJ}{%
+         family={Chi},
+         familyi={C\bibinitperiod},
+         given={Jinjin},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LT}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Taoping},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=YM}{%
+         family={Yin},
+         familyi={Y\bibinitperiod},
+         given={Mengtao},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LX}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Ximing},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=JY}{%
+         family={Jing},
+         familyi={J\bibinitperiod},
+         given={Yongcheng},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Shen},
+         familyi={S\bibinitperiod},
+         given={Jialie},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RL}{%
+         family={Rutkowski},
+         familyi={R\bibinitperiod},
+         given={Leszek},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=TD}{%
+         family={Tao},
+         familyi={T\bibinitperiod},
+         given={Dacheng},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CJ+1}
+    \strng{fullhash}{CJLTYMLXJYSJRLTD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{eprint}
+    \verb 2602.05214
+    \endverb
+    \field{title}{Disentangled Representation Learning via Flow Matching}
+    \verb{url}
+    \verb https://arxiv.org/abs/2602.05214
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2026}
+  \endentry
+
   \entry{Espinosa_Zarlenga_2023}{article}{}
     \name{author}{7}{}{%
       {{hash=EZM}{%
@@ -187,6 +367,72 @@
     \field{year}{2023}
   \endentry
 
+  \entry{higgins2017betavae}{inproceedings}{}
+    \name{author}{8}{}{%
+      {{hash=HI}{%
+         family={Higgins},
+         familyi={H\bibinitperiod},
+         given={Irina},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=ML}{%
+         family={Matthey},
+         familyi={M\bibinitperiod},
+         given={Loic},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Pal},
+         familyi={P\bibinitperiod},
+         given={Arka},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BC}{%
+         family={Burgess},
+         familyi={B\bibinitperiod},
+         given={Christopher},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GX}{%
+         family={Glorot},
+         familyi={G\bibinitperiod},
+         given={Xavier},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Botvinick},
+         familyi={B\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Mohamed},
+         familyi={M\bibinitperiod},
+         given={Shakir},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lerchner},
+         familyi={L\bibinitperiod},
+         given={Alexander},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HI+1}
+    \strng{fullhash}{HIMLPABCGXBMMSLA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{International Conference on Learning Representations}
+    \field{title}{beta-{VAE}: Learning Basic Visual Concepts with a Constrained
+  Variational Framework}
+    \verb{url}
+    \verb https://openreview.net/forum?id=Sy2fzU9gl
+    \endverb
+    \field{year}{2017}
+  \endentry
+
   \entry{ho2020denoisingdiffusionprobabilisticmodels}{misc}{}
     \name{author}{3}{}{%
       {{hash=HJ}{%
@@ -224,6 +470,34 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
     \field{year}{2020}
+  \endentry
+
+  \entry{hoffman2016elbo}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=HMD}{%
+         family={Hoffman},
+         familyi={H\bibinitperiod},
+         given={Matthew\bibnamedelima D},
+         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=JMJ}{%
+         family={Johnson},
+         familyi={J\bibinitperiod},
+         given={Matthew\bibnamedelima J},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HMDJMJ1}
+    \strng{fullhash}{HMDJMJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{NIPS Workshop on Advances in Approximate Bayesian
+  Inference}
+    \field{title}{ELBO surgery: yet another way to carve up the variational
+  evidence lower bound}
+    \field{year}{2016}
   \endentry
 
   \entry{ismail2024concept}{inproceedings}{}
@@ -272,6 +546,39 @@
     \verb https://openreview.net/forum?id=L9U5MJJleF
     \endverb
     \field{year}{2024}
+  \endentry
+
+  \entry{kim2019disentanglingfactorising}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=KH}{%
+         family={Kim},
+         familyi={K\bibinitperiod},
+         given={Hyunjik},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Mnih},
+         familyi={M\bibinitperiod},
+         given={Andriy},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KHMA1}
+    \strng{fullhash}{KHMA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 1802.05983
+    \endverb
+    \field{title}{Disentangling by Factorising}
+    \verb{url}
+    \verb https://arxiv.org/abs/1802.05983
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{stat.ML}
+    \field{year}{2019}
   \endentry
 
   \entry{Kingma_2019}{article}{}
@@ -410,6 +717,46 @@
     \field{year}{2020}
   \endentry
 
+  \entry{kumar2018variationalinferencedisentangledlatent}{misc}{}
+    \name{author}{3}{}{%
+      {{hash=KA}{%
+         family={Kumar},
+         familyi={K\bibinitperiod},
+         given={Abhishek},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Sattigeri},
+         familyi={S\bibinitperiod},
+         given={Prasanna},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Balakrishnan},
+         familyi={B\bibinitperiod},
+         given={Avinash},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KASPBA1}
+    \strng{fullhash}{KASPBA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 1711.00848
+    \endverb
+    \field{title}{Variational Inference of Disentangled Latent Concepts from
+  Unlabeled Observations}
+    \verb{url}
+    \verb https://arxiv.org/abs/1711.00848
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2018}
+  \endentry
+
   \entry{lai2025principlesdiffusionmodels}{misc}{}
     \name{author}{5}{}{%
       {{hash=LCH}{%
@@ -459,6 +806,75 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
     \field{year}{2025}
+  \endentry
+
+  \entry{locatello2020objectcentriclearningslotattention}{misc}{}
+    \name{author}{8}{}{%
+      {{hash=LF}{%
+         family={Locatello},
+         familyi={L\bibinitperiod},
+         given={Francesco},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=WD}{%
+         family={Weissenborn},
+         familyi={W\bibinitperiod},
+         given={Dirk},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=UT}{%
+         family={Unterthiner},
+         familyi={U\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Mahendran},
+         familyi={M\bibinitperiod},
+         given={Aravindh},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=HG}{%
+         family={Heigold},
+         familyi={H\bibinitperiod},
+         given={Georg},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=UJ}{%
+         family={Uszkoreit},
+         familyi={U\bibinitperiod},
+         given={Jakob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=DA}{%
+         family={Dosovitskiy},
+         familyi={D\bibinitperiod},
+         given={Alexey},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KT}{%
+         family={Kipf},
+         familyi={K\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LF+1}
+    \strng{fullhash}{LFWDUTMAHGUJDAKT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 2006.15055
+    \endverb
+    \field{title}{Object-Centric Learning with Slot Attention}
+    \verb{url}
+    \verb https://arxiv.org/abs/2006.15055
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2020}
   \endentry
 
   \entry{mahinpei2021promisespitfallsblackboxconcept}{misc}{}
@@ -569,6 +985,70 @@
     \field{year}{2021}
   \endentry
 
+  \entry{nguyen2026improvedobjectcentricdiffusionlearning}{misc}{}
+    \name{author}{7}{}{%
+      {{hash=NB}{%
+         family={Nguyen},
+         familyi={N\bibinitperiod},
+         given={Bac},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=TY}{%
+         family={Takida},
+         familyi={T\bibinitperiod},
+         given={Yuhta},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=MN}{%
+         family={Murata},
+         familyi={M\bibinitperiod},
+         given={Naoki},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=LCH}{%
+         family={Lai},
+         familyi={L\bibinitperiod},
+         given={Chieh-Hsin},
+         giveni={C\bibinithyphendelim H\bibinitperiod},
+      }}%
+      {{hash=UT}{%
+         family={Uesaka},
+         familyi={U\bibinitperiod},
+         given={Toshimitsu},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=ES}{%
+         family={Ermon},
+         familyi={E\bibinitperiod},
+         given={Stefano},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MY}{%
+         family={Mitsufuji},
+         familyi={M\bibinitperiod},
+         given={Yuki},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NB+1}
+    \strng{fullhash}{NBTYMNLCHUTESMY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \verb{eprint}
+    \verb 2601.01224
+    \endverb
+    \field{title}{Improved Object-Centric Diffusion Learning with Registers and
+  Contrastive Alignment}
+    \verb{url}
+    \verb https://arxiv.org/abs/2601.01224
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2026}
+  \endentry
+
   \entry{parisini2026leakageinterpretabilityconceptbasedmodels}{misc}{}
     \name{author}{5}{}{%
       {{hash=PE}{%
@@ -619,6 +1099,57 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
     \field{year}{2026}
+  \endentry
+
+  \entry{rombach2022highresolutionimagesynthesislatent}{misc}{}
+    \name{author}{5}{}{%
+      {{hash=RR}{%
+         family={Rombach},
+         familyi={R\bibinitperiod},
+         given={Robin},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Blattmann},
+         familyi={B\bibinitperiod},
+         given={Andreas},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LD}{%
+         family={Lorenz},
+         familyi={L\bibinitperiod},
+         given={Dominik},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=EP}{%
+         family={Esser},
+         familyi={E\bibinitperiod},
+         given={Patrick},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=OB}{%
+         family={Ommer},
+         familyi={O\bibinitperiod},
+         given={Björn},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RR+1}
+    \strng{fullhash}{RRBALDEPOB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \verb{eprint}
+    \verb 2112.10752
+    \endverb
+    \field{title}{High-Resolution Image Synthesis with Latent Diffusion Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2112.10752
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2022}
   \endentry
 
   \entry{shin2022a}{inproceedings}{}
@@ -860,6 +1391,98 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
     \field{year}{2024}
+  \endentry
+
+  \entry{yang2024diffusionmodelcrossattention}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=YT}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Tao},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lan},
+         familyi={L\bibinitperiod},
+         given={Cuiling},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Lu},
+         familyi={L\bibinitperiod},
+         given={Yan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=zN}{%
+         family={zheng},
+         familyi={z\bibinitperiod},
+         given={Nanning},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YT+1}
+    \strng{fullhash}{YTLCLYzN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \verb{eprint}
+    \verb 2402.09712
+    \endverb
+    \field{title}{Diffusion Model with Cross Attention as an Inductive Bias for
+  Disentanglement}
+    \verb{url}
+    \verb https://arxiv.org/abs/2402.09712
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2024}
+  \endentry
+
+  \entry{yang2023disdiffunsuperviseddisentanglementdiffusion}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=YT}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Tao},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=WY}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Yuwang},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Lv},
+         familyi={L\bibinitperiod},
+         given={Yan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ZN}{%
+         family={Zheng},
+         familyi={Z\bibinitperiod},
+         given={Nanning},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YT+1}
+    \strng{fullhash}{YTWYLYZN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \verb{eprint}
+    \verb 2301.13721
+    \endverb
+    \field{title}{DisDiff: Unsupervised Disentanglement of Diffusion
+  Probabilistic Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2301.13721
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2023}
   \endentry
 
   \entry{zarlenga2022conceptembeddingmodelsaccuracyexplainability}{misc}{}
