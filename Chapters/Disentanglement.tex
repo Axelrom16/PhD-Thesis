@@ -159,7 +159,7 @@ where $\mathbf{v}_{\theta}^{(i)}$ is the component attributed to the $i$-th fact
 \begin{equation}
     \mathbf{Q} = \mathbf{W}_qh, \;\;  \mathbf{K}_i = \mathbf{W}_k s_i
 \end{equation}
-where $\mathbf{W}_q$ and $\mathbf{W}_k$ are learned projections, $s_i$ a factor, and $d$ the query/key dimensionality. The attention is defined as 
+where $\mathbf{W}_q$ and $\mathbf{W}_k$ are learned projections, $s_i$ a factor, and $d$ the query/key dimensionality. The attention is defined as  
 \begin{equation}
     Attn_i = \frac{\exp\left(\frac{\mathbf{Q}\mathbf{K}_i^T}{\sqrt{d}}\right)}{\sum_{j=1}^N \exp\left(\frac{\mathbf{Q}\mathbf{K}_i^T}{\sqrt{d}}\right)},
 \end{equation}

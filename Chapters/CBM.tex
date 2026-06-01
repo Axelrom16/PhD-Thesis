@@ -23,9 +23,18 @@ For the training of these models, we have three different strategies:
     \item \textbf{Independent}: learn $\hat f$ and $\hat g$ independently. For $\hat {f} $, minimise the task loss $\mathcal{L}_Y$, 
     which measures the discrepancy between predicted and true targets. Then, for $\hat g$, minimise the concept loss 
     $\mathcal{L}_{C_j}$ for each concept $j$, which measures the discrepancy between predicted and real $j$-th concept. 
+    \begin{equation}\label{eq:cbm_independent}
+        \hat g = \arg\min_g \mathcal{L}_C(g(\mathbf{x}), \mathbf{c}), \;\; \hat f = \arg\min_f \mathcal{L}_Y(f(\mathbf{c}),\mathbf{y}).
+    \end{equation}
     \item \textbf{Sequential}: first learn $\hat g$ and then use the predictions to learn $\hat f$. 
+    \begin{equation}\label{eq:cbm_sequential}
+        \hat g = \arg\min_g \mathcal{L}_C(g(\mathbf{x}), \mathbf{c}), \;\; \hat f = \arg\min_f \mathcal{L}_Y(f(\hat g(\mathbf{x})),\mathbf{y}).
+    \end{equation}
     \item \textbf{Joint}: minimises the weighted sum of both task and concept losses with the hyperparameter $\lambda$, 
     which controls the tradeoff between concept vs. task loss. 
+    \begin{equation}\label{eq:cbm_joint}
+        \hat g,\hat f = \arg\min_{g,f} \left[ \lambda \mathcal{L}_C(g(\mathbf{x}),\mathbf{c}) + \mathcal{L}_Y(f(g(\mathbf{x})), \mathbf{y}) \right].
+    \end{equation}
 \end{itemize}
 One important property of these models is the ability to perform interventions by editing the concept predictions $\hat c$ and 
 propagating these changes to the target prediction $\hat y$. This property also makes these models more interpretable in terms 
@@ -120,24 +129,74 @@ nature of leakage in these types of models.
     represents a perfect alignment; the $i$-th concept does not encode any unnecessary information for predicting concept $i$. A limitation 
     is the stochasticity of the metric, which involves training neural networks, which is very variable when we evaluate the model several 
     times at test time. 
-    \item \textbf{Niche Impurity Score (NIS)}: 
+    \item \textbf{Niche Impurity Score (NIS)}: this metric was also defined in \cite{Espinosa_Zarlenga_2023} to quantify the amount of shared information across concept representations.  It is defined to capture the additional information about a concept $j$ in a set of concepts that does not contain concept $j$. This metric appears to be anticorrelated with intervention performance, which produces doubts among the scientific community about its utility. 
     \item \textbf{Intervention}: the intervention of the predicted concepts with the ground-truth values can be used to evaluate the 
     interpretability and the leakage. A task accuracy that decreases after intervention indicates that the task head expects extra information 
     that is not present in the ground-truth concepts. Models with higher leakage have worse intervention performance. This metric is unable 
     to distinguish between interconcept and concept-task leakage; also, when we have a large number of concepts, the computation is very expensive. 
 \end{itemize}
-
-
+Then, based on the limitations and drawbacks of the previous metrics, the authors of \cite{parisini2026leakageinterpretabilityconceptbasedmodels} presented two new metrics based on an information-theoretic perspective. 
+\begin{itemize}
+    \item \textbf{Concept-task Leakage Score} (CTL): for a concept $i$, the metric is defined as the difference between predicted and ground-truth mutual information between concept $i$ and the task label, which quantifies the additional information that the concept $i$ encodes about the task label with respect to the ground-truth. 
+    \begin{equation}
+        CTL_i (\hat c_i, c_i, y) = \max \left( 0, \frac{I(\hat c_i, y)}{H(y)} - \frac{I(c_i, y)}{H(y)} \right),
+    \end{equation}
+    where $H(y)$ is the entropy of the task labels and $I(c_i, y)$ is the mutual information between the ground-truth concepts and task labels. The general metric is the average between the $k$ concepts. 
+    \item \textbf{Interconcept Leakage Score} (ICL): this is a similar metric that defines the pairwise interconcept leakage between concepts $i$ and $j$, which is the additional predictivity of the learnt concept $i$ for concept $j$ with respect to ground-truth. 
+    \begin{equation}
+        ICL_{ij}(\hat c, c) = \max \left( 0, \frac{I(\hat c_i, \hat c_j)}{\sqrt{H(\hat c_i)H(\hat c_j)}} - \frac{I(c_i,c_j)}{\sqrt{H(c_i)H(c_j)}} \right).
+    \end{equation}
+    We can define the per concept and average interconcept score by taking the average. 
+\end{itemize}
+Calculating these metrics requires an efficient estimation of entropy and mutual information, which the authors achieved using the Kraskov-Stögbauer-Grassberger (KSG) estimator based on $k$-nearest neighbour statistics. Experimental results demonstrate that these metrics accurately detect varying degrees of leakage with minimal uncertainty, yielding scores that strongly correlate with intervention performance. \\
+Leveraging the robustness of these metrics, further analysis was conducted on the common causes of leakage in Concept Bottleneck Models (CBMs). First, models trained with low values of $\lambda$ during joint training (Equation \ref{eq:cbm_joint}) exhibit poor intervention performance, as task accuracy relies heavily on high leakage rather than accurate concept learning. While higher values of $\lambda$ do not guarantee zero leakage and often degrade task performance, an optimal hyperparameter range for each model can be identified using CTL and ICL scores. Furthermore, if the representation chosen for the learned concepts is more expressive than the annotated concepts, the model exploits this excess capacity to store extraneous information. Another significant issue arises from incomplete concept sets; if the predefined concepts are insufficient, the model compensates by encoding missing variables into the learned concepts to boost predictive accuracy. Finally, if the classification head is not flexible enough to capture dependencies between concepts, the model inherently forces these dependencies into the concept representations themselves.
 
 
 \section{Recent CBMs}  
 
-Concept Embedding Models \cite{zarlenga2022conceptembeddingmodelsaccuracyexplainability} \\
-\\
-Energy-based Concept Bottleneck Models (ECBMs) \cite{xu2024energybasedconceptbottleneckmodels}
+A new framework for CBMs called Concept Embedding Models (CEMs) \cite{zarlenga2022conceptembeddingmodelsaccuracyexplainability} was presented with the idea to overcome the accuracy vs interpretability trade-off found in concept incomplete settings. The general idea is to represent each concept as a supervised vector, where these high-dimensional embeddings allow for extra supervised learning capacity. \\
+A model $\psi(\mathbf{x})$ learns a latent representation $\mathbf{h}\in\mathbb{R}^{n_{hidden}}$ which is the input of the CEM layer. The latent $\mathbf{h}$ is introduced into two concept-specific fully connected layers, which learn two concept embeddings in $\mathbb{R}^m$, $\mathbf{\hat c}_i^+=\phi_i^+(\mathbf{h})=a(\mathbf{W}_i^+\mathbf{h}+\mathbf{b}_i^+)$ and $\mathbf{\hat c}_i^-=\phi_i^-(\mathbf{h})=a(\mathbf{W}_i^-\mathbf{h}+\mathbf{b}_i^-)$. Then, we train a learnable scoring function trained to predict the probability of the concept $c_i$ being active, $\hat p_i = s([\mathbf{\hat c}_i^+,\mathbf{\hat c_i^-}]^T) = \sigma (\mathbf{W}_s [\mathbf{\hat c}_i^+,\mathbf{\hat c_i^-}]^T + \mathbf{b}_s)$. In this case, the parameters $\mathbf{W}_s$ and $\mathbf{b}_s$ are shared across all concepts. The final concept embedding $\mathbf{\hat c}_i$ is defined as 
+\begin{equation}
+    \mathbf{\hat c}_i = \hat p_i \mathbf{\hat c}_i^+ + (1-\hat p_i)\mathbf{\hat c}_i^-.
+\end{equation}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{gfx/cbm/cem.png}
+    \caption{Illustration of the Concept Embedding Model framework.}
+    \label{fig:cem}
+\end{figure}
+In Figure \ref{fig:cem} we can visualize the general framework of CEMs. For the intervention, we only have to modify the concept probability with the ground-truth or the desired ones to build the intervened concept embedding. For the training of this model, they used the joint training strategy, and also, with a small probability, they calculate the concept embedding with the true concept probability. \\
+Although the original paper of the CEMs claims an improvement in task accuracy, interpretability and steerability, other articles like \cite{parisini2026leakageinterpretabilityconceptbasedmodels} have demonstrated that this accuracy often comes at the cost of severe information leakage. This structural vulnerability undermines the model's actual interpretability, effectively breaking the core promise of the concept bottleneck. Information leakage in Concept Embedding Models (CEMs) primarily occurs because the high dimensional concept embeddings are over-expressive, allowing them to bypass the intended semantics and encode task-relevant shortcuts directly from the input. Specifically, the three major forms of leakage that were explained in the previous section are present in CEMs: 
+\begin{itemize}
+    \item \textbf{Concept-task Leakage}: this excess capacity allows the embeddings to capture additional task-predictive signals that are entirely unrelated to the underlying human-interpretable concept. Consequently, the model attains high predictive performance not because the concepts themselves are accurate, but because the embeddings act as covert channels for the task label. 
+    \item \textbf{Interconcept Leakage}: Instead of learning disentangled and independent features, the embeddings cluster based on the ground-truth values of neighboring concepts. Crucially, attempting to reduce this issue by increasing concept supervision in CEMs typically backfires, forcing even more interconcept leakage into the vector space.
+    \item \textbf{Alignment Leakage}: because of the random interventions during training, the model learns to generate embeddings whose predictive power artificially depends on their alignment with the ground-truth concept state.
+\end{itemize}
+Taking inspiration of CEM and combining it with energy-based models, the method called Energy-based Concept Bottleneck Models (ECBMs) was proposed in \cite{xu2024energybasedconceptbottleneckmodels}. This framework define a set of neural networks to define the joint energy of the input $\mathbf{x}$, concept $\mathbf{c}$ and class label $\mathbf{y}$. We consider a supervised classification setting with $N$ samples, $K$ concepts and $M$ different classes, $\mathcal{D}=\{x^{(j)}, c^{(j)}, y^{(j)}\}_{j=1}^N$ where the $j$-th data points contains the input $x^{(j)}\in\mathcal{X}$, the label $y^{(j)}\in\mathcal{Y}\subset\{0,1\}^M$ and the concepts $c^{(j)}\in\mathcal{C}=\{0,1\}^K$. We denote as $\mathbf{y}_m$ the $M$-dimensional one-hot vector with the $m$-th dimension set to 1. Then, we denote $c_k^{(j)}$ denotes the $k$-th dimension of the concept vector $c^{(j)}$ and $[c_i^{(j)}]_{i\neq j}$ as $c^{(j)}_{-k}$ for brevity. We also have a pretrained neural network $F: \mathcal{X}\rightarrow\mathcal{Z}$ to extract the features $\mathbf{z}$ from the input $\mathbf{x}$. \\ 
+This model consists of three energy networks with different objectives: 
+\begin{itemize}
+    \item \textbf{Class Energy Network} $E_{\theta}^{class}(\mathbf{x},\mathbf{y})$. Each class $m$ is associated with a trainable class embedding denoted as $\mathbf{u}_m$. The idea is to feed into a neural network $G_{zu}(\mathbf{z},\mathbf{u})$ the features $\mathbf{z}$ from $\mathbf{x}$ and the embedding $\mathbf{u}$ associated with the class label $\mathbf{y}$. Formally, we have $E_{\theta}^{class}(\mathbf{x},\mathbf{y})=G_{zu}(\mathbf{z},\mathbf{u}),$ which uses the negative log-likelihood as the loss function defined as 
+     \begin{equation}
+         \mathcal{L}_{class}(\mathbf{x},\mathbf{y})=-\log p_{\theta}(\mathbf{y}|\mathbf{x})=E_{\theta}^{class}(\mathbf{x},\mathbf{y})+\log \left( \sum_{m=1}^M e^{-E_{\theta}^{class}(\mathbf{x},\mathbf{y}_m)} \right).
+     \end{equation}
+    \item \textbf{Concept Energy Network} $E_{\theta}^{concept}(\mathbf{x},\mathbf{c})$. This energy network consists of $K$ sub-networks $E_{\theta}^{concept}(\mathbf{x},c_k)$, which measure the compatibility of the input $\mathbf{x}$ and the $k$-th concept. Each concept $k$ is associated with a positive embedding $v_k^+$ and a negative embedding $v_k^-$. The concept embedding $v_k$ is defined as a weighted sum of positive and negative embeddings, weighted by the concept probability $c_k$. Formally, we define the concept energy network using a neural network $E_{\theta}^{concept}(\mathbf{x},c_k)=G_{zv}(\mathbf{z},v_k)$, where the loss function is defined as 
+    \begin{equation}
+        \mathcal{L}_{concept}(\mathbf{x},\mathbf{c})=\sum_{k=1}^K \mathcal{L}^{(k)}_{concept}(\mathbf{x},c_k),
+    \end{equation}
+    where the loss for each $k$-th sub-network is defined as 
+    \begin{equation}
+        \mathcal{L}^{(k)}_{concept}(\mathbf{x},c_k) = E_{\theta}^{concept}(\mathbf{x},c_k) + \log \left( \sum_{c_k\in\{0,1\}} e^{-E_{\theta}^{concept}(\mathbf{x},c_k)} \right).
+    \end{equation}
+    \item \textbf{Global Energy Network} $E_{\theta}^{global}(\mathbf{c},\mathbf{y})$. This energy network learns the interactions among different concepts and between all concepts and the class label. We introduce into the neural network the $\mathbf{y}$ associated class label embedding $\mathbf{u}$ with the concatenation of the $K$ concept embeddings, $[v_k]_{k=1}^K$. We formally have $E_{\theta}^{global}(\mathbf{c},\mathbf{y})=G_{vu}([v_k]_{k=1}^K,\mathbf{u}),$ where the loss function is defined as 
+    \begin{equation}
+        \mathcal{L}_{gobal}(\mathbf{c},\mathbf{y})=E_{\theta}^{global}(\mathbf{c},\mathbf{y}) + \log \left( \sum_{m=1,\mathbf{c}'\in\mathcal{C}} e^{-E_{\theta}^{global}(\mathbf{c}',\mathbf{y}_m)} \right),
+    \end{equation}
+    where $\mathbf{c}'$ enumerates all concept combinations in the space $\mathcal{C}$.  
+\end{itemize}
+
+
 
 \section{Concept Bottleneck Generative Models}
-
 
 All the previous models presented in this document are focused on classification or regression problems, which are the original implementations 
 of concept bottleneck models. The next step is to combine this idea with generative models to develop a method for interpreting and intervening 

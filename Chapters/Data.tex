@@ -2,24 +2,33 @@
 \chapter{Data}\label{ch:data}
 %************************************************
 
-In this section I want to introduce the different datasets that I have used during this part of my research and the possible 
-future datasets that I plan to use in the remaining part of my thesis. In this initial part where I have focused on the 
+In this section, I want to introduce the different datasets that I have used during this part of my research and the possible 
+future datasets that I plan to use in the remaining part of my thesis. In this initial part, where I have focused on the 
 implementation of some methods found in the literature along with some small experiments to have an intuition about the 
-field, I have used a collection of small and well known in the literature datasets. These datasets are the following:
+field, I have used a collection of small and well-known in the literature datasets. These datasets are the following:
 \begin{itemize}
-    \item \textbf{MNIST} \cite{lecun1998mnist}: a dataset of handwritten digits with 60,000 training samples and 10,000 test samples, 
+    \item \textbf{MNIST} \cite{mnist}: a dataset of handwritten digits with 60,000 training samples and 10,000 test samples, 
     where each sample is a 28x28 grayscale image of a digit from 0 to 9. 
-    \item \textbf{Shapes2D} \cite{locatello2019challenging}: a dataset of 2D shapes with 737,280 samples, where each sample is a 64x64 
-    RGB image of a shape (square, ellipse or heart) with different colors and sizes.
-    \item \textbf{Shapes3D} \cite{locatello2019challenging}: a dataset of 3D shapes with 480,000 samples, where each sample is a 64x64 
+    \item \textbf{Shapes2D} \cite{locatello2019challengingcommonassumptionsunsupervised}: a dataset of 2D shapes with 737,280 samples, where each sample is a 64x64 
+    RGB image of a shape (square, ellipse or heart) with different colours and sizes. The factors of variation of each data sample are known 
+    \item \textbf{Shapes3D} \cite{locatello2019challengingcommonassumptionsunsupervised}: a dataset of 3D shapes with 480,000 samples, where each sample is a 64x64 
     RGB image of a 3D shape (cube, sphere or cylinder) with different colors and sizes.
     \item \textbf{dSprites} \cite{dsprites17}: a dataset of 2D sprites with 737,280 samples, where each sample is a 64x64 grayscale image 
-    of a sprite with different shapes, colors and positions. 
+    of a sprite with different shapes, colours, and positions. We also know the 6 ground truth independent factors of variation, which are colour, shape, scale, rotation, x and y positions of a sprite. 
     \item \textbf{CelebA} \cite{liu2015faceattributes}: a dataset of celebrity faces with 202,599 samples, where each sample is a 178x218 
     RGB image of a celebrity face with different attributes (gender, age, hair color, etc.).
-    \item \textbf{CelebA-HQ} \cite{karras2017progressive}: a dataset of high-quality celebrity faces with 30,000 samples, where each sample 
+    \item \textbf{CelebA-HQ} \cite{karras2018progressivegrowinggansimproved}: a dataset of high-quality celebrity faces with 30,000 samples, where each sample 
     is a 1024x1024 RGB image of a celebrity face with different attributes (gender, age, hair color, etc.).
+\end{itemize} 
+Several articles related to disentanglement representation learning use these datasets because they include the ground-truth factors of variation. Because of that, it is important to also use these datasets to evaluate our experiments to have a fair comparison with other methods in the literature. \\
+\\
+The main objective of this thesis is to apply disentanglement and compositionality methods in the generation of medical domains. To achieve this, we have to work with medical image datasets, where the idea is to use them once the method is validated in some of the previous datasets. Some medical datasets that I found interesting for my thesis are
+\begin{itemize}
+    \item \textbf{NIH-Chest-X-ray-Dataset} 
+    \item \textbf{CheXpert: Chest X-rays} \cite{irvin2019chexpertlargechestradiograph}. This dataset contains 224,316 chest radiographs of 65,240 patients who underwent a radiographic examination from Stanford Health Care between October 2002 and July 2017. For each image, the dataset contains labels for the presence of 14 common chest radiographic observations, which are extracted from free-text radiology reports and capture uncertainties present in the reports by using an uncertainty label. 
+    \item \textbf{MIMIC-CXR Database} 
 \end{itemize}
+
 
 
 
