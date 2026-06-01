@@ -16,24 +16,24 @@
 \contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {Disentanglement}}{19}{chapter.6}%
 \contentsline {section}{\numberline {6.1}VAE-Based Models}{19}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Diffusion/Flow-Based Models}{22}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Metrics}{24}{section.6.3}%
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Compositionality}}{25}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Object-Centric Learning}{25}{section.7.1}%
-\contentsline {chapter}{\numberline {8}\spacedlowsmallcaps {Concept Bottleneck Models}}{27}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Information Leakage}{29}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Recent CBMs}{31}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Concept Bottleneck Generative Models}{31}{section.8.3}%
-\contentsline {part}{\numberline {ii}\spacedlowsmallcaps {Methods}}{33}{part.2}%
-\contentsline {chapter}{\numberline {9}\spacedlowsmallcaps {Proposal}}{35}{chapter.9}%
-\contentsline {chapter}{\numberline {10}\spacedlowsmallcaps {Data}}{37}{chapter.10}%
-\contentsline {part}{\numberline {iii}\spacedlowsmallcaps {Experiments and Results}}{39}{part.3}%
-\contentsline {chapter}{\numberline {11}\spacedlowsmallcaps {Unconditional Flow Matching Model for X-Ray Images}}{41}{chapter.11}%
-\contentsline {chapter}{\numberline {12}\spacedlowsmallcaps {Slot Attention with Concept Supervision in CelebA-HQ}}{43}{chapter.12}%
-\contentsline {part}{\numberline {iv}\spacedlowsmallcaps {Research Plan}}{45}{part.4}%
-\contentsline {part}{\numberline {v}\spacedlowsmallcaps {Appendix}}{47}{part.5}%
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Appendix Test}}{49}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Appendix Section Test}{49}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Another Appendix Section Test}{49}{section.A.2}%
+\contentsline {section}{\numberline {6.3}Metrics}{25}{section.6.3}%
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Compositionality}}{27}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Object-Centric Learning}{27}{section.7.1}%
+\contentsline {chapter}{\numberline {8}\spacedlowsmallcaps {Concept Bottleneck Models}}{29}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Information Leakage}{30}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Recent CBMs}{32}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Concept Bottleneck Generative Models}{32}{section.8.3}%
+\contentsline {part}{\numberline {ii}\spacedlowsmallcaps {Methods}}{37}{part.2}%
+\contentsline {chapter}{\numberline {9}\spacedlowsmallcaps {Proposal}}{39}{chapter.9}%
+\contentsline {chapter}{\numberline {10}\spacedlowsmallcaps {Data}}{41}{chapter.10}%
+\contentsline {part}{\numberline {iii}\spacedlowsmallcaps {Experiments and Results}}{43}{part.3}%
+\contentsline {chapter}{\numberline {11}\spacedlowsmallcaps {Unconditional Flow Matching Model for X-Ray Images}}{45}{chapter.11}%
+\contentsline {chapter}{\numberline {12}\spacedlowsmallcaps {Slot Attention with Concept Supervision in CelebA-HQ}}{47}{chapter.12}%
+\contentsline {part}{\numberline {iv}\spacedlowsmallcaps {Research Plan}}{49}{part.4}%
+\contentsline {part}{\numberline {v}\spacedlowsmallcaps {Appendix}}{51}{part.5}%
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Appendix Test}}{53}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Appendix Section Test}{53}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Another Appendix Section Test}{53}{section.A.2}%
 \vspace {\beforebibskip }
-\contentsline {chapter}{\spacedlowsmallcaps {Bibliography}}{51}{dummy.5}%
+\contentsline {chapter}{\spacedlowsmallcaps {Bibliography}}{55}{dummy.5}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

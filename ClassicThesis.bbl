@@ -581,6 +581,52 @@
     \field{year}{2019}
   \endentry
 
+  \entry{kim2026cobelasteeringtransparentgeneration}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=KS}{%
+         family={Kim},
+         familyi={K\bibinitperiod},
+         given={Sangwon},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Kyoungoh},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=DJ}{%
+         family={Dong},
+         familyi={D\bibinitperiod},
+         given={Jeyoun},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=KKJ}{%
+         family={Kim},
+         familyi={K\bibinitperiod},
+         given={Kwang-Ju},
+         giveni={K\bibinithyphendelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KS+1}
+    \strng{fullhash}{KSLKDJKKJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 2507.08334
+    \endverb
+    \field{title}{CoBELa: Steering Transparent Generation via Concept
+  Bottlenecks on Energy Landscapes}
+    \verb{url}
+    \verb https://arxiv.org/abs/2507.08334
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2026}
+  \endentry
+
   \entry{Kingma_2019}{article}{}
     \name{author}{2}{}{%
       {{hash=KDP}{%
@@ -715,6 +761,58 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
     \field{year}{2020}
+  \endentry
+
+  \entry{kulkarni2025interpretablegenerativemodelsposthoc}{misc}{}
+    \name{author}{5}{}{%
+      {{hash=KA}{%
+         family={Kulkarni},
+         familyi={K\bibinitperiod},
+         given={Akshay},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=YG}{%
+         family={Yan},
+         familyi={Y\bibinitperiod},
+         given={Ge},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=SCE}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={Chung-En},
+         giveni={C\bibinithyphendelim E\bibinitperiod},
+      }}%
+      {{hash=OT}{%
+         family={Oikarinen},
+         familyi={O\bibinitperiod},
+         given={Tuomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=WTW}{%
+         family={Weng},
+         familyi={W\bibinitperiod},
+         given={Tsui-Wei},
+         giveni={T\bibinithyphendelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KA+1}
+    \strng{fullhash}{KAYGSCEOTWTW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 2503.19377
+    \endverb
+    \field{title}{Interpretable Generative Models through Post-hoc Concept
+  Bottlenecks}
+    \verb{url}
+    \verb https://arxiv.org/abs/2503.19377
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2025}
   \endentry
 
   \entry{kumar2018variationalinferencedisentangledlatent}{misc}{}
@@ -1101,6 +1199,59 @@
     \field{year}{2026}
   \endentry
 
+  \entry{perez2017filmvisualreasoninggeneral}{misc}{}
+    \name{author}{5}{}{%
+      {{hash=PE}{%
+         family={Perez},
+         familyi={P\bibinitperiod},
+         given={Ethan},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=SF}{%
+         family={Strub},
+         familyi={S\bibinitperiod},
+         given={Florian},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=dVH}{%
+         prefix={de},
+         prefixi={d\bibinitperiod},
+         family={Vries},
+         familyi={V\bibinitperiod},
+         given={Harm},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=DV}{%
+         family={Dumoulin},
+         familyi={D\bibinitperiod},
+         given={Vincent},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Courville},
+         familyi={C\bibinitperiod},
+         given={Aaron},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PE+2}
+    \strng{fullhash}{PESFVHdDVCA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \verb{eprint}
+    \verb 1709.07871
+    \endverb
+    \field{title}{FiLM: Visual Reasoning with a General Conditioning Layer}
+    \verb{url}
+    \verb https://arxiv.org/abs/1709.07871
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2017}
+  \endentry
+
   \entry{rombach2022highresolutionimagesynthesislatent}{misc}{}
     \name{author}{5}{}{%
       {{hash=RR}{%
@@ -1390,6 +1541,58 @@
     \endverb
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
+    \field{year}{2024}
+  \endentry
+
+  \entry{xu2024energybasedconceptbottleneckmodels}{misc}{}
+    \name{author}{5}{}{%
+      {{hash=XX}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Xinyue},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=QY}{%
+         family={Qin},
+         familyi={Q\bibinitperiod},
+         given={Yi},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=ML}{%
+         family={Mi},
+         familyi={M\bibinitperiod},
+         given={Lu},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WH}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Hao},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LX}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Xiaomeng},
+         giveni={X\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{XX+1}
+    \strng{fullhash}{XXQYMLWHLX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{X}
+    \field{sortinithash}{X}
+    \verb{eprint}
+    \verb 2401.14142
+    \endverb
+    \field{title}{Energy-Based Concept Bottleneck Models: Unifying Prediction,
+  Concept Intervention, and Probabilistic Interpretations}
+    \verb{url}
+    \verb https://arxiv.org/abs/2401.14142
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
     \field{year}{2024}
   \endentry
 
