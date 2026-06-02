@@ -2,7 +2,7 @@
 \chapter{Unconditional Flow Matching Model for X-Ray Images}\label{ch:exp1}
 %************************************************
 
-Unconditional Flow Matching Model for X-Ray Images.
+Most of the recent techniques apply concept bottleneck models and disentanglement learning in pre-trained generative models. Because of that, I decided to train an unconditional flow matching model with a medical dataset to have a pre-trained model to use for further experiments. I used the NIH-Chest-X-ray dataset (see Section -- for more details) and the Representation Autoencoder (RAE) framework. In this method, the latent representation of the images is generated with a pre-trained visual model, in our case, a DINOv2 with registers model. The authors trained a decoder model to build an autoencoder model based on a large pre-trained visual model, and the generated latents have higher semantic meaning compared to VAE latents. 
 
 
 

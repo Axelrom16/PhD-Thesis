@@ -108,7 +108,7 @@ with $z^{\mathcal{S}}=\{z^c|c\in\mathcal{S}\}$, the gradient field can be define
 \begin{equation}
     \nabla_{\mathbf{x}_t}\log p(z^{\mathcal{S}}|\mathbf{x}_t) = \sum_{c\in\mathcal{S}}\nabla_{\mathbf{x}_t}\log p(z^c|\mathbf{x}_t).
 \end{equation}
-Finally, to estimate the gradient fields, they used a network $G_{\psi}(\mathbf{x}_t, z^c, t)$ and the reconstruction loss is defined as 
+A visual representation of this method can be seen in Figure \ref{fig:disen1}(a). Finally, to estimate the gradient fields, they used a network $G_{\psi}(\mathbf{x}_t, z^c, t)$ and the reconstruction loss is defined as 
 \begin{equation}
     \mathcal{L}_r = \mathbb{E}_{\mathbf{x}_0,t,\epsilon} ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t, t) + \frac{\sqrt{\alpha_t}\sqrt{1-\bar\alpha_t}}{\beta_t}\sigma_t\sum_{c\in\mathcal{C}}G_{\psi}(\mathbf{x}_t,z^c,t)||.
 \end{equation}
@@ -117,9 +117,7 @@ the mutual information between $z^c$ and $z^j$, where $c\neq j$, defined as
 \begin{equation}
     \mathcal{L}_{dis}=\min_{i,j,\mathbf{x}_0,\mathbf{\hat x}_0^j} ||\hat z^{c|j}-\hat z^c|| - ||\hat z^{c|j} - z^c|| + ||\hat z^{j|j} - z^j||,
 \end{equation}
-where $\mathbf{\hat x}_0^j$ is conditioned on $z^j$, $\hat z^c = E_{\phi}^c(\mathbf{\hat x}_0)$ and $\hat z^{c|j} = E_{\phi}^c(\mathbf{\hat x^j_0})$ where $\mathbf{\hat x}_0$ is 
-a sampled data from the pretrained model. 
-\begin{figure}[htbp]
+\begin{figure}
      \centering
      % First Image (a)
      \subfloat[DisDiff Framework]{
@@ -133,7 +131,10 @@ a sampled data from the pretrained model.
      \caption{Illustrations of the frameworks for the (a) DisDiff model \cite{yang2023disdiffunsuperviseddisentanglementdiffusion} and the (b) EncDiff model. \cite{yang2024diffusionmodelcrossattention}}
      \label{fig:disen1}
 \end{figure}
-EncDiff \cite{yang2024diffusionmodelcrossattention} is an improvement of the previous method where an image encoder $\tau_{\phi}$ aims to provide a set of concept tokens $\mathcal{S}=\{s_1,\dots,s_N\}$. Each dimension of the encoded feature vectors is treated as a disentangled factor and maps each to a vector using a non-shared MLP layer. Then, based on Latent Diffusion Models \cite{rombach2022highresolutionimagesynthesislatent}, the idea is to use the cross-attention mechanism to map the tokens to the intermediate representations of the U-Net model. The general framework of this method is illustrated in Figure \ref{fig:encdiff}. \\
+where $\mathbf{\hat x}_0^j$ is conditioned on $z^j$, $\hat z^c = E_{\phi}^c(\mathbf{\hat x}_0)$ and $\hat z^{c|j} = E_{\phi}^c(\mathbf{\hat x^j_0})$ where $\mathbf{\hat x}_0$ is 
+a sampled data from the pretrained model. \\
+\\
+EncDiff \cite{yang2024diffusionmodelcrossattention} is an improvement of the previous method where an image encoder $\tau_{\phi}$ aims to provide a set of concept tokens $\mathcal{S}=\{s_1,\dots,s_N\}$. Each dimension of the encoded feature vectors is treated as a disentangled factor and maps each to a vector using a non-shared MLP layer. Then, based on Latent Diffusion Models \cite{rombach2022highresolutionimagesynthesislatent}, the idea is to use the cross-attention mechanism to map the tokens to the intermediate representations of the U-Net model. The general framework of this method is illustrated in Figure \ref{fig:disen1}(b). \\
 \\
 DisenBooth \cite{chen2024disenboothidentitypreservingdisentangledtuning} 
 \begin{figure}[htbp]
