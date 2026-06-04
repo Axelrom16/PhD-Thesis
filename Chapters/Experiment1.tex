@@ -2,8 +2,28 @@
 \chapter{Unconditional Flow Matching Model for X-Ray Images}\label{ch:exp1}
 %************************************************
 
-Most of the recent techniques apply concept bottleneck models and disentanglement learning in pre-trained generative models. Because of that, I decided to train an unconditional flow matching model with a medical dataset to have a pre-trained model to use for further experiments. I used the NIH-Chest-X-ray dataset (see Section -- for more details) and the Representation Autoencoder (RAE) framework. In this method, the latent representation of the images is generated with a pre-trained visual model, in our case, a DINOv2 with registers model. The authors trained a decoder model to build an autoencoder model based on a large pre-trained visual model, and the generated latents have higher semantic meaning compared to VAE latents. 
-
+Most of the recent techniques, as can be seen in the literature review part, inlcude some extra components 
+or modification to original pre-trained generative models to achieve better performance with an improvement 
+in interpretability (adding diesentanging capabilities in the latent space) and efficiently. This pre-trained
+models are trained on large datasets and are not trained on medical data, which is the domain of interest for 
+this thesis. Because of that, I decided to train an unconditional flow matching model with a medical 
+dataset to have a pre-trained model to use for further experiments. \\
+\\
+I used the NIH-Chest-X-ray dataset (see Chapter \ref{ch:data} for more details) and the Representation Autoencoder (RAE) 
+\cite{zheng2025diffusiontransformersrepresentationautoencoders} framework. In this method, the latent representation of 
+the images is generated with a pre-trained visual model, in our case, a DINOv2 with registers model 
+\cite{oquab2024dinov2learningrobustvisual,darcet2024visiontransformersneedregisters}. The authors trained a decoder model 
+to build an autoencoder model based on a large pre-trained visual model, and the generated latents have higher semantic 
+meaning and even better reconstruction quality compared to SD-VAE latents used in SOTA Stable Diffusion models. Then, they 
+decided to train a flow matching model on the generated RAE latents using a Diffusion Transformer (DiT) with some specific 
+architectural modification of the to be adapted to the high-dimensional RAE latents. The main inspiration for the architectural 
+modification is from Decoupled Diffusion Transformer (DDT) models, to avoid the scaling of the width in the entire backbone model. 
+The model was trained in ImageNet and achieve SOTA performance in FID and IS metrics compared to other pixel and latent diffusion 
+models. \\
+\\
+Because of the impresive generation quality of the model presented in the RAE paper and the quality and utility of the RAE latents, 
+I decided to train a similar model on the NIH-Chest-X-ray dataset. I trained a DiT$^{DH}$-XL (DINOv2-B) model, which consist of a 
+total of -- parameters. 
 
 
 

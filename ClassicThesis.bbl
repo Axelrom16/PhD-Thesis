@@ -297,6 +297,51 @@
     \field{year}{2026}
   \endentry
 
+  \entry{darcet2024visiontransformersneedregisters}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=DT}{%
+         family={Darcet},
+         familyi={D\bibinitperiod},
+         given={Timothée},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=OM}{%
+         family={Oquab},
+         familyi={O\bibinitperiod},
+         given={Maxime},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Mairal},
+         familyi={M\bibinitperiod},
+         given={Julien},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Bojanowski},
+         familyi={B\bibinitperiod},
+         given={Piotr},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DT+1}
+    \strng{fullhash}{DTOMMJBP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \verb{eprint}
+    \verb 2309.16588
+    \endverb
+    \field{title}{Vision Transformers Need Registers}
+    \verb{url}
+    \verb https://arxiv.org/abs/2309.16588
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2024}
+  \endentry
+
   \entry{Espinosa_Zarlenga_2023}{article}{}
     \name{author}{7}{}{%
       {{hash=EZM}{%
@@ -500,6 +545,148 @@
     \field{year}{2016}
   \endentry
 
+  \entry{irvin2019chexpertlargechestradiograph}{misc}{}
+    \name{author}{20}{}{%
+      {{hash=IJ}{%
+         family={Irvin},
+         familyi={I\bibinitperiod},
+         given={Jeremy},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RP}{%
+         family={Rajpurkar},
+         familyi={R\bibinitperiod},
+         given={Pranav},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Ko},
+         familyi={K\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Yifan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CIS}{%
+         family={Ciurea-Ilcus},
+         familyi={C\bibinithyphendelim I\bibinitperiod},
+         given={Silviana},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=CC}{%
+         family={Chute},
+         familyi={C\bibinitperiod},
+         given={Chris},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=MH}{%
+         family={Marklund},
+         familyi={M\bibinitperiod},
+         given={Henrik},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=HB}{%
+         family={Haghgoo},
+         familyi={H\bibinitperiod},
+         given={Behzad},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Ball},
+         familyi={B\bibinitperiod},
+         given={Robyn},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Shpanskaya},
+         familyi={S\bibinitperiod},
+         given={Katie},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Seekins},
+         familyi={S\bibinitperiod},
+         given={Jayne},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MDA}{%
+         family={Mong},
+         familyi={M\bibinitperiod},
+         given={David\bibnamedelima A.},
+         giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=HSS}{%
+         family={Halabi},
+         familyi={H\bibinitperiod},
+         given={Safwan\bibnamedelima S.},
+         giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=SJK}{%
+         family={Sandberg},
+         familyi={S\bibinitperiod},
+         given={Jesse\bibnamedelima K.},
+         giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=JR}{%
+         family={Jones},
+         familyi={J\bibinitperiod},
+         given={Ricky},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=LDB}{%
+         family={Larson},
+         familyi={L\bibinitperiod},
+         given={David\bibnamedelima B.},
+         giveni={D\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=LCP}{%
+         family={Langlotz},
+         familyi={L\bibinitperiod},
+         given={Curtis\bibnamedelima P.},
+         giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=PBN}{%
+         family={Patel},
+         familyi={P\bibinitperiod},
+         given={Bhavik\bibnamedelima N.},
+         giveni={B\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=LMP}{%
+         family={Lungren},
+         familyi={L\bibinitperiod},
+         given={Matthew\bibnamedelima P.},
+         giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=NAY}{%
+         family={Ng},
+         familyi={N\bibinitperiod},
+         given={Andrew\bibnamedelima Y.},
+         giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{IJ+1}
+    \strng{fullhash}{IJRPKMYYCISCCMHHBBRSKSJMDAHSSSJKJRLDBLCPPBNLMPNAY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{I}
+    \field{sortinithash}{I}
+    \verb{eprint}
+    \verb 1901.07031
+    \endverb
+    \field{title}{CheXpert: A Large Chest Radiograph Dataset with Uncertainty
+  Labels and Expert Comparison}
+    \verb{url}
+    \verb https://arxiv.org/abs/1901.07031
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2019}
+  \endentry
+
   \entry{ismail2024concept}{inproceedings}{}
     \name{author}{5}{}{%
       {{hash=IAA}{%
@@ -546,6 +733,52 @@
     \verb https://openreview.net/forum?id=L9U5MJJleF
     \endverb
     \field{year}{2024}
+  \endentry
+
+  \entry{karras2018progressivegrowinggansimproved}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=KT}{%
+         family={Karras},
+         familyi={K\bibinitperiod},
+         given={Tero},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=AT}{%
+         family={Aila},
+         familyi={A\bibinitperiod},
+         given={Timo},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Laine},
+         familyi={L\bibinitperiod},
+         given={Samuli},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lehtinen},
+         familyi={L\bibinitperiod},
+         given={Jaakko},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KT+1}
+    \strng{fullhash}{KTATLSLJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 1710.10196
+    \endverb
+    \field{title}{Progressive Growing of GANs for Improved Quality, Stability,
+  and Variation}
+    \verb{url}
+    \verb https://arxiv.org/abs/1710.10196
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.NE}
+    \field{year}{2018}
   \endentry
 
   \entry{kim2019disentanglingfactorising}{misc}{}
@@ -855,6 +1088,28 @@
     \field{year}{2018}
   \endentry
 
+  \entry{mnist}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LY}{%
+         family={LECUN},
+         familyi={L\bibinitperiod},
+         given={Y.},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LY1}
+    \strng{fullhash}{LY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{THE MNIST DATABASE of handwritten digits}
+    \verb{url}
+    \verb https://cir.nii.ac.jp/crid/1571417126193283840
+    \endverb
+    \field{journaltitle}{http://yann.lecun.com/exdb/mnist/}
+  \endentry
+
   \entry{lai2025principlesdiffusionmodels}{misc}{}
     \name{author}{5}{}{%
       {{hash=LCH}{%
@@ -904,6 +1159,110 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
     \field{year}{2025}
+  \endentry
+
+  \entry{liu2015faceattributes}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=LZ}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Ziwei},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Luo},
+         familyi={L\bibinitperiod},
+         given={Ping},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=WX}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Xiaogang},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=TX}{%
+         family={Tang},
+         familyi={T\bibinitperiod},
+         given={Xiaoou},
+         giveni={X\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LZ+1}
+    \strng{fullhash}{LZLPWXTX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{Proceedings of International Conference on Computer
+  Vision (ICCV)}
+    \field{title}{Deep Learning Face Attributes in the Wild}
+    \field{year}{2015}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{locatello2019challengingcommonassumptionsunsupervised}{misc}{}
+    \name{author}{7}{}{%
+      {{hash=LF}{%
+         family={Locatello},
+         familyi={L\bibinitperiod},
+         given={Francesco},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Bauer},
+         familyi={B\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lucic},
+         familyi={L\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RG}{%
+         family={Rätsch},
+         familyi={R\bibinitperiod},
+         given={Gunnar},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gelly},
+         familyi={G\bibinitperiod},
+         given={Sylvain},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SB}{%
+         family={Schölkopf},
+         familyi={S\bibinitperiod},
+         given={Bernhard},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=BO}{%
+         family={Bachem},
+         familyi={B\bibinitperiod},
+         given={Olivier},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LF+1}
+    \strng{fullhash}{LFBSLMRGGSSBBO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 1811.12359
+    \endverb
+    \field{title}{Challenging Common Assumptions in the Unsupervised Learning
+  of Disentangled Representations}
+    \verb{url}
+    \verb https://arxiv.org/abs/1811.12359
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2019}
   \endentry
 
   \entry{locatello2020objectcentriclearningslotattention}{misc}{}
@@ -1083,6 +1442,44 @@
     \field{year}{2021}
   \endentry
 
+  \entry{dsprites17}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=ML}{%
+         family={Matthey},
+         familyi={M\bibinitperiod},
+         given={Loic},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=HI}{%
+         family={Higgins},
+         familyi={H\bibinitperiod},
+         given={Irina},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=HD}{%
+         family={Hassabis},
+         familyi={H\bibinitperiod},
+         given={Demis},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lerchner},
+         familyi={L\bibinitperiod},
+         given={Alexander},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ML+1}
+    \strng{fullhash}{MLHIHDLA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{howpublished}{https://github.com/deepmind/dsprites-dataset/}
+    \field{title}{dSprites: Disentanglement testing Sprites dataset}
+    \field{year}{2017}
+  \endentry
+
   \entry{nguyen2026improvedobjectcentricdiffusionlearning}{misc}{}
     \name{author}{7}{}{%
       {{hash=NB}{%
@@ -1145,6 +1542,183 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.CV}
     \field{year}{2026}
+  \endentry
+
+  \entry{oquab2024dinov2learningrobustvisual}{misc}{}
+    \name{author}{26}{}{%
+      {{hash=OM}{%
+         family={Oquab},
+         familyi={O\bibinitperiod},
+         given={Maxime},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DT}{%
+         family={Darcet},
+         familyi={D\bibinitperiod},
+         given={Timothée},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MT}{%
+         family={Moutakanni},
+         familyi={M\bibinitperiod},
+         given={Théo},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=VH}{%
+         family={Vo},
+         familyi={V\bibinitperiod},
+         given={Huy},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Szafraniec},
+         familyi={S\bibinitperiod},
+         given={Marc},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KV}{%
+         family={Khalidov},
+         familyi={K\bibinitperiod},
+         given={Vasil},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=FP}{%
+         family={Fernandez},
+         familyi={F\bibinitperiod},
+         given={Pierre},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=HD}{%
+         family={Haziza},
+         familyi={H\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MF}{%
+         family={Massa},
+         familyi={M\bibinitperiod},
+         given={Francisco},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=ENA}{%
+         family={El-Nouby},
+         familyi={E\bibinithyphendelim N\bibinitperiod},
+         given={Alaaeldin},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Assran},
+         familyi={A\bibinitperiod},
+         given={Mahmoud},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Ballas},
+         familyi={B\bibinitperiod},
+         given={Nicolas},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=GW}{%
+         family={Galuba},
+         familyi={G\bibinitperiod},
+         given={Wojciech},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=HR}{%
+         family={Howes},
+         familyi={H\bibinitperiod},
+         given={Russell},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=HPY}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={Po-Yao},
+         giveni={P\bibinithyphendelim Y\bibinitperiod},
+      }}%
+      {{hash=LSW}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Shang-Wen},
+         giveni={S\bibinithyphendelim W\bibinitperiod},
+      }}%
+      {{hash=MI}{%
+         family={Misra},
+         familyi={M\bibinitperiod},
+         given={Ishan},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Rabbat},
+         familyi={R\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SV}{%
+         family={Sharma},
+         familyi={S\bibinitperiod},
+         given={Vasu},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=SG}{%
+         family={Synnaeve},
+         familyi={S\bibinitperiod},
+         given={Gabriel},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=XH}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Hu},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=JH}{%
+         family={Jegou},
+         familyi={J\bibinitperiod},
+         given={Hervé},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Mairal},
+         familyi={M\bibinitperiod},
+         given={Julien},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Labatut},
+         familyi={L\bibinitperiod},
+         given={Patrick},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=JA}{%
+         family={Joulin},
+         familyi={J\bibinitperiod},
+         given={Armand},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Bojanowski},
+         familyi={B\bibinitperiod},
+         given={Piotr},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OM+1}
+    \strng{fullhash}{OMDTMTVHSMKVFPHDMFENAAMBNGWHRHPYLSWMIRMSVSGXHJHMJLPJABP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \verb{eprint}
+    \verb 2304.07193
+    \endverb
+    \field{title}{DINOv2: Learning Robust Visual Features without Supervision}
+    \verb{url}
+    \verb https://arxiv.org/abs/2304.07193
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2024}
   \endentry
 
   \entry{parisini2026leakageinterpretabilityconceptbasedmodels}{misc}{}
@@ -1300,6 +1874,34 @@
     \endverb
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.CV}
+    \field{year}{2022}
+  \endentry
+
+  \entry{shen2022trustaiinterpretabilitynecessary}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=SMW}{%
+         family={Shen},
+         familyi={S\bibinitperiod},
+         given={Max\bibnamedelima W.},
+         giveni={M\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SMW1}
+    \strng{fullhash}{SMW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{eprint}
+    \verb 2202.05302
+    \endverb
+    \field{title}{Trust in AI: Interpretability is not necessary or sufficient,
+  while black-box interaction is necessary and sufficient}
+    \verb{url}
+    \verb https://arxiv.org/abs/2202.05302
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
     \field{year}{2022}
   \endentry
 
@@ -1780,6 +2382,51 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.LG}
     \field{year}{2022}
+  \endentry
+
+  \entry{zheng2025diffusiontransformersrepresentationautoencoders}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=ZB}{%
+         family={Zheng},
+         familyi={Z\bibinitperiod},
+         given={Boyang},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=MN}{%
+         family={Ma},
+         familyi={M\bibinitperiod},
+         given={Nanye},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=TS}{%
+         family={Tong},
+         familyi={T\bibinitperiod},
+         given={Shengbang},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=XS}{%
+         family={Xie},
+         familyi={X\bibinitperiod},
+         given={Saining},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZB+1}
+    \strng{fullhash}{ZBMNTSXS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \verb{eprint}
+    \verb 2510.11690
+    \endverb
+    \field{title}{Diffusion Transformers with Representation Autoencoders}
+    \verb{url}
+    \verb https://arxiv.org/abs/2510.11690
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2025}
   \endentry
 \enddatalist
 \endinput

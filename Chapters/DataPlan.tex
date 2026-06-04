@@ -1,0 +1,45 @@
+%************************************************
+\chapter{Data Management Plan}\label{ch:DataPlan}
+%************************************************
+
+This project relies entirely on pre-existing, curated, and de-identified datasets. 
+No new primary data collection involving human subjects will be conducted. The data 
+management strategy is structured in three progressive phases, transitioning from 
+general-purpose computer vision datasets to restricted-access clinical datasets. \\
+\\
+The research will utilize the following datasets, categorized by project phase: 
+\begin{itemize}
+    \item \textbf{Phase 1: Prototyping and Baseline Implementation}: Initial architectural 
+    development, debugging, and proof-of-concept experiments for disentangled generation 
+    and compositionallity analysiswill be conducted using well-known, publicly available 
+    datasets. These include MNIST, Shapes3D, and CelebA. See Chapter \ref{ch:data} for a 
+    detailed list and description of the datasets. These datasets are open-access and 
+    require no special data use agreements. 
+    \item \textbf{Phase 2: Medical Domain Adaptation}: To transition the generative models 
+    to the medical domain, publicly available medical imaging datasets will be utilized. 
+    These include the NIH Chest X-ray dataset and CheXpert. These datasets are fully 
+    de-identified and openly available for research purposes, providing a safe environment 
+    to test the models on complex anatomical structures and pathologies. Detailed description 
+    of these datasets can be found in Chapter \ref{ch:data}. 
+    \item \textbf{Phase 3: Advanced Clinical Application}: For the final evaluation of 
+    compositional generation and clinical realism, the project will utilize the MIMIC-CXR dataset. 
+    This is a large, restricted-access database of chest radiographs. Access to the MIMIC-CXR 
+    dataset has been formally granted via PhysioNet. I have completed the required credentialing 
+    (e.g., CITI training on Data or Specimens Only Research) and signed the Data Use Agreement (DUA). 
+    No attempts will be made to re-identify any patients. The original restricted data will not 
+    be copied to unauthorized personal devices, and access will be limited solely to credentialed 
+    researchers involved directly in this project. 
+\end{itemize} 
+All datasets will be securely stored at the Barcelona Supercomputing Center (BSC - MareNostrum 5) 
+and on password-protected, encrypted local workstations used for prototyping. Throughout the project, 
+the generative models will produce purely synthetic medical data (e.g., artificial radiographs 
+and corresponding segmentation masks or labels). This synthetic data contains no real patient 
+information and poses no privacy risks. Derived data, such as model weights, evaluation metrics, 
+and latent embeddings, will also be generated and stored securely on the BSC infrastructure. 
+
+
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************

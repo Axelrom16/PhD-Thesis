@@ -5,29 +5,36 @@
 \babel@toc {american}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1}{\ignorespaces Visualization of the training of DGMs where we minimize a discrepancy measure between the real and unknown data distribution and the approximated one, using a set of i.i.d. samples.\blx@tocontentsinit {0}\cite {lai2025principlesdiffusionmodels}\relax }}{5}{figure.caption.8}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Visualization of the training of DGMs where we minimize a discrepancy measure between the real and unknown data distribution and the approximated one, using a set of i.i.d. samples.\blx@tocontentsinit {0}\cite {lai2025principlesdiffusionmodels}\relax }}{7}{figure.caption.8}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2}{\ignorespaces Simplified Variational Autoencoder (VAE) architecture mapping an input $x$ to a latent representation $z$, and decoding it to a reconstruction $x'$.\relax }}{8}{figure.caption.9}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Reparameterization Trick in VAEs\relax }}{10}{figure.caption.10}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Hierarchical VAE architecture with $L$ layers of latent variables. Each layer captures different levels of abstraction, allowing for richer representations and improved generation quality.\relax }}{13}{figure.caption.11}%
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {5}{\ignorespaces Illustrations of the frameworks for the (a) DisDiff model \blx@tocontentsinit {0}\cite {yang2023disdiffunsuperviseddisentanglementdiffusion} and the (b) EncDiff model. \blx@tocontentsinit {0}\cite {yang2024diffusionmodelcrossattention}\relax }}{23}{figure.caption.12}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DisDiff Framework}}}{23}{subfigure.5.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {EncDiff Framework}}}{23}{subfigure.5.2}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Illustrations of the frameworks for the (a) DisenBooth model \blx@tocontentsinit {0}\cite {chen2024disenboothidentitypreservingdisentangledtuning} and the (b) FM Disentanglement model. \blx@tocontentsinit {0}\cite {chi2026disentangledrepresentationlearningflow}\relax }}{24}{figure.caption.13}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DisenBooth Framework}}}{24}{subfigure.6.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {FM Disentanglement Framework}}}{24}{subfigure.6.2}%
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {7}{\ignorespaces Architecture of a Concept Bottleneck Model (CBM). The model maps a raw inputs $\mathbf {x}$ to an interpretable intermediate concept space $\mathbf {\hat c}$ before masking the final prediction $\mathbf {\hat y}$.\relax }}{30}{figure.caption.14}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Architecture of the concept layer in the Concept Bottleneck Generative Model (CBGM) for a generic generative model.\relax }}{33}{figure.caption.15}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Architecture of the Post-hoc Concept Bottleneck Generative Model where the different loss functions are illustrated.\relax }}{34}{figure.caption.16}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Architecture of the CoBEla Model where the training and guided generation processes are illustrated.\relax }}{36}{figure.caption.17}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Simplified Variational Autoencoder (VAE) architecture mapping an input $x$ to a latent representation $z$, and decoding it to a reconstruction $x'$.\relax }}{10}{figure.caption.9}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Reparameterization Trick in VAEs\relax }}{12}{figure.caption.10}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Hierarchical VAE architecture with $L$ layers of latent variables. Each layer captures different levels of abstraction, allowing for richer representations and improved generation quality.\relax }}{15}{figure.caption.11}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5}{\ignorespaces Illustrations of the frameworks for the (a) DisDiff model \blx@tocontentsinit {0}\cite {yang2023disdiffunsuperviseddisentanglementdiffusion} and the (b) EncDiff model. \blx@tocontentsinit {0}\cite {yang2024diffusionmodelcrossattention}\relax }}{25}{figure.caption.12}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DisDiff Framework}}}{25}{subfigure.5.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {EncDiff Framework}}}{25}{subfigure.5.2}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Illustrations of the frameworks for the (a) DisenBooth model \blx@tocontentsinit {0}\cite {chen2024disenboothidentitypreservingdisentangledtuning} and the (b) FM Disentanglement model. \blx@tocontentsinit {0}\cite {chi2026disentangledrepresentationlearningflow}\relax }}{26}{figure.caption.13}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DisenBooth Framework}}}{26}{subfigure.6.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {FM Disentanglement Framework}}}{26}{subfigure.6.2}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7}{\ignorespaces Architecture of a Concept Bottleneck Model (CBM). The model maps a raw inputs $\mathbf {x}$ to an interpretable intermediate concept space $\mathbf {\hat c}$ before masking the final prediction $\mathbf {\hat y}$.\relax }}{32}{figure.caption.14}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Illustration of the Concept Embedding Model framework.\relax }}{36}{figure.caption.15}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Architecture of the concept layer in the Concept Bottleneck Generative Model (CBGM) for a generic generative model.\relax }}{39}{figure.caption.16}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Architecture of the Post-hoc Concept Bottleneck Generative Model where the different loss functions are illustrated.\relax }}{40}{figure.caption.17}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Architecture of the CoBEla Model where the training and guided generation processes are illustrated.\relax }}{42}{figure.caption.18}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {12}{\ignorespaces Caption\relax }}{54}{figure.caption.19}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Caption\relax }}{54}{figure.caption.20}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Caption\relax }}{54}{figure.caption.21}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {15}{\ignorespaces Updated timeline of the PhD project, showing the different stages and their expected duration.\relax }}{59}{figure.caption.22}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

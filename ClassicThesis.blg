@@ -19,7 +19,9 @@ A level-1 auxiliary file: Chapters/Proposal.aux
 A level-1 auxiliary file: Chapters/Data.aux
 A level-1 auxiliary file: Chapters/Experiment1.aux
 A level-1 auxiliary file: Chapters/Experiment2.aux
-A level-1 auxiliary file: Chapters/Chapter0A.aux
+A level-1 auxiliary file: Chapters/Timeline.aux
+A level-1 auxiliary file: Chapters/DataPlan.aux
+A level-1 auxiliary file: Chapters/TrainingPlan.aux
 A level-1 auxiliary file: FrontBackmatter/Bibliography.aux
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
@@ -36,60 +38,55 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 10740 items from 5000.
+Reallocated field_info (elt_size=4) to 11440 items from 5000.
 Database file #1: ClassicThesis-blx.bib
 Database file #2: Bibliography.bib
 Warning--string name "june" is undefined
---line 167 of file Bibliography.bib
+--line 175 of file Bibliography.bib
 Database file #3: AMiede_Publications.bib
 Warning--I didn't find a database entry for "knuth:1974"
-Warning--I didn't find a database entry for "lecun1998mnist"
-Warning--I didn't find a database entry for "locatello2019challenging"
-Warning--I didn't find a database entry for "dsprites17"
-Warning--I didn't find a database entry for "liu2015faceattributes"
-Warning--I didn't find a database entry for "karras2017progressive"
 Biblatex version: 3.17
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 35 entries,
+You've used 45 entries,
             6399 wiz_defined-function locations,
-            1435 strings with 19063 characters,
-and the built_in function-call counts, 424844 in all, are:
-= -- 36333
-> -- 5539
-< -- 1408
-+ -- 14804
-- -- 2711
-* -- 32838
-:= -- 53467
+            1482 strings with 21826 characters,
+and the built_in function-call counts, 595272 in all, are:
+= -- 52062
+> -- 7100
+< -- 1733
++ -- 21086
+- -- 3475
+* -- 45541
+:= -- 76157
 add.period$ -- 0
-call.type$ -- 35
-change.case$ -- 34
-chr.to.int$ -- 50
-cite$ -- 68
-duplicate$ -- 46054
-empty$ -- 33219
-format.name$ -- 3655
-if$ -- 82644
+call.type$ -- 45
+change.case$ -- 44
+chr.to.int$ -- 51
+cite$ -- 88
+duplicate$ -- 64627
+empty$ -- 46443
+format.name$ -- 4927
+if$ -- 114903
 int.to.chr$ -- 0
-int.to.str$ -- 76
+int.to.str$ -- 97
 missing$ -- 0
-newline$ -- 1748
-num.names$ -- 1495
-pop$ -- 13968
+newline$ -- 2390
+num.names$ -- 1908
+pop$ -- 18594
 preamble$ -- 1
-purify$ -- 738
+purify$ -- 977
 quote$ -- 0
-skip$ -- 7604
+skip$ -- 9686
 stack$ -- 0
-substring$ -- 68290
-swap$ -- 6866
-text.length$ -- 1483
-text.prefix$ -- 34
+substring$ -- 98793
+swap$ -- 9097
+text.length$ -- 1872
+text.prefix$ -- 44
 top$ -- 1
-type$ -- 1178
+type$ -- 1518
 warning$ -- 0
-while$ -- 6789
+while$ -- 9666
 width$ -- 0
-write$ -- 1714
-(There were 7 warnings)
+write$ -- 2346
+(There were 2 warnings)

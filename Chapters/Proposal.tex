@@ -2,7 +2,55 @@
 \chapter{Proposal}\label{ch:proposal}
 %************************************************
 
-Proposal.
+This research adopts a rigorous computational methodology grounded in deep generative modeling, 
+with a strong emphasis on theoretical formulation, model development, and empirical evaluation 
+within the medical domain. The execution of this project is structured into the following core 
+components. 
+
+\section{Theoretical and Experimental Model Development} 
+The foundational phase of the project focuses on building and modifying the core generative 
+architectures to ensure high fidelity and precise controllability. 
+\begin{itemize}
+    \item \textbf{Mathematical Foundation}: Rigorously study the mathematical principles of diffusion 
+    and flow-based models, including score-based generative modeling, Ordinary/Stochastic 
+    Differential Equation (ODE/SDE)-based sampling, and path-based formulations such as Flow 
+    Matching.
+    \item \textbf{Implementation}: Implement, reproduce, and benchmark baseline generative models 
+    using Python and PyTorch.
+    \item \textbf{Controllability and Compositionality Design}: Propose and integrate architectural and 
+    training modifications to enhance control mechanisms. This includes developing techniques 
+    for spatial and semantic conditioning, classifier-free guidance, and disentangled 
+    representations (e.g., slot-based generation) to allow independent manipulation of specific 
+    pathological or anatomical features.
+\end{itemize} 
+
+\section{Data Acquisition and Preparation} 
+High-quality, standardized data is critical for training robust generative models and evaluating 
+their compositional capabilities.
+\begin{itemize}
+    \item \textbf{Dataset Sourcing}: Utilize established, publicly available medical imaging 
+    datasets relevant to the targeted anatomies and pathologies. 
+    \item \textbf{Synthetic Simulation}: Where necessary, synthetically simulate specific conditions 
+    (e.g., generating precise segmentation masks or localized tumors) to strictly evaluate the 
+    model's compositional generation and disentanglement capabilities.
+    \item \textbf{Preprocessing Pipelines}: Apply comprehensive data preprocessing pipelines, including 
+    intensity normalization, spatial resizing, and data augmentation. Furthermore, implement 
+    latent-space encoding using pre-trained Autoencoders or Variational Autoencoders (VAEs) to compress 
+    high-dimensional medical images for efficient generative modeling, as in Latent Diffusion Models.
+\end{itemize} 
+
+\section{Model Training and Evaluation} 
+The training phase leverages advanced distributed computing strategies to handle the vast computational 
+requirements of modern generative frameworks.
+\begin{itemize}
+    \item \textbf{Distributed Training}: Train models on high-performance computing infrastructure using 
+    large-scale distributed training paradigms (such as Distributed Data Parallel (DDP) or Fully Sharded 
+    Data Parallel (FSDP)) to accelerate experimentation and scaling.
+    \item \textbf{Quantitative Metrics}: Evaluate the fidelity, diversity, and accuracy of the generated 
+    data using standard generative metrics, including Fréchet Inception Distance (FID), Kernel Inception 
+    Distance (KID), Precision, and Recall, alongside specific metrics for disentanglement representation 
+    learning and compositional evaluation.
+\end{itemize}
 
 
 
