@@ -33,7 +33,7 @@ is related through the Bayes' rule to the following posterior distribution:
 \begin{equation}
     p_{\theta}(\mathbf{z} | \mathbf{x}) = \frac{p_{\theta}(\mathbf{x} | \mathbf{z}) p(\mathbf{z})}{p_{\theta}(\mathbf{x})},
 \end{equation}
-where we have an intractability problem due to the marginal likelihood $p_{\theta}(\mathbf{x})$ which is given by an integral over the latent variables (eq \ref{eq:p_x}). 
+where we have an intractability problem due to the marginal likelihood $p_{\theta}(\mathbf{x})$ which is given by an integral over the latent variables (Equation \ref{eq:p_x}). 
 To overcome this problem we can use variational inference (VI) which is a technique to approximate the posterior distribution $p_{\theta}(\mathbf{z} | \mathbf{x})$ 
 with a simpler distribution $q_{\phi}(\mathbf{z} | \mathbf{x})$ that is parameterized by $\phi$.  \\
 \\
@@ -43,7 +43,7 @@ parametric inference model $q_{\phi}(\mathbf{z} | \mathbf{x})$, also called an \
     q_{\phi}(\mathbf{z} | \mathbf{x}) \approx p_{\theta}(\mathbf{z} | \mathbf{x}).
 \end{equation}
 This VAE formulation allows us to transform an autoencoder model with an unstructured latent space into a generative model with a latent space that follows a prior 
-distribution, typically a Gaussian distribution $p_{\theta}(\mathbf{z}) = \mathcal{N}(\mathbf{z}; \mathbf{0}, \mathbf{I})$, which is easy to sample from. \\
+distribution, typically a Gaussian distribution $p(\mathbf{z}) = \mathcal{N}(\mathbf{z}; \mathbf{0}, \mathbf{I})$, which is easy to sample from. \\
 
 \begin{figure}
 \centering
@@ -280,7 +280,7 @@ This limitation fundamentally stems from the VAE objective function and its unde
     gets stuck in an undesirable stable equilibrium. At the onset of training, the reconstruction likelihood term $\log p_\theta(\mathbf{x}|\mathbf{z})$ is relatively weak. Consequently, an initially 
     attractive state for the network is to aggressively minimize the latent cost, driving the approximate posterior to match the prior, $q_\phi(\mathbf{z}|\mathbf{x}) \approx p(\mathbf{z})$. This results 
     in a stable equilibrium---often termed \textit{posterior collapse}---from which the model struggles to escape, yielding uninformative latent representations and contributing to poor generation quality. 
-    To mitigate this, a common solution proposed by \cite{bowman2016generatingsentencescontinuousspace} and \cite{sonderby2016howtrain} is to implement an optimization schedule (KL annealing) where the weight of the latent cost 
+    To mitigate this, a common solution proposed in \cite{bowman2016generatingsentencescontinuousspace, sonderby2016howtrain} is to implement an optimization schedule (KL annealing) where the weight of the latent cost 
     $\mathcal{D}_{\text{KL}}(q_\phi(\mathbf{z}|\mathbf{x}) \parallel p(\mathbf{z}))$ is slowly annealed from 0 to 1 over multiple epochs.
 \end{itemize}
 
@@ -313,7 +313,7 @@ The ELBO loss is very similar to the one of the standard VAE, but we have to con
 which can also be decomposed into the reconstruction term and the KL divergence term. \\
 \\
 This method of deep, stacked layers revolutionized the field of generative modeling and is the basis for many state-of-the-art models. The training of HVAEs present several challenges because the encoder 
-and decoder must be trained jointly and learning becamoes unstable. A clever twist to solve the main problems and maintain the hierarchical structure is the \textbf{Denoising Diffusion Probabilistic Models} (DDPMs)
+and decoder must be trained jointly and learning becomes unstable. A clever twist to solve the main problems and maintain the hierarchical structure is the \textbf{Denoising Diffusion Probabilistic Models} (DDPMs)
 \cite{sohldickstein2015deepunsupervisedlearningusing, ho2020denoisingdiffusionprobabilisticmodels}, the next step in generative modeling.  
 
 

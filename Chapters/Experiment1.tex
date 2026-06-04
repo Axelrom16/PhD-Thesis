@@ -2,29 +2,84 @@
 \chapter{Unconditional Flow Matching Model for X-Ray Images}\label{ch:exp1}
 %************************************************
 
-Most of the recent techniques, as can be seen in the literature review part, inlcude some extra components 
-or modification to original pre-trained generative models to achieve better performance with an improvement 
-in interpretability (adding diesentanging capabilities in the latent space) and efficiently. This pre-trained
-models are trained on large datasets and are not trained on medical data, which is the domain of interest for 
-this thesis. Because of that, I decided to train an unconditional flow matching model with a medical 
-dataset to have a pre-trained model to use for further experiments. \\
+As discussed in the literature review, most recent techniques modify existing pre-trained generative models, often 
+by adding extra components or introducing latent space disentanglement, to improve performance, interpretability, or compositionality  
+without reducing the efficiency. However, these foundational models are generally trained on large, broad datasets rather than the 
+medical data central to this thesis. To address this domain gap, I trained an unconditional flow matching model 
+directly on a medical dataset, establishing a tailored pre-trained baseline for subsequent experiments. 
+It is not intended to achieve SOTA performance, but rather to provide a baseline model to be used in the following experiments
+to study disentanglement and compositionality in the medical domain. \\
 \\
-I used the NIH-Chest-X-ray dataset (see Chapter \ref{ch:data} for more details) and the Representation Autoencoder (RAE) 
-\cite{zheng2025diffusiontransformersrepresentationautoencoders} framework. In this method, the latent representation of 
-the images is generated with a pre-trained visual model, in our case, a DINOv2 with registers model 
-\cite{oquab2024dinov2learningrobustvisual,darcet2024visiontransformersneedregisters}. The authors trained a decoder model 
-to build an autoencoder model based on a large pre-trained visual model, and the generated latents have higher semantic 
-meaning and even better reconstruction quality compared to SD-VAE latents used in SOTA Stable Diffusion models. Then, they 
-decided to train a flow matching model on the generated RAE latents using a Diffusion Transformer (DiT) with some specific 
-architectural modification of the to be adapted to the high-dimensional RAE latents. The main inspiration for the architectural 
-modification is from Decoupled Diffusion Transformer (DDT) models, to avoid the scaling of the width in the entire backbone model. 
-The model was trained in ImageNet and achieve SOTA performance in FID and IS metrics compared to other pixel and latent diffusion 
-models. \\
+This study utilized the NIH-Chest-X-ray dataset (see Chapter \ref{ch:data} for more details) alongside the Representation Autoencoder 
+(RAE) framework \cite{zheng2025diffusiontransformersrepresentationautoencoders}. Within this method, image latent representations are 
+generated using a pre-trained visual model, specifically, a DINOv2-Base model configured with 4 register tokens 
+\cite{oquab2024dinov2learningrobustvisual,darcet2024visiontransformersneedregisters}. The original RAE authors trained a decoder to 
+construct an autoencoder from a large pre-trained visual model, yielding latents that offer richer semantic meaning and superior 
+reconstruction quality compared to the SD-VAE latents typically used in state-of-the-art Stable Diffusion models. Subsequently, 
+they trained a flow matching model on these RAE latents using a Diffusion Transformer (DiT), achieving good results but with a high 
+computational cost because of the high-dimensional nature of the latents. To accommodate this problem, they also propose a modification 
+of the DiT that incorporates architectural modifications inspired by Decoupled Diffusion Transformer (DDT) models, which 
+prevent the need to scale the width across the entire backbone. When trained on ImageNet, this model achieved SOTA performance in both 
+FID and IS metrics compared to other pixel and latent diffusion models. \\
 \\
-Because of the impresive generation quality of the model presented in the RAE paper and the quality and utility of the RAE latents, 
-I decided to train a similar model on the NIH-Chest-X-ray dataset. I trained a DiT$^{DH}$-XL (DINOv2-B) model, which consist of a 
-total of -- parameters. 
+Because of the impressive generation quality of the model presented in the RAE paper and the quality and utility of the RAE latents, 
+I decided to train a similar model on the NIH-Chest-X-ray dataset. I decided to train a DiT-XL (DINOv2-B) model insted of the improved 
+DiT$^{DH}$-XL because I want to have a real bottleneck to perform further experiments. 
 
+\begin{table}[ht]
+    \centering
+    \caption{Hyperparameter configuration used for training.}
+    \label{tab:exp1_params}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Category}       & \textbf{Hyperparameter}       & \textbf{Value}        \\
+        \midrule
+        \multirow{4}{*}{Optimization}
+                                & Optimizer                     & AdamW                 \\
+                                & Learning rate                 & $2 \times 10^{-4}$    \\
+                                & Weight decay                  & $0.0$    \\
+                                & Gradient clip norm            & $1.0$                 \\
+        \midrule
+        \multirow{3}{*}{Schedule}
+                                & Warmup epochs                 & $40$             \\
+                                & LR schedule                   & Linear      \\
+                                & Final learning rate           & $2 \times 10^{-5}$    \\
+        \midrule
+        \multirow{4}{*}{Architecture}
+                                & Input size                    & $16$                 \\
+                                & Patch size                    & $1$                 \\
+                                & In channels                   & $768$                 \\
+                                & Hidden dimension              & $1152$                 \\
+                                & Depth                         & $28$                  \\
+                                & Attention heads               & $16$                   \\
+                                & Dropout                       & $0.1$                 \\
+        \midrule
+        \multirow{3}{*}{Training}
+                                & Batch size                    & $128$                 \\
+                                & Mixed precision               & \texttt{float32}     \\
+                                & EMA decay                     & $0.995$              \\
+                                & Training epochs               & $450$                 \\
+                                & Training steps                & $222$                 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\begin{table}[ht]
+    \centering
+    \caption{Performance metrics of the DiT-XL (DINOv2-B) trained on the NIH-Chest-X-ray dataset.}
+    \label{tab:exp1_results}
+    \begin{tabular}{@{}lcccccc@{}}
+        \toprule
+        \textbf{Model}      & \textbf{Epochs}       & \#\textbf{Params}      & \textbf{FID}$\downarrow$      & \textbf{IS}$\uparrow$     & \textbf{Precision}$\uparrow$      & \textbf{Recall}$\uparrow$     \\
+        \midrule
+        DiT-XL   & --                    & --                    & --                            & --                        & --                    & --                    \\
+        DiT$^{DH}$-XL   & --                    & --                    & --                            & --                        & --                    & --                    \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+ 
 
 
 %*****************************************

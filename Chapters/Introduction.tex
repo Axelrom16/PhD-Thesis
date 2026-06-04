@@ -4,16 +4,16 @@
 
 In recent years, generative artificial intelligence has fundamentally transformed the landscape of synthetic data generation. 
 Early breakthroughs with Generative Adversarial Networks (GANs) and Variational Autoencoders (VAEs) demonstrated the potential 
-of neural networks to learn and sample from complex data distributions. More recently, the advent of score-based Diffusion Models 
+of neural networks to learn and sample from complex data distributions. More recently, the emergence of denoising and score-based Diffusion Models 
 and Flow Matching frameworks has set a new standard, achieving unprecedented fidelity and training stability when synthesizing 
-highly realistic, high-dimensional data. \\
-However, as these powerful models are increasingly deployed in high-stakes domains such as healthcare, their inherently opaque, 
-"black box" nature poses significant challenges. This thesis, titled Beyond the Black Box: Disentangled and Controllable Generative 
-Models for Medical Imaging, aims to bridge the gap between raw generative power and clinical reliability. The primary focus of 
-this research is to enhance the controllability, disentanglement, and compositionality of state-of-the-art generative frameworks—specifically 
-Flow Matching and Diffusion models—for the generation of safe and reliable synthetic medical data. By establishing a deep theoretical 
-understanding of these models' underlying principles, this work identifies their current structural limitations and proposes innovative, 
-modular solutions to holistically address the complexities and severe scarcity of annotated medical datasets. \\
+highly realistic, high-dimensional data like images, which is the main focus of this thesis. \\
+However, as these powerful models are increasingly used by the community and the industry, it has become clear that their raw 
+generative capabilities are not sufficient for all applications. For high-risk domains such as healthcare, their inherently opaque, 
+"black box" nature poses significant challenges for the deployment. This thesis aims to bridge the gap between raw generative power and clinical reliability. The primary focus of 
+this research is to develop new methods to enhance the interpretability, disentanglement, and compositionality of state-of-the-art generative frameworks, such as 
+Flow Matching and Diffusion models, for the generation of safe and reliable synthetic medical images. By establishing a deep theoretical 
+understanding of the underlying principles of these models and the concepts of disentanglement and compositionality, this work identifies their current structural weaknesses and advantages and proposes 
+solutions to overcome the complexities to be able to generate high-quality synthetic medical images to address the severe scarcity of annotated medical datasets. \\
 \\
 The development and validation of robust medical AI systems require massive amounts of diverse, high-quality, and richly annotated data.
 However, the acquisition of such datasets is chronically hindered by strict privacy regulations, high annotation costs, and the inherent 
@@ -24,10 +24,10 @@ reliably predict how specific anatomical structures or pathological features wil
 fundamentally on the concept of human-AI trust. However, as recent frameworks on AI trustworthiness emphasize, simply providing mathematical 
 interpretability—trying to understand how the model works internally—is neither necessary nor sufficient for establishing this trust \cite{shen2022trustaiinterpretabilitynecessary}. 
 Instead, human trust in AI is built through interaction. Users must be able to run the model at will and probe its boundaries to observe 
-predictable outcomes, generating empirical "behavior certificates" that prove the model's reliability under specific constraints. \\
+predictable outcomes, generating empirical "behavior certificates" that prove the reliability of the model under specific constraints. \\
 Therefore, to be truly safe and useful in a medical context, synthetic generation must prioritize this interactive capability through disentanglement. 
-It must allow a clinician or researcher to alter a single semantic feature—such as the size, severity, or location of a tumor—and immediately observe 
-the model's response without the surrounding healthy anatomy becoming distorted. The motivation for this research stems from the critical need to 
+It must allow a clinician or researcher to alter a single semantic feature, such as the size, severity, or location of a tumor, and immediately observe 
+the response of the model without the surrounding healthy anatomy becoming distorted. The motivation for this research stems from the critical need to 
 facilitate this interactive trust. By developing frameworks where different semantic components can be independently manipulated and recombined, 
 this thesis strives to transition generative models from static "black boxes" into highly interactive, trustworthy tools that users can rigorously 
 test, understand through behavior, and safely use to simulate rare clinical scenarios. \\
@@ -41,8 +41,8 @@ by the following specific objectives:
     generative modeling, highlighting gaps in their application to the medical domain.
     \item \textbf{Baseline Benchmarking}: Reproduce and systematically benchmark baseline models, including Denoising Diffusion Probabilistic Models (DDPMs) and Flow 
     Matching models, utilizing public and synthetic medical datasets to quantitatively evaluate current limitations in controllability and fidelity. 
-    \item \textbf{Design of Novel Control Strategies}: Propose and implement novel architectural modifications and training mechanisms—such as semantic conditioning, 
-    class guidance, and spatial control—to enforce strict user-defined constraints on the generative process.
+    \item \textbf{Design of Novel Control Strategies}: Propose and implement novel architectural modifications and training mechanisms, such as semantic conditioning, 
+    class guidance, and spatial control, to enforce strict user-defined constraints on the generative process.
     \item \textbf{Compositional Generation}: Develop compositional generation techniques that enable modular synthesis, ensuring that distinct semantic components 
     (e.g., pathology presence and anatomical structure) can be independently disentangled, manipulated, and seamlessly recombined.
     \item \textbf{Clinical Validation and Evaluation}: Apply the proposed models to real-world medical datasets, rigorously evaluating the methods through both quantitative 
