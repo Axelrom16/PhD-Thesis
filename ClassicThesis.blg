@@ -4,8 +4,6 @@ The top-level auxiliary file: ClassicThesis.aux
 The style file: biblatex.bst
 A level-1 auxiliary file: FrontBackmatter/Titlepage.aux
 A level-1 auxiliary file: FrontBackmatter/Titleback.aux
-A level-1 auxiliary file: FrontBackmatter/Abstract.aux
-A level-1 auxiliary file: FrontBackmatter/Acknowledgments.aux
 A level-1 auxiliary file: FrontBackmatter/Contents.aux
 A level-1 auxiliary file: Chapters/Introduction.aux
 A level-1 auxiliary file: Chapters/DGMs.aux
@@ -38,19 +36,18 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 11440 items from 5000.
+Reallocated field_info (elt_size=4) to 11300 items from 5000.
 Database file #1: ClassicThesis-blx.bib
 Database file #2: Bibliography.bib
 Warning--string name "june" is undefined
 --line 175 of file Bibliography.bib
 Database file #3: AMiede_Publications.bib
-Warning--I didn't find a database entry for "knuth:1974"
 Biblatex version: 3.17
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 45 entries,
             6399 wiz_defined-function locations,
-            1482 strings with 21826 characters,
+            1479 strings with 21753 characters,
 and the built_in function-call counts, 595272 in all, are:
 = -- 52062
 > -- 7100
@@ -89,4 +86,4 @@ warning$ -- 0
 while$ -- 9666
 width$ -- 0
 write$ -- 2346
-(There were 2 warnings)
+(There was 1 warning)

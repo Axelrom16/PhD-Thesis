@@ -293,30 +293,6 @@ One important technique developed to enhance the performance of VAEs and overcom
 structure in the latent space. This hierarchical structure allows the model to capture more complex and high-frequency details in the data, which can help to reduce the blurriness of the generated images. A visualization of the 
 architecture of HVAEs is shown in Figure \ref{fig:hvvae}. In this architecture, we have $L$ layers of latent variables $\mathbf{z}_1, \mathbf{z}_2, \dots, \mathbf{z}_L$, where each layer captures different levels of abstraction. \\
 In this setup, we can define the following factorization of the joint distribution: 
-\begin{equation}
-    p_{\theta}(\mathbf{x},\mathbf{z}_{1:L}) = p_{\theta}(\mathbf{x}|\mathbf{z}_1)\prod_{i=2}^{L} p_{\theta}(\mathbf{z}_{i-1}|\mathbf{z}_i)p(\mathbf{z}_L),
-\end{equation}
-and the marginal distribution of the data point $\mathbf{x}$ can be expressed as:
-\begin{equation}
-    p_{\theta}(\mathbf{x}) = \int p_{\theta}(\mathbf{x},\mathbf{z}_{1:L})d\mathbf{z}_{1:L},
-\end{equation}
-where the generation is performed progressively from the latent variable $\mathbf{z}_L$, which follows the prio distribution $p(\mathbf{z}_L)$, to the data point $\mathbf{x}$, which is generated from the latent variable $\mathbf{z}_1$.
-The inference model can be defined as: 
-\begin{equation}
-    q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x}) = q_{\phi}(\mathbf{z}_1|\mathbf{x})\prod_{i=2}^{L} q_{\phi}(\mathbf{z}_i|\mathbf{z}_{i-1}),
-\end{equation}
-where the inference is performed progressively from the data point $\mathbf{x}$ to the latent variable $\mathbf{z}_L$. \\
-The ELBO loss is very similar to the one of the standard VAE, but we have to consider all the layers of latent variables:
-\begin{align}
-    \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) &= \mathbb{E}_{\mathbf{z}_{1:L}\sim q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x})} \left[\log \frac{p_{\theta}(\mathbf{x},\mathbf{z}_{1:L})}{q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x})} \right],
-\end{align}
-which can also be decomposed into the reconstruction term and the KL divergence term. \\
-\\
-This method of deep, stacked layers revolutionized the field of generative modeling and is the basis for many state-of-the-art models. The training of HVAEs present several challenges because the encoder 
-and decoder must be trained jointly and learning becomes unstable. A clever twist to solve the main problems and maintain the hierarchical structure is the \textbf{Denoising Diffusion Probabilistic Models} (DDPMs)
-\cite{sohldickstein2015deepunsupervisedlearningusing, ho2020denoisingdiffusionprobabilisticmodels}, the next step in generative modeling.  
-
-
 \begin{figure}   
 \centering
 \begin{tikzpicture}[
@@ -377,6 +353,130 @@ and decoder must be trained jointly and learning becomes unstable. A clever twis
 \caption{Hierarchical VAE architecture with $L$ layers of latent variables. Each layer captures different levels of abstraction, allowing for richer representations and improved generation quality.}
 \label{fig:hvvae}
 \end{figure}
+\begin{equation}
+    p_{\theta}(\mathbf{x},\mathbf{z}_{1:L}) = p_{\theta}(\mathbf{x}|\mathbf{z}_1)\prod_{i=2}^{L} p_{\theta}(\mathbf{z}_{i-1}|\mathbf{z}_i)p(\mathbf{z}_L),
+\end{equation}
+and the marginal distribution of the data point $\mathbf{x}$ can be expressed as:
+\begin{equation}
+    p_{\theta}(\mathbf{x}) = \int p_{\theta}(\mathbf{x},\mathbf{z}_{1:L})d\mathbf{z}_{1:L},
+\end{equation}
+where the generation is performed progressively from the latent variable $\mathbf{z}_L$, which follows the prio distribution $p(\mathbf{z}_L)$, to the data point $\mathbf{x}$, which is generated from the latent variable $\mathbf{z}_1$.
+The inference model can be defined as: 
+\begin{equation}
+    q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x}) = q_{\phi}(\mathbf{z}_1|\mathbf{x})\prod_{i=2}^{L} q_{\phi}(\mathbf{z}_i|\mathbf{z}_{i-1}),
+\end{equation}
+where the inference is performed progressively from the data point $\mathbf{x}$ to the latent variable $\mathbf{z}_L$. \\
+The ELBO loss is very similar to the one of the standard VAE, but we have to consider all the layers of latent variables:
+\begin{align}
+    \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) &= \mathbb{E}_{\mathbf{z}_{1:L}\sim q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x})} \left[\log \frac{p_{\theta}(\mathbf{x},\mathbf{z}_{1:L})}{q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x})} \right],
+\end{align}
+which can also be decomposed into the reconstruction term and the KL divergence term. \\
+\\
+This method of deep, stacked layers revolutionized the field of generative modeling and is the basis for many state-of-the-art models. The training of HVAEs present several challenges because the encoder 
+and decoder must be trained jointly and learning becomes unstable. A clever twist to solve the main problems and maintain the hierarchical structure is the \textbf{Denoising Diffusion Probabilistic Models} (DDPMs)
+\cite{sohldickstein2015deepunsupervisedlearningusing, ho2020denoisingdiffusionprobabilisticmodels}, the next step in generative modeling, that can be defined with the following stochastic processes. \\
+\\
+\textbf{Forward Pass}. This is a fixed encoder (not learnable) that progressively adds noise to the data point $\mathbf{x}$ via a transition 
+kernel $p(\mathbf{x}_t|\mathbf{x}_{t-1})$ until we get pure noise $\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$. The fixed Gaussian transition kernel is defined as:
+\begin{equation}\label{eq:forward_kernel}
+    p(\mathbf{x}_t|\mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1-\beta_t}\mathbf{x}_{t-1}, \beta_t\mathbf{I}),
+\end{equation} 
+where $\mathbf{x}_0\sim p_{data}$, $\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ and the sequence $\{\beta_t\}_{t=1}^T\in(0,1)$ is the 
+noise schedule, which controls the amount of noise added at each step, as we can clearly see in the following formulation: 
+\begin{equation}\label{eq:forward_sample}
+    \mathbf{x}_t = \sqrt{\alpha_t} \mathbf{x}_{t-1} + \sqrt{1-\alpha_t} \epsilon, \quad \epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I}),
+\end{equation}
+where $\alpha_t = 1-\beta_t$. Another important formulation of the forward pass can be achieve by recursively applying the transition kernel (Equation \ref{eq:forward_kernel}), 
+where we achieve a closed-form expression for the distribution of noisy samples at step $t$ given the original data:
+\begin{equation}
+    p(\mathbf{x}_t|\mathbf{x}_0) = \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t}\mathbf{x}_0, (1-\bar{\alpha}_t)\mathbf{I}),
+\end{equation}
+where $\bar{\alpha}_t = \prod_{s=1}^T \alpha_s$. This formulation is very useful because it allows us to sample from the forward process at any 
+time step $t$ without having to recursively apply the transition kernel $t$ times. We can also define the sampling of $\mathbf{x}_t$ as in Equation \ref{eq:forward_sample} as follows:
+\begin{equation}\label{eq:forward_sample2}
+    \mathbf{x}_t = \sqrt{\bar\alpha_t} \mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I}).
+\end{equation}
+\\
+\textbf{Reverse Pass}: This is the decoder, where a neural network is trained to reverse the noising process by learning the parameterized 
+distribution $p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)$. If we start from a pure noise sample, we can iteratively apply the reverse process 
+to generate a data point $\mathbf{x}_0$ that resembles the training data, following a Markov chain. The training goal is to approximate the unknown reverse transition 
+kernel $p(\mathbf{x}_{t-1}|\mathbf{x}_t)$ with a learnable parametric model $p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)$, using the KL divergence 
+as the training objective: 
+\begin{equation}\label{eq:kl_reverse}
+    \mathbb{E}_{\mathbf{x}_t \sim p_t} \left[ \mathcal{D}_{KL}(p(\mathbf{x}_{t-1}|\mathbf{x}_t) || p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)) \right].
+\end{equation}
+We can express the unknown reverse transition kernel $p(\mathbf{x}_{t-1}|\mathbf{x}_t)$ in terms of the forward process using Bayes' rule:
+\begin{equation}
+    p(\mathbf{x}_{t-1}|\mathbf{x}_t) = \frac{p(\mathbf{x}_t|\mathbf{x}_{t-1}) p_{t-1}(\mathbf{x}_{t-1})}{p_t(\mathbf{x}_t)},
+\end{equation}
+where the marginal distribution $p_t(\mathbf{x}_t)$ can be expressed as:
+\begin{equation}
+    p_t(\mathbf{x}_t) = \int p(\mathbf{x}_t|\mathbf{x}_0) p_{data}(\mathbf{x}_0) d\mathbf{x}_0.
+\end{equation}
+Since $p_{data}$ is unknown, we can not compute the marginal distribution $p_t(\mathbf{x}_t)$ thus the computation of the target distribution 
+$p(\mathbf{x}_{t-1}|\mathbf{x}_t)$ is intractable. A trick to solve this problem is to condition the reverse transition kernel on the original data 
+point $\mathbf{x}_0$. Now we can define the target distribution as follows:
+\begin{equation}
+    p(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0) = \frac{p(\mathbf{x}_t|\mathbf{x}_{t-1}) p_{t-1}(\mathbf{x}_{t-1}|\mathbf{x}_0)}{p_t(\mathbf{x}_t|\mathbf{x}_0)},
+\end{equation}
+which allows us to have a tractable expression and to derive a tractable objective equivalent to the previous intractable KL divergence in Equation \ref{eq:kl_reverse}. 
+As a result, $p(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0)$ is a Gaussian distribution with mean and variance that can be computed in closed-form: 
+\begin{equation}
+    p(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0) = \mathcal{N}(\mathbf{x}_{t-1}; \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t), \sigma^2(t)\mathbf{I}),
+\end{equation}
+where 
+\begin{equation}\label{eq:tilde_mean}
+    \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t) = \frac{\sqrt{\bar{\alpha}_{t-1}}\beta_t}{1-\bar{\alpha}_t}\mathbf{x}_0 + \frac{(1-\bar{\alpha}_{t-1})\sqrt{\alpha}_t}{1-\bar{\alpha}_t}\mathbf{x}_t, \quad \sigma^2(t) = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t.
+\end{equation}
+Finally, DDPM assumes that each reverse transition kernel $p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)$ is a Gaussian distribution with mean $\mu_{\theta}(\mathbf{x}_t, t)$ 
+and variance $\sigma^2(t)\mathbf{I}$, where the variance is fixed and the mean is parameterized by a neural network with parameters $\theta$. It can be defined as 
+\begin{equation}
+    p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t) = \mathcal{N}(\mathbf{x}_{t-1}; \mu_{\theta}(\mathbf{x}_t, t), \sigma^2(t)\mathbf{I}).
+\end{equation}
+Using the previous conditional derivation of the unknown reverse transition kernel, we can define a closed-form expression for the KL divergence training loss:
+\begin{equation}\label{eq:loss_ddpm}
+    \mathcal{L}(\mathbf{x}_0;\theta) = \mathbb{E}_{t, \mathbf{x}_0} \left[\frac{1}{2\sigma^2(t)} ||\mu_{\theta}(\mathbf{x}_t, t) - \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t)||^2 + C \right].
+\end{equation}
+where $C$ is a constant that does not depend on the parameters. This loss can be interpreted as a weighted $\mathcal{L}_2$ loss between the predicted mean 
+$\mu_{\theta}(\mathbf{x}_t, t)$ and the true mean $\tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t)$ of the reverse transition kernel. \\
+In practice, we do not use the loss of Equation \ref{eq:loss_ddpm} directly. If we combine the definition of the true mean $\tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t)$ in Equation 
+\ref{eq:tilde_mean} with Equation \ref{eq:forward_sample2}, we can obtain two different parameterizations of the mean that can be used to derive two different but equivalent training 
+losses that are easier to optimize. 
+\begin{itemize}
+    \item $\epsilon$-Prediction. From Equation \ref{eq:forward_sample2} we obtain $\mathbf{x}_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(\mathbf{x}_t - \sqrt{1-\bar{\alpha}_t}\epsilon)$ and we can 
+    substitute this expression in the definition of the true mean $\tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t)$ to obtain the following expression:
+    \begin{equation}
+        \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t) = \frac{1}{\sqrt{\alpha}_t} \left( \mathbf{x}_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon \right),
+    \end{equation}
+    which can also be applied to parameterized mean using now a neural network that predicts the noise $\epsilon_{\theta}(\mathbf{x}_t, t)$ instead of the mean $\mu_{\theta}(\mathbf{x}_t, t)$:
+    \begin{equation}
+    \mu_{\theta}(\mathbf{x}_t, t) = \frac{1}{\sqrt{\alpha}_t} \left( \mathbf{x}_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_{\theta}(\mathbf{x}_t, t) \right).
+    \end{equation}
+    We can define a new loss function based on the noise prediction as follows:
+    \begin{equation}
+        \mathcal{L}(\mathbf{x}_0;\theta) = \mathbb{E}_{t, \mathbf{x}_0, \epsilon} \left[\frac{\beta_t^2}{2\sigma^2(t)\alpha_t(1-\bar{\alpha}_t)} ||\epsilon_{\theta}(\mathbf{x}_t, t) - \epsilon||^2 \right],
+    \end{equation}
+    where a simple version of this loss, where the weighting factor is removed, is commonly used in practice for the good performance and stability of the training process found in \cite{ho2020denoisingdiffusionprobabilisticmodels}.
+    The final loss can be expressed as: 
+    \begin{equation}
+        \mathcal{L}(\mathbf{x}_0;\theta) = \mathbb{E}_{t, \mathbf{x}_0, \epsilon} \left[||\epsilon_{\theta}(\mathbf{x}_t, t) - \epsilon||^2 \right].
+    \end{equation}
+    \item $\mathbf{x}_0$-Prediction: With the definition of the true mean $\tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t)$ (Equation \ref{eq:tilde_mean}) we can obtain 
+    a new parameterization of the mean by using a neural network that predicts the original data point $\mathbf{x}_0$ instead of the mean $\mu_{\theta}(\mathbf{x}_t, t)$:
+    \begin{equation}
+        \mu_{\theta}(\mathbf{x}_t, t) = \frac{\sqrt{\bar{\alpha}_{t-1}}\beta_t}{1-\bar{\alpha}_t}\mathbf{x}_{\theta}(\mathbf{x}_t, t) + \frac{(1-\bar{\alpha}_{t-1})\sqrt{\alpha}_t}{1-\bar{\alpha}_t}\mathbf{x}_t,
+    \end{equation}
+    which, as in the previous case, can be used to derive a new loss function based on the original data point prediction as follows:
+    \begin{equation}
+        \mathcal{L}(\mathbf{x}_0;\theta) = \mathbb{E}_{t, \mathbf{x}_0, \epsilon} \left[\omega_t||\mathbf{x}_{\theta}(\mathbf{x}_t, t) - \mathbf{x}_0||^2 \right].
+    \end{equation}
+    where $\omega_t$ is a weighting factor that depends on the noise schedule and the variance of the reverse transition kernel, which can be ignored in practice. 
+\end{itemize}
+
+
+
+
+
 
 
 
@@ -389,22 +489,35 @@ and decoder must be trained jointly and learning becomes unstable. A clever twis
     \begin{equation}
         \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - \mathcal{D}_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x}) || p(\mathbf{z})).
     \end{equation}
-    
-    \medskip
-    \textbf{2. Reparameterization Trick:}
-    \begin{equation}
-        \mathbf{z} = \mu + \sigma \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I).
-    \end{equation}
 
     \medskip
-    \textbf{3. Training Objective of Gaussian VAEs:}
+    \textbf{2. Training Objective of Gaussian VAEs:}
     \begin{align}
         &\mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = -\frac{1}{2\sigma^2} \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[||\mathbf{x} - \mu_{\theta}(\mathbf{z})||^2\right] \\ 
         &- \frac{1}{2} \sum_{i=1}^k \left( \sigma^2_{\phi,i}(\mathbf{x}) + \mu^2_{\phi,i}(\mathbf{x}) - 1 - \log \sigma^2_{\phi,i}(\mathbf{x}) \right) + C.
     \end{align} 
+
+    \medskip
+    \textbf{3. Forward Pass in DDPMs:}
+    \begin{align}
+        & p(\mathbf{x}_t|\mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1-\beta_t}\mathbf{x}_{t-1}, \beta_t\mathbf{I}) \\
+        & p(\mathbf{x}_t|\mathbf{x}_0) = \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t}\mathbf{x}_0, (1-\bar{\alpha}_t)\mathbf{I})
+    \end{align} 
+
+    \medskip
+    \textbf{4. $\epsilon$-Prediction loss in DDPMs:}
+    \begin{equation}
+        \mathcal{L}(\theta) = \mathbb{E}_{t, \mathbf{x}_0, \epsilon} \left[||\epsilon_{\theta}(\mathbf{x}_t, t) - \epsilon||^2 \right].
+    \end{equation} 
+
+    \medskip
+    \textbf{5. $\mathbf{x}_0$-Prediction loss in DDPMs:}
+    \begin{equation}
+        \mathcal{L}(\theta) = \mathbb{E}_{t, \mathbf{x}_0, \epsilon} \left[\omega_t||\mathbf{x}_{\theta}(\mathbf{x}_t, t) - \mathbf{x}_0||^2 \right].
+    \end{equation} 
     
     %\vsub
-    {\small \color{boxaccent}\textbf{Note:} Ensure latent dimensions $z_i$ and $z_j$ maintain near-zero mutual information to preserve explainability.}
+    %{\small \color{boxaccent}\textbf{Note:} Ensure latent dimensions $z_i$ and $z_j$ maintain near-zero mutual information to preserve explainability.}
 \end{summarybox} 
 
 

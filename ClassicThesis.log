@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.5.15)  4 JUN 2026 15:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.5.15)  5 JUN 2026 18:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1306,13 +1306,7 @@ Package csquotes Info: Redefining alias 'default' -> 'american'.
 LaTeX Font Info:    Trying to load font information for T1+pplj on input line 79.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pplj.fd
 File: t1pplj.fd 2004/09/06 font definitions for T1/pplj.
-) (./ClassicThesis.aux (./FrontBackmatter/Titlepage.aux) (./FrontBackmatter/Titleback.aux) (./FrontBackmatter/Abstract.aux (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/ca/babel-catalan.tex
-Package babel Info: Importing basic data for catalan
-(babel)             from babel-ca.ini. Reported on input line 11.
-)
-Package babel Info: Hyphen rules for 'catalan' set to \l@english
-(babel)             (\language0). Reported on input line 3.
-) (./FrontBackmatter/Acknowledgments.aux) (./FrontBackmatter/Contents.aux) (./Chapters/Introduction.aux) (./Chapters/DGMs.aux) (./Chapters/VAEs.aux) (./Chapters/EBMs.aux
+) (./ClassicThesis.aux (./FrontBackmatter/Titlepage.aux) (./FrontBackmatter/Titleback.aux) (./FrontBackmatter/Contents.aux) (./Chapters/Introduction.aux) (./Chapters/DGMs.aux) (./Chapters/VAEs.aux) (./Chapters/EBMs.aux
 
 LaTeX Warning: Label `box:latent_math' multiply defined.
 
@@ -1354,11 +1348,6 @@ Package biblatex Info: ... file 'english.lbx' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2022/02/02 v3.17 biblatex localization (PK/MW)
 ))
-Package biblatex Info: Trying to load language 'catalan'...
-Package biblatex Info: ... file 'catalan.lbx' found.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/catalan.lbx
-File: catalan.lbx 2022/02/02 v3.17 biblatex localization (PK/MW)
-)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Data encoding 'ascii' specified.
 (biblatex)             No need to reencode data.
@@ -1524,60 +1513,6 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
 
 ]
-\openout2 = `FrontBackmatter/Abstract.aux'.
-
- (./FrontBackmatter/Abstract.tex
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.30756pt on input line 15.
-)
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
- [3
-
-
-
-
-
-]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
- [4
-
-
-
-
-]
-\openout2 = `FrontBackmatter/Acknowledgments.aux'.
-
- (./FrontBackmatter/Acknowledgments.tex
-LaTeX Font Info:    Font shape `T1/pplj/m/sl' in size <10.95> not available
-(Font)              Font shape `T1/pplj/m/it' tried instead on input line 6.
-
-
-LaTeX Warning: Citation 'knuth:1974' on page 5 undefined on input line 11.
-
-
-LaTeX Warning: Citation 'knuth:1974' on page 5 undefined on input line 11.
-
-
-Overfull \hbox (2.90268pt too wide) in paragraph at lines 27--37
-[]\T1/pplj/m/n/10.95 Regarding the ty-pog-ra-phy and other help, many thanks go to Marco
- []
-
-)
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
- [5
-
-]
-Overfull \vbox (6.51149pt too high) has occurred while \output is active []
-
- [6
-
-
-
-
-]
 \openout2 = `FrontBackmatter/Contents.aux'.
 
  (./FrontBackmatter/Contents.tex
@@ -1587,12 +1522,12 @@ Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/pplj/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
 
-Overfull \hbox (10.50908pt too wide) in paragraph at lines 28--28
+Overfull \hbox (10.50908pt too wide) in paragraph at lines 26--26
  [][] []\T1/pplj/m/n/10.95 Theoretical and Ex-per-i-men-tal Model De-vel-op-ment []  
  []
 
 
-Overfull \hbox (16.01299pt too wide) in paragraph at lines 34--34
+Overfull \hbox (16.01299pt too wide) in paragraph at lines 32--32
  [][] []\T1/pplj/m/sc/10.95/80ls slot at-ten-tion with con-cept su-per-vi-sion in celeba- 
  []
 
@@ -1608,24 +1543,28 @@ Overfull \hbox (16.01299pt too wide) in paragraph at lines 34--34
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [7
+ [3
+
+
+
+
 
 
 
 ]
 Package tocbasic Info: character protrusion at lof deactivated on input line 31.
  (./ClassicThesis.lof
-Overfull \hbox (18.65556pt too wide) in paragraph at lines 12--12
+Overfull \hbox (18.65556pt too wide) in paragraph at lines 10--10
  \T1/pplj/m/n/10.95 sen-ta-tions and im-proved gen-er-a-tion qual-ity. []  
  []
 
 
-Overfull \hbox (29.39128pt too wide) in paragraph at lines 16--16
+Overfull \hbox (29.39128pt too wide) in paragraph at lines 14--14
  \T1/pplj/m/n/10.95 D-iff model [[][]42[][]] and the (b) EncD-iff model. [[][]41[][]] []  
  []
 
 
-Overfull \hbox (0.77829pt too wide) in paragraph at lines 27--27
+Overfull \hbox (0.77829pt too wide) in paragraph at lines 25--25
  \T1/pplj/m/n/10.95 neck Gen-er-a-tive Model where the dif-fer-ent loss 
  []
 
@@ -1636,12 +1575,12 @@ Overfull \hbox (0.77829pt too wide) in paragraph at lines 27--27
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [8
+ [4
 
 ]
 Package tocbasic Info: character protrusion at lot deactivated on input line 42.
  (./ClassicThesis.lot
-Overfull \hbox (12.19437pt too wide) in paragraph at lines 18--18
+Overfull \hbox (12.19437pt too wide) in paragraph at lines 16--16
  \T1/pplj/m/n/10.95 B) trained on the NIH-Chest-X-ray dataset. []  
  []
 
@@ -1655,10 +1594,10 @@ File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 ))
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [9]
+ [5]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [10
+ [6
 
 
 
@@ -1732,7 +1671,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--14
 
  []
 
-<gfx/dgm/dgm1.png, id=262, 1322.9425pt x 541.02126pt>
+<gfx/dgm/dgm1.png, id=237, 1322.9425pt x 541.02126pt>
 File: gfx/dgm/dgm1.png Graphic file (type png)
 <use gfx/dgm/dgm1.png>
 Package pdftex.def Info: gfx/dgm/dgm1.png  used on input line 23.
@@ -1807,7 +1746,12 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
  [14]
-Underfull \hbox (badness 10000) in paragraph at lines 312--318
+Underfull \hbox (badness 10000) in paragraph at lines 372--381
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 372--381
 
  []
 
@@ -1815,6 +1759,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 312--318
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
  [15]
+Overfull \hbox (1.82886pt too wide) in paragraph at lines 421--424
+\T1/pplj/m/n/10.95 which al-lows us to have a tractable ex-pres-sion and to de-rive a tractable
+ []
+
+
+Overfull \hbox (1.46675pt too wide) in paragraph at lines 421--424
+\T1/pplj/m/n/10.95 ob-jec-tive equiv-a-lent to the pre-vi-ous in-tractable KL di-ver-gence in Equa-
+ []
+
+
+Overfull \hbox (1.58018pt too wide) detected at line 430
+ $[]\U/zeus/m/n/10.95 ¨\T1/pplj/b/n/10.95 x[]\T1/pplj/m/n/10.95 , \T1/pplj/b/n/10.95 x[]\T1/pplj/m/n/10.95 , \U/zeur/m/n/10.95 t\U/zeus/m/n/10.95 © ½ []\T1/pplj/b/n/10.95 x[] \U/zeus/m/n/10.95 « []\T1/pplj/b/n/10.95 x[]\T1/pplj/m/n/10.95 ,  \U/zeur/m/n/10.95 ^^[[]\U/zeus/m/n/10.95 ¨\U/zeur/m/n/10.95 t\U/zeus/m/n/10.95 © ½ []\U/zeur/m/n/10.95 ^^L[]\T1/pplj/m/n/10.95 .$  
+ []
+
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+ [16]
+Overfull \hbox (1.9341pt too wide) in paragraph at lines 430--433
+\T1/pplj/m/n/10.95 Finally, DDPM as-sumes that each re-verse tran-si-tion ker-nel $\U/zeur/m/n/10.95 p[]\U/zeus/m/n/10.95 ¨\T1/pplj/b/n/10.95 x[]\U/zeus/m/n/10.95 j\T1/pplj/b/n/10.95 x[]\U/zeus/m/n/10.95 ©$
+ []
+
+
+Overfull \hbox (14.32375pt too wide) in paragraph at lines 446--448
+[]$\U/zeur/m/n/10.95 ^^O$\T1/pplj/m/n/10.95 -Prediction. From Equa-tion [][]32[][] we ob-tain $\T1/pplj/b/n/10.95 x[] \U/zeus/m/n/10.95 ½ []¨\T1/pplj/b/n/10.95 x[] \U/zeus/m/n/10.95 ^^@ []\U/zeur/m/n/10.95 ^^O\U/zeus/m/n/10.95 ©$
+ []
+
+
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+ [17]
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+ [18]
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1822,27 +1800,30 @@ Package microtype Info: Loading generic protrusion settings for font family
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [16]
+ [19]
 \openout2 = `Chapters/EBMs.aux'.
 
  (./Chapters/EBMs.tex
-chapter 4.
-)
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [17
+ [20
 
 
 
 
 
 ]
+chapter 4.
+)
+Overfull \vbox (6.51149pt too high) has occurred while \output is active []
+
+ [21]
 \openout2 = `Chapters/NFs.aux'.
 
  (./Chapters/NFs.tex
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [18
+ [22
 
 
 
@@ -1853,13 +1834,13 @@ chapter 5.
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [19]
+ [23]
 \openout2 = `Chapters/Disentanglement.aux'.
 
  (./Chapters/Disentanglement.tex
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [20
+ [24
 
 
 
@@ -1885,7 +1866,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--29
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [21]
+ [25]
 Underfull \hbox (badness 10000) in paragraph at lines 31--36
 
  []
@@ -1903,7 +1884,7 @@ Overfull \hbox (3.39474pt too wide) in paragraph at lines 46--54
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [22]
+ [26]
 Overfull \hbox (18.26483pt too wide) in paragraph at lines 57--60
 \T1/pplj/m/n/10.95 This ob-jec-tive func-tion im-poses in-de-pen-dence on the vari-a-tional marginal
  []
@@ -1931,7 +1912,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--86
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [23]
+ [27]
 Underfull \hbox (badness 10000) in paragraph at lines 94--100
 
  []
@@ -1939,27 +1920,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--100
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [24]
+ [28]
 Overfull \hbox (8.2127pt too wide) in paragraph at lines 114--117
 \T1/pplj/m/n/10.95 This loss for-mu-la-tion alone does not guar-an-tee dis-en-tan-gle-ment among
  []
 
-<gfx/disentanglement/disdiff.png, id=438, 804.00375pt x 406.51875pt>
+<gfx/disentanglement/disdiff.png, id=462, 804.00375pt x 406.51875pt>
 File: gfx/disentanglement/disdiff.png Graphic file (type png)
 <use gfx/disentanglement/disdiff.png>
 Package pdftex.def Info: gfx/disentanglement/disdiff.png  used on input line 125.
 (pdftex.def)             Requested size: 235.19897pt x 118.9171pt.
-<gfx/disentanglement/encdiff.png, id=439, 975.645pt x 627.34375pt>
+<gfx/disentanglement/encdiff.png, id=463, 975.645pt x 627.34375pt>
 File: gfx/disentanglement/encdiff.png Graphic file (type png)
 <use gfx/disentanglement/encdiff.png>
 Package pdftex.def Info: gfx/disentanglement/encdiff.png  used on input line 130.
 (pdftex.def)             Requested size: 235.19897pt x 151.22607pt.
-<gfx/disentanglement/DisenBooth.png, id=448, 1059.96pt x 592.2125pt>
+<gfx/disentanglement/DisenBooth.png, id=472, 1059.96pt x 592.2125pt>
 File: gfx/disentanglement/DisenBooth.png Graphic file (type png)
 <use gfx/disentanglement/DisenBooth.png>
 Package pdftex.def Info: gfx/disentanglement/DisenBooth.png  used on input line 145.
 (pdftex.def)             Requested size: 235.19897pt x 131.40767pt.
-<gfx/disentanglement/DisenFlow.png, id=449, 1365.1pt x 648.4225pt>
+<gfx/disentanglement/DisenFlow.png, id=473, 1365.1pt x 648.4225pt>
 File: gfx/disentanglement/DisenFlow.png Graphic file (type png)
 <use gfx/disentanglement/DisenFlow.png>
 Package pdftex.def Info: gfx/disentanglement/DisenFlow.png  used on input line 150.
@@ -1982,10 +1963,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--156
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [25 <./gfx/disentanglement/disdiff.png> <./gfx/disentanglement/encdiff.png>]
+ [29 <./gfx/disentanglement/disdiff.png> <./gfx/disentanglement/encdiff.png>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [26 <./gfx/disentanglement/DisenBooth.png> <./gfx/disentanglement/DisenFlow.png>]
+ [30 <./gfx/disentanglement/DisenBooth.png> <./gfx/disentanglement/DisenFlow.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 179--183
 
  []
@@ -2003,10 +1984,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 179--183
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [27])
+ [31])
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [28]
+ [32]
 \openout2 = `Chapters/Compositionality.aux'.
 
  (./Chapters/Compositionality.tex
@@ -2014,7 +1995,7 @@ chapter 7.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [29
+ [33
 
 
 
@@ -2023,7 +2004,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 ])
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [30]
+ [34]
 \openout2 = `Chapters/CBM.aux'.
 
  (./Chapters/CBM.tex
@@ -2036,7 +2017,7 @@ Overfull \hbox (1.96484pt too wide) in paragraph at lines 23--26
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [31
+ [35
 
 
 
@@ -2050,10 +2031,10 @@ Underfull \hbox (badness 4699) in paragraph at lines 92--92
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [32]
+ [36]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [33]
+ [37]
 Overfull \hbox (2.06985pt too wide) in paragraph at lines 133--137
 \T1/pplj/m/n/10.95 the ground-truth val-ues can be used to eval-u-ate the in-ter-pretabil-
  []
@@ -2071,7 +2052,7 @@ Overfull \hbox (1.12817pt too wide) in paragraph at lines 143--145
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [34]
+ [38]
 Overfull \hbox (9.12234pt too wide) in paragraph at lines 151--153
 \T1/pplj/m/n/10.95 and mu-tual in-for-ma-tion, which the au-thors achieved us-ing the Kraskov-
  []
@@ -2089,8 +2070,8 @@ Overfull \hbox (1.71593pt too wide) in paragraph at lines 157--159
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [35]
-<gfx/cbm/cem.png, id=552, 799.98875pt x 345.29pt>
+ [39]
+<gfx/cbm/cem.png, id=575, 799.98875pt x 345.29pt>
 File: gfx/cbm/cem.png Graphic file (type png)
 <use gfx/cbm/cem.png>
 Package pdftex.def Info: gfx/cbm/cem.png  used on input line 164.
@@ -2103,7 +2084,7 @@ Overfull \hbox (5.12572pt too wide) in paragraph at lines 172--173
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [36 <./gfx/cbm/cem.png>]
+ [40 <./gfx/cbm/cem.png>]
 Overfull \hbox (16.59026pt too wide) in paragraph at lines 175--177
 \T1/pplj/m/n/10.95 els, the method called Energy-based Con-cept Bot-tle-neck Mod-els (ECBMs)
  []
@@ -2126,8 +2107,8 @@ Overfull \hbox (10.77795pt too wide) in paragraph at lines 190--191
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [37]
-<gfx/cbm/cbgm.png, id=573, 1139.25626pt x 640.3925pt>
+ [41]
+<gfx/cbm/cbgm.png, id=597, 1139.25626pt x 640.3925pt>
 File: gfx/cbm/cbgm.png Graphic file (type png)
 <use gfx/cbm/cbgm.png>
 Package pdftex.def Info: gfx/cbm/cbgm.png  used on input line 220.
@@ -2135,8 +2116,8 @@ Package pdftex.def Info: gfx/cbm/cbgm.png  used on input line 220.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [38]
-<gfx/cbm/post-hoc_cbgm.png, id=581, 1235.61626pt x 790.955pt>
+ [42]
+<gfx/cbm/post-hoc_cbgm.png, id=605, 1235.61626pt x 790.955pt>
 File: gfx/cbm/post-hoc_cbgm.png Graphic file (type png)
 <use gfx/cbm/post-hoc_cbgm.png>
 Package pdftex.def Info: gfx/cbm/post-hoc_cbgm.png  used on input line 245.
@@ -2149,14 +2130,14 @@ Underfull \hbox (badness 1199) in paragraph at lines 246--246
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [39 <./gfx/cbm/cbgm.png>]
+ [43 <./gfx/cbm/cbgm.png>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [40 <./gfx/cbm/post-hoc_cbgm.png>]
+ [44 <./gfx/cbm/post-hoc_cbgm.png>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [41]
-<gfx/cbm/cobela.png, id=608, 1250.6725pt x 521.95pt>
+ [45]
+<gfx/cbm/cobela.png, id=631, 1250.6725pt x 521.95pt>
 File: gfx/cbm/cobela.png Graphic file (type png)
 <use gfx/cbm/cobela.png>
 Package pdftex.def Info: gfx/cbm/cobela.png  used on input line 292.
@@ -2169,10 +2150,10 @@ Overfull \hbox (1.93918pt too wide) in paragraph at lines 299--302
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [42 <./gfx/cbm/cobela.png>]
+ [46 <./gfx/cbm/cobela.png>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [43
+ [47
 
 
 
@@ -2182,7 +2163,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [44]
+ [48]
 \openout2 = `Chapters/Proposal.aux'.
 
  (./Chapters/Proposal.tex
@@ -2210,7 +2191,7 @@ Overfull \hbox (1.05157pt too wide) in paragraph at lines 36--40
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [45
+ [49
 
 
 
@@ -2222,7 +2203,7 @@ Overfull \hbox (27.27672pt too wide) in paragraph at lines 46--49
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [46]
+ [50]
 \openout2 = `Chapters/Data.aux'.
 
  (./Chapters/Data.tex
@@ -2240,7 +2221,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--26
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [47
+ [51
 
 
 
@@ -2259,10 +2240,10 @@ Overfull \hbox (1.71944pt too wide) in paragraph at lines 29--30
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [48]
+ [52]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [49
+ [53
 
 
 
@@ -2270,7 +2251,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [50]
+ [54]
 \openout2 = `Chapters/Experiment1.aux'.
 
  (./Chapters/Experiment1.tex
@@ -2285,17 +2266,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--28
 
  []
 
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 9.30756pt on input line 60.
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [51
+ [55
 
 
 
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [52]
+ [56]
 \openout2 = `Chapters/Experiment2.aux'.
 
  (./Chapters/Experiment2.tex
@@ -2315,17 +2298,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--10
 
  []
 
-<gfx/exp2/supervised_sa_1.png, id=678, 1270.5066pt x 570.933pt>
+<gfx/exp2/supervised_sa_1.png, id=701, 1270.5066pt x 570.933pt>
 File: gfx/exp2/supervised_sa_1.png Graphic file (type png)
 <use gfx/exp2/supervised_sa_1.png>
 Package pdftex.def Info: gfx/exp2/supervised_sa_1.png  used on input line 14.
 (pdftex.def)             Requested size: 336.0pt x 150.9829pt.
-<gfx/exp2/supervised_sa_2.png, id=679, 1270.5066pt x 570.933pt>
+<gfx/exp2/supervised_sa_2.png, id=702, 1270.5066pt x 570.933pt>
 File: gfx/exp2/supervised_sa_2.png Graphic file (type png)
 <use gfx/exp2/supervised_sa_2.png>
 Package pdftex.def Info: gfx/exp2/supervised_sa_2.png  used on input line 20.
 (pdftex.def)             Requested size: 336.0pt x 150.9829pt.
-<gfx/exp2/steer_smiling.png, id=680, 859.2903pt x 304.9794pt>
+<gfx/exp2/steer_smiling.png, id=703, 859.2903pt x 304.9794pt>
 File: gfx/exp2/steer_smiling.png Graphic file (type png)
 <use gfx/exp2/steer_smiling.png>
 Package pdftex.def Info: gfx/exp2/steer_smiling.png  used on input line 26.
@@ -2333,7 +2316,7 @@ Package pdftex.def Info: gfx/exp2/steer_smiling.png  used on input line 26.
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [53
+ [57
 
 
 
@@ -2342,10 +2325,10 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [54 <./gfx/exp2/supervised_sa_1.png> <./gfx/exp2/supervised_sa_2.png> <./gfx/exp2/steer_smiling.png>]
+ [58 <./gfx/exp2/supervised_sa_1.png> <./gfx/exp2/supervised_sa_2.png> <./gfx/exp2/steer_smiling.png>]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [55
+ [59
 
 
 
@@ -2353,7 +2336,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [56]
+ [60]
 \openout2 = `Chapters/Timeline.aux'.
 
  (./Chapters/Timeline.tex
@@ -2361,7 +2344,7 @@ chapter 13.
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [57
+ [61
 
 
 
@@ -2373,8 +2356,8 @@ Overfull \hbox (1.5654pt too wide) in paragraph at lines 43--49
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [58]
-<gfx/timeline/Timeline.png, id=710, 1295.84125pt x 191.71625pt>
+ [62]
+<gfx/timeline/Timeline.png, id=734, 1295.84125pt x 191.71625pt>
 File: gfx/timeline/Timeline.png Graphic file (type png)
 <use gfx/timeline/Timeline.png>
 Package pdftex.def Info: gfx/timeline/Timeline.png  used on input line 53.
@@ -2382,13 +2365,13 @@ Package pdftex.def Info: gfx/timeline/Timeline.png  used on input line 53.
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [59 <./gfx/timeline/Timeline.png>]
+ [63 <./gfx/timeline/Timeline.png>]
 \openout2 = `Chapters/DataPlan.aux'.
 
  (./Chapters/DataPlan.tex
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [60
+ [64
 
 
 
@@ -2419,10 +2402,10 @@ Overfull \hbox (12.27959pt too wide) in paragraph at lines 33--39
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [61])
+ [65])
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [62]
+ [66]
 \openout2 = `Chapters/TrainingPlan.aux'.
 
  (./Chapters/TrainingPlan.tex
@@ -2445,7 +2428,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--28
 )
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [63
+ [67
 
 
 
@@ -2454,7 +2437,7 @@ Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 ]
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [64
+ [68
 
 
 
@@ -2490,7 +2473,7 @@ Overfull \hbox (3.48544pt too wide) in paragraph at lines 144--144
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [65
+ [69
 
 
 
@@ -2507,7 +2490,7 @@ Overfull \hbox (5.05128pt too wide) in paragraph at lines 144--144
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [66]
+ [70]
 Overfull \hbox (1.84676pt too wide) in paragraph at lines 144--144
 []\T1/pplj/m/n/10.95 Francesco Lo-catello, Dirk Weis-senborn, Thomas Un-terthiner, Ar-
  []
@@ -2545,7 +2528,7 @@ Overfull \hbox (14.76237pt too wide) in paragraph at lines 144--144
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [67]
+ [71]
 Overfull \hbox (15.8656pt too wide) in paragraph at lines 144--144
 \T1/pplj/m/it/10.95 ble Ma-chine Learn-ing, NeurIPS 2022\T1/pplj/m/n/10.95 . 2022. \T1/pplj/m/sc/10.95 url\T1/pplj/m/n/10.95 : [][]$\T1/fvm/m/n/10.95 https : / / openreview .
  []
@@ -2558,7 +2541,7 @@ Overfull \hbox (6.07103pt too wide) in paragraph at lines 144--144
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [68]
+ [72]
 Overfull \hbox (6.35358pt too wide) in paragraph at lines 144--144
 \T1/pplj/m/it/10.95 yond the Accuracy-Explainability Trade-Off\T1/pplj/m/n/10.95 . 2022. arXiv: [][]$\T1/fvm/m/n/10.95 2209 . 09056$
  []
@@ -2571,7 +2554,7 @@ Overfull \hbox (9.08675pt too wide) in paragraph at lines 144--144
 
 Overfull \vbox (6.51149pt too high) has occurred while \output is active []
 
- [69] (./ClassicThesis.aux (./FrontBackmatter/Titlepage.aux) (./FrontBackmatter/Titleback.aux) (./FrontBackmatter/Abstract.aux) (./FrontBackmatter/Acknowledgments.aux) (./FrontBackmatter/Contents.aux) (./Chapters/Introduction.aux) (./Chapters/DGMs.aux) (./Chapters/VAEs.aux) (./Chapters/EBMs.aux) (./Chapters/NFs.aux) (./Chapters/Disentanglement.aux) (./Chapters/Compositionality.aux) (./Chapters/CBM.aux) (./Chapters/Proposal.aux) (./Chapters/Data.aux) (./Chapters/Experiment1.aux) (./Chapters/Experiment2.aux) (./Chapters/Timeline.aux) (./Chapters/DataPlan.aux) (./Chapters/TrainingPlan.aux) (./FrontBackmatter/Bibliography.aux))
+ [73] (./ClassicThesis.aux (./FrontBackmatter/Titlepage.aux) (./FrontBackmatter/Titleback.aux) (./FrontBackmatter/Contents.aux) (./Chapters/Introduction.aux) (./Chapters/DGMs.aux) (./Chapters/VAEs.aux) (./Chapters/EBMs.aux) (./Chapters/NFs.aux) (./Chapters/Disentanglement.aux) (./Chapters/Compositionality.aux) (./Chapters/CBM.aux) (./Chapters/Proposal.aux) (./Chapters/Data.aux) (./Chapters/Experiment1.aux) (./Chapters/Experiment2.aux) (./Chapters/Timeline.aux) (./Chapters/DataPlan.aux) (./Chapters/TrainingPlan.aux) (./FrontBackmatter/Bibliography.aux))
 
  *File List*
   fix-cm.sty    2020/11/24 v1.1t fixes to LaTeX
@@ -2730,10 +2713,8 @@ listingsutf8.sty    2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
 stringenc.sty    2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 multirow.sty    2021/03/15 v2.8 Span multiple rows of a table
   t1pplj.fd    2004/09/06 font definitions for T1/pplj.
-babel-catalan.tex
  english.lbx    2022/02/02 v3.17 biblatex localization (PK/MW)
 american.lbx    2022/02/02 v3.17 biblatex localization (PK/MW)
- catalan.lbx    2022/02/02 v3.17 biblatex localization (PK/MW)
 ClassicThesis.bbl
  nameref.sty    2021-04-02 v2.47 Cross-referencing by name of section
 refcount.sty    2019/12/15 v3.6 Data extraction from label references (HO)
@@ -2757,8 +2738,6 @@ gfx/ED-positiu-p3005-anglÃ¨s.png
    t1fvm.fd    2004/09/07 scalable font definitions for T1/fvm.
 FrontBackmatter/Titleback.tex
  ts1pplj.fd    2004/09/06 font definitions for TS1/pplj.
-FrontBackmatter/Abstract.tex
-FrontBackmatter/Acknowledgments.tex
 FrontBackmatter/Contents.tex
  ufplmbb.fd    2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 Chapters/Introduction.tex
@@ -2793,35 +2772,27 @@ FrontBackmatter/Bibliography.tex
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `ClassicThesis.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                ClassicThesis
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'ClassicThesis.run.xml'.
 \openout1 = `ClassicThesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 48739 strings out of 480247
- 1029350 string characters out of 5896151
- 1783156 words of memory out of 5000000
- 65317 multiletter control sequences out of 15000+600000
- 598969 words of font info for 243 fonts, out of 8000000 for 9000
+ 48540 strings out of 480247
+ 1023317 string characters out of 5896151
+ 1755685 words of memory out of 5000000
+ 65128 multiletter control sequences out of 15000+600000
+ 597195 words of font info for 240 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,23n,106p,10650b,3323s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,23n,106p,10650b,3295s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/aromero/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1000.657pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurb10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ClassicThesis.pdf (79 pages, 3529941 bytes).
+Output written on ClassicThesis.pdf (79 pages, 3537906 bytes).
 PDF statistics:
- 1176 PDF objects out of 1200 (max. 8388607)
- 961 compressed objects within 10 object streams
- 277 named destinations out of 1000 (max. 500000)
- 33835 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 1193 PDF objects out of 1200 (max. 8388607)
+ 978 compressed objects within 10 object streams
+ 292 named destinations out of 1000 (max. 500000)
+ 33811 words of extra memory for PDF output out of 35830 (max. 10000000)
 

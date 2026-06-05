@@ -1,8 +1,6 @@
 \babel@toc {american}{}\relax 
 \deactivateaddvspace 
 \babel@toc {american}{}\relax 
-\babel@toc {catalan}{}\relax 
-\babel@toc {american}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -14,8 +12,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1}{\ignorespaces Hyperparameter configuration used for training.\relax }}{52}{table.caption.19}%
-\contentsline {table}{\numberline {2}{\ignorespaces Performance metrics of the DiT-XL (DINOv2-B) trained on the NIH-Chest-X-ray dataset.\relax }}{52}{table.caption.20}%
+\contentsline {table}{\numberline {1}{\ignorespaces Hyperparameter configuration used for training.\relax }}{56}{table.caption.16}%
+\contentsline {table}{\numberline {2}{\ignorespaces Performance metrics of the DiT-XL (DINOv2-B) trained on the NIH-Chest-X-ray dataset.\relax }}{56}{table.caption.17}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
