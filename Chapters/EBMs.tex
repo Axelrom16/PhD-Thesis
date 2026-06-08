@@ -2,13 +2,85 @@
 \chapter{Energy-Based Models}\label{ch:ebms}
 %************************************************
 
-EBMs.
+Energy-Based Models (EBMs) \cite{LeCun2006ATO} are a general class of models that capture dependencies by associating 
+a scalar energy value to each configuration of variables, acting as a measure of compatibility.
+\begin{itemize}
+    \item \textbf{Training}: The general principle is to find an energy function that associates low energies to correct 
+    (observed) configurations of variables, and higher energies to incorrect (unobserved) configurations.
+    \item \textbf{Inference}: Making a decision consists of setting the values of observed variables and finding values 
+    for the missing variables that minimize the energy, i.e., finding the values most compatible with the observation. 
+    In the simplest scenario with two variables $X$ and $Y$, where the first is observed, the model will produce an 
+    answer $Y^*$ that is the most compatible with $X$. This procedure is formally defined as:
+    \begin{equation}
+        Y^*=\text{argmin}_{Y\in \mathcal{Y}}E(X,Y).
+    \end{equation} 
+    When the size of the set $\mathcal{Y}$ is small, we can simply compute the energy for all possible values and pick 
+    the smallest. However, we typically deal with complex, high-dimensional spaces where exhaustive search is impractical. 
+    The solution is to apply an inference procedure to obtain an approximate result, which may or may not be the global 
+    minimum of the energy function. For example, for a continuous variable $Y$ and a smooth, well-behaved energy function, 
+    gradient-based optimization algorithms can be utilized.
+\end{itemize}
+The scenario described above covers prediction, classification, and decision-making, answering the question: "Which value 
+of Y is most compatible with this X?". One advantage of these models is that we can use energy-based models to answer different 
+types of questions. (I) Ranking, "Is Y1 or Y2 more compatible with this X?"; (II) Detection, "Is this value of Y compatible 
+with X?"; and (III) Conditional density estimation, "What is the conditional probability distribution over $\mathcal{Y}$ 
+given X?".  \\
+\\
+In deterministic settings, we only require the system to assign the lowest energy to the correct value, allowing us to ignore 
+the absolute scale of the remaining large energies. However, if these outputs need to be rigorously compared, combined, or 
+utilized to quantify uncertainty, uncalibrated energies are insufficient. We can calibrate energies by transforming them 
+into a normalized probability distribution using the Gibbs distribution:
+\begin{equation}
+    p_{\theta}(\mathbf{x}) = \frac{e^{-E_{\theta}(\mathbf{x})}}{Z_{\theta}}, \qquad Z_{\theta}=\int_{\mathbf{x}\in\mathcal{X}} e^{-E_{\theta}(\mathbf{x})}d\mathbf{x}
+\end{equation}
+where the denominator $Z_{\theta}$ is called the \textit{partition function} ensuring normalization: 
+\begin{equation}
+    \int_{\mathbf{x}\in\mathcal{X}}p_{\theta}(\mathbf{x})d\mathbf{x} = 1.
+\end{equation} 
+Under this framework, lower energy values correspond to higher probabilities and the partition function $Z_{\theta}$ is a normalisation 
+constant that ensures the probabilities sum to one. \\
+\\
+We can train probabilistic EBMs using Maximum Likelihood Estimation (MLE), defined by minimizing the negative log-likelihood 
+of the empirical data:
+\begin{align}
+    \mathcal{L}(\theta) &= -\mathbb{E}_{\mathbf{x}\sim p_{data}}[\log p_{\theta}(\mathbf{x})] = -\mathbb{E}_{\mathbf{x}\sim p_{data}} \left[\log \frac{e^{-E_{\theta}(\mathbf{x})}}{Z_{\theta}}\right] \\
+    & = \mathbb{E}_{\mathbf{x}\sim p_{data}} \left[E_{\theta}(\mathbf{x})\right] + \log Z_{\theta}
+\end{align}
+where $Z_{\theta}$ is the partition function defined in Equation --. The first term encourages the model to assign low energy to 
+data points, while the second enforces normalization. The problem is that the partition function is intractable to compute for 
+high-dimensional data, which makes the training of EBMs challenging. To overcome this, the EBM literature relies on two broad 
+families of approximations: contrastive methods (such as Markov Chain Monte Carlo or Contrastive Divergence [Hinton, 2002]), 
+which approximate the model expectation, and non-contrastive/regularized methods (such as Score Matching [Hyvärinen, 2005] or 
+Denoising Autoencoders), which bypass the partition function entirely by restructuring the objective. \\
+\\
+In statistics, the score function of a probability distribution $p(\mathbf{x})$ is defined as the gradient of the log-probability 
+density with respect to the input space $\mathbf{x}$: 
+\begin{equation}
+    \mathbf{s}(\mathbf{x}) = \nabla_{\mathbf{x}} \log p(\mathbf{x})
+\end{equation}
+When we apply this definition to the Gibbs distribution of our Energy-Based Model, a remarkable mathematical cancellation occurs:
+\begin{align}
+    \mathbf{s}{\theta}(\mathbf{x}) &= \nabla{\mathbf{x}} \log p_{\theta}(\mathbf{x}) \\
+    &= \nabla_{\mathbf{x}} \left( -E_{\theta}(\mathbf{x}) - \log Z_{\theta} \right) \\
+    &= -\nabla_{\mathbf{x}} E_{\theta}(\mathbf{x})
+\end{align}
+Because the partition function $Z_{\theta}$ is a constant with respect to the input $\mathbf{x}$, its gradient vanishes 
+($\nabla_{\mathbf{x}} \log Z_{\theta} = 0$). Consequently, the score of an EBM is simply the negative gradient of its energy function. 
+This allows us to evaluate the vector field pointing toward regions of higher probability without ever calculating the normalization 
+constant.  
+
+\section{Score Matching} 
+
+
+\section{Denoising Score Matching} 
 
 
 
 
-\begin{summarybox}[label={box:latent_math}]{Energy-Based Models}
-    This box summarizes the main mathematical equations of EBMs:
+
+
+\begin{summarybox}[label={box:latent_math}]{EBMs and Score Matching}
+    This box summarizes the main mathematical equations of EBMs and Score Matching:
 
     \medskip
     \textbf{1. Training Objective of VAEs:}

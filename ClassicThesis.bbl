@@ -228,6 +228,33 @@
     \field{year}{2019}
   \endentry
 
+  \entry{chen2023importancenoiseschedulingdiffusion}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=CT}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Ting},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CT1}
+    \strng{fullhash}{CT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \verb{eprint}
+    \verb 2301.10972
+    \endverb
+    \field{title}{On the Importance of Noise Scheduling for Diffusion Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2301.10972
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2023}
+  \endentry
+
   \entry{chi2026disentangledrepresentationlearningflow}{misc}{}
     \name{author}{8}{}{%
       {{hash=CJ}{%
@@ -1542,6 +1569,39 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.CV}
     \field{year}{2026}
+  \endentry
+
+  \entry{nichol2021improveddenoisingdiffusionprobabilistic}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=NA}{%
+         family={Nichol},
+         familyi={N\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=DP}{%
+         family={Dhariwal},
+         familyi={D\bibinitperiod},
+         given={Prafulla},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NADP1}
+    \strng{fullhash}{NADP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \verb{eprint}
+    \verb 2102.09672
+    \endverb
+    \field{title}{Improved Denoising Diffusion Probabilistic Models}
+    \verb{url}
+    \verb https://arxiv.org/abs/2102.09672
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2021}
   \endentry
 
   \entry{oquab2024dinov2learningrobustvisual}{misc}{}

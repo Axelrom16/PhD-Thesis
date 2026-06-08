@@ -4,7 +4,9 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
 \def\mph@nr{3}
+\@writefile{loa}{\addvspace {10\p@ }}
 \newlabel{ch:vaes}{{3}{9}{\texorpdfstring {\spacedlowsmallcaps {Variational Autoencoders}}{Variational Autoencoders}}{chapter.3}{}}
 \newlabel{eq:p_x}{{2}{9}{\texorpdfstring {\spacedlowsmallcaps {Variational Autoencoders}}{Variational Autoencoders}}{equation.3.0.2}{}}
 \mph@setcol{ii:9}{\mph@nr}
@@ -24,21 +26,29 @@
 \newlabel{fig:hvvae}{{4}{14}{Hierarchical VAE architecture with $L$ layers of latent variables. Each layer captures different levels of abstraction, allowing for richer representations and improved generation quality.\relax }{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Denoising Diffusion Probabilistic Models}{14}{section.3.3}\protected@file@percent }
 \mph@setcol{ii:14}{\mph@nr}
-\newlabel{eq:forward_kernel}{{29}{15}{Denoising Diffusion Probabilistic Models}{equation.3.3.29}{}}
-\newlabel{eq:forward_sample}{{30}{15}{Denoising Diffusion Probabilistic Models}{equation.3.3.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Forward Pass}{15}{subsection.3.3.1}\protected@file@percent }
+\newlabel{eq:forward_kernel}{{29}{15}{Forward Pass}{equation.3.3.29}{}}
+\newlabel{eq:forward_sample}{{30}{15}{Forward Pass}{equation.3.3.30}{}}
 \mph@setcol{ii:15}{\mph@nr}
-\newlabel{eq:forward_sample2}{{32}{16}{Denoising Diffusion Probabilistic Models}{equation.3.3.32}{}}
-\newlabel{eq:kl_reverse}{{33}{16}{Denoising Diffusion Probabilistic Models}{equation.3.3.33}{}}
+\newlabel{eq:forward_sample2}{{32}{16}{Forward Pass}{equation.3.3.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Reverse Pass}{16}{subsection.3.3.2}\protected@file@percent }
+\newlabel{eq:kl_reverse}{{33}{16}{Reverse Pass}{equation.3.3.33}{}}
 \mph@setcol{ii:16}{\mph@nr}
-\newlabel{eq:tilde_mean}{{38}{17}{Denoising Diffusion Probabilistic Models}{equation.3.3.38}{}}
-\newlabel{eq:loss_ddpm}{{40}{17}{Denoising Diffusion Probabilistic Models}{equation.3.3.40}{}}
+\newlabel{eq:tilde_mean}{{38}{17}{Reverse Pass}{equation.3.3.38}{}}
+\newlabel{eq:loss_ddpm}{{40}{17}{Reverse Pass}{equation.3.3.40}{}}
 \mph@setcol{ii:17}{\mph@nr}
 \mph@setcol{ii:18}{\mph@nr}
-\newlabel{box:latent_math}{{3.1}{19}{Denoising Diffusion Probabilistic Models}{tcb@cnt@summarybox.3.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Training in DDPMs\relax }}{19}{algorithm.1}\protected@file@percent }
+\newlabel{alg:ddpm_training}{{1}{19}{Training in DDPMs\relax }{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Sampling}{19}{subsection.3.3.3}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Sampling in DDPMs\relax }}{19}{algorithm.2}\protected@file@percent }
+\newlabel{alg:ddpm_sampling}{{2}{19}{Sampling in DDPMs\relax }{algorithm.2}{}}
 \mph@setcol{ii:19}{\mph@nr}
+\newlabel{box:latent_math}{{3.1}{20}{Sampling}{tcb@cnt@summarybox.3.1}{}}
+\mph@setcol{ii:20}{\mph@nr}
 \@setckpt{Chapters/VAEs}{
-\setcounter{page}{20}
-\setcounter{equation}{53}
+\setcounter{page}{21}
+\setcounter{equation}{54}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -48,7 +58,7 @@
 \setcounter{part}{1}
 \setcounter{chapter}{3}
 \setcounter{section}{3}
-\setcounter{subsection}{0}
+\setcounter{subsection}{3}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
@@ -64,7 +74,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{18}
+\setcounter{instcount}{17}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
@@ -88,7 +98,7 @@
 \setcounter{parenlevel}{0}
 \setcounter{blx@maxsection}{0}
 \setcounter{blx@maxsegment@0}{0}
-\setcounter{blx@sectionciteorder@0}{16}
+\setcounter{blx@sectionciteorder@0}{14}
 \setcounter{mincomprange}{10}
 \setcounter{maxcomprange}{100000}
 \setcounter{mincompwidth}{1}
@@ -172,11 +182,11 @@
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{cbx@tempcnta}{0}
-\setcounter{cbx@tempcntb}{9}
+\setcounter{cbx@tempcntb}{10}
 \setcounter{cbx@tempcntc}{0}
 \setcounter{cbx@tempcntd}{-1}
 \setcounter{parentequation}{0}
-\setcounter{caption@flags}{0}
+\setcounter{caption@flags}{2}
 \setcounter{continuedfloat}{0}
 \setcounter{KVtest}{0}
 \setcounter{subfigure}{0}
@@ -198,6 +208,12 @@
 \setcounter{tcbrasternum}{1}
 \setcounter{tcbraster}{0}
 \setcounter{tcblisting}{0}
+\setcounter{AlgoLine}{0}
+\setcounter{algocfline}{0}
+\setcounter{algocfproc}{0}
+\setcounter{algocf}{0}
+\setcounter{float@type}{32}
+\setcounter{algorithm}{2}
 \setcounter{tcb@cnt@summarybox}{1}
 \setcounter{lstlisting}{0}
 \setcounter{section@level}{0}

@@ -374,30 +374,40 @@ which can also be decomposed into the reconstruction term and the KL divergence 
 \\
 This method of deep, stacked layers revolutionized the field of generative modeling and is the basis for many state-of-the-art models. The training of HVAEs present several challenges because the encoder 
 and decoder must be trained jointly and learning becomes unstable. A clever twist to solve the main problems and maintain the hierarchical structure is the \textbf{Denoising Diffusion Probabilistic Models} (DDPMs)
-\cite{sohldickstein2015deepunsupervisedlearningusing, ho2020denoisingdiffusionprobabilisticmodels}, the next step in generative modeling, that can be defined with the following stochastic processes. \\
-\\
-\textbf{Forward Pass}. This is a fixed encoder (not learnable) that progressively adds noise to the data point $\mathbf{x}$ via a transition 
-kernel $p(\mathbf{x}_t|\mathbf{x}_{t-1})$ until we get pure noise $\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$. The fixed Gaussian transition kernel is defined as:
+\cite{sohldickstein2015deepunsupervisedlearningusing, ho2020denoisingdiffusionprobabilisticmodels}, the next step in generative modeling, that can be defined with the following stochastic processes. 
+
+\subsection{Forward Pass}
+This is a fixed encoder (not learnable) that progressively adds noise to the data point $\mathbf{x}$ via a transition 
+kernel $q(\mathbf{x}_t|\mathbf{x}_{t-1})$ until we get pure noise $\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$. The fixed Gaussian transition kernel is defined as:
 \begin{equation}\label{eq:forward_kernel}
-    p(\mathbf{x}_t|\mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1-\beta_t}\mathbf{x}_{t-1}, \beta_t\mathbf{I}),
+    q(\mathbf{x}_t|\mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1-\beta_t}\mathbf{x}_{t-1}, \beta_t\mathbf{I}),
 \end{equation} 
-where $\mathbf{x}_0\sim p_{data}$, $\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ and the sequence $\{\beta_t\}_{t=1}^T\in(0,1)$ is the 
-noise schedule, which controls the amount of noise added at each step, as we can clearly see in the following formulation: 
+where $\mathbf{x}_0\sim p_{data}$, $\mathbf{x}_T \sim p_{prior}=\mathcal{N}(\mathbf{0}, \mathbf{I})$ and the sequence $\{\beta_t\}_{t=1}^T\in(0,1)$ is the 
+noise scheduler, which controls the amount of noise added at each step, as we can see in the following alternative formulation: 
 \begin{equation}\label{eq:forward_sample}
     \mathbf{x}_t = \sqrt{\alpha_t} \mathbf{x}_{t-1} + \sqrt{1-\alpha_t} \epsilon, \quad \epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I}),
 \end{equation}
-where $\alpha_t = 1-\beta_t$. Another important formulation of the forward pass can be achieve by recursively applying the transition kernel (Equation \ref{eq:forward_kernel}), 
+where $\alpha_t = 1-\beta_t$. There are different options of noise schedulers that can be used, where the original DDPM paper \cite{ho2020denoisingdiffusionprobabilisticmodels} use a linear scheduler 
+from $\beta_1 = 10^{-4}$ to $\beta_T=0.02$. Following studies demonstrate that the use of more advanced schedulers can improve the performance of the model, such as the cosine scheduler, 
+which is widely used in the literature \cite{chen2023importancenoiseschedulingdiffusion,nichol2021improveddenoisingdiffusionprobabilistic}. \\
+\\
+Another important formulation of the forward pass can be achieve by recursively applying the transition kernel (Equation \ref{eq:forward_kernel}), 
 where we achieve a closed-form expression for the distribution of noisy samples at step $t$ given the original data:
 \begin{equation}
-    p(\mathbf{x}_t|\mathbf{x}_0) = \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t}\mathbf{x}_0, (1-\bar{\alpha}_t)\mathbf{I}),
+    q(\mathbf{x}_t|\mathbf{x}_0) = \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t}\mathbf{x}_0, (1-\bar{\alpha}_t)\mathbf{I}),
 \end{equation}
 where $\bar{\alpha}_t = \prod_{s=1}^T \alpha_s$. This formulation is very useful because it allows us to sample from the forward process at any 
 time step $t$ without having to recursively apply the transition kernel $t$ times. We can also define the sampling of $\mathbf{x}_t$ as in Equation \ref{eq:forward_sample} as follows:
 \begin{equation}\label{eq:forward_sample2}
     \mathbf{x}_t = \sqrt{\bar\alpha_t} \mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I}).
 \end{equation}
-\\
-\textbf{Reverse Pass}: This is the decoder, where a neural network is trained to reverse the noising process by learning the parameterized 
+By definition $0 < \beta_t < 1$, therefore $\alpha_t < 1$ and, if we have a lot of time steps ($T \rightarrow \infty$), then $\prod_{t=1}^T \alpha_t \rightarrow 0$, which implies 
+that the distribution of the higher time step latent variable takes a simple form $p_T(\mathbf{x}_T) \rightarrow \mathcal{N}(\mathbf{x}_T; \mathbf{0}, \mathbf{I}) = p_{prior}$. 
+This shows the need of a large number of time steps to ensure that the distribution of the noisy samples at the last time step is close to a simple distribution, which is important 
+for the reverse pass. In the original DDPM paper \cite{ho2020denoisingdiffusionprobabilisticmodels}, the authors use $T=1000$ time steps, which is a common practice in the literature. 
+
+\subsection{Reverse Pass}
+This is the decoder, where a neural network is trained to reverse the noising process by learning the parameterized 
 distribution $p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)$. If we start from a pure noise sample, we can iteratively apply the reverse process 
 to generate a data point $\mathbf{x}_0$ that resembles the training data, following a Markov chain. The training goal is to approximate the unknown reverse transition 
 kernel $p(\mathbf{x}_{t-1}|\mathbf{x}_t)$ with a learnable parametric model $p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)$, using the KL divergence 
@@ -407,33 +417,35 @@ as the training objective:
 \end{equation}
 We can express the unknown reverse transition kernel $p(\mathbf{x}_{t-1}|\mathbf{x}_t)$ in terms of the forward process using Bayes' rule:
 \begin{equation}
-    p(\mathbf{x}_{t-1}|\mathbf{x}_t) = \frac{p(\mathbf{x}_t|\mathbf{x}_{t-1}) p_{t-1}(\mathbf{x}_{t-1})}{p_t(\mathbf{x}_t)},
+    p(\mathbf{x}_{t-1}|\mathbf{x}_t) = \frac{q(\mathbf{x}_t|\mathbf{x}_{t-1}) p_{t-1}(\mathbf{x}_{t-1})}{p_t(\mathbf{x}_t)},
 \end{equation}
 where the marginal distribution $p_t(\mathbf{x}_t)$ can be expressed as:
 \begin{equation}
-    p_t(\mathbf{x}_t) = \int p(\mathbf{x}_t|\mathbf{x}_0) p_{data}(\mathbf{x}_0) d\mathbf{x}_0.
+    p_t(\mathbf{x}_t) = \int q(\mathbf{x}_t|\mathbf{x}_0) p_{data}(\mathbf{x}_0) d\mathbf{x}_0.
 \end{equation}
 Since $p_{data}$ is unknown, we can not compute the marginal distribution $p_t(\mathbf{x}_t)$ thus the computation of the target distribution 
 $p(\mathbf{x}_{t-1}|\mathbf{x}_t)$ is intractable. A trick to solve this problem is to condition the reverse transition kernel on the original data 
 point $\mathbf{x}_0$. Now we can define the target distribution as follows:
 \begin{equation}
-    p(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0) = \frac{p(\mathbf{x}_t|\mathbf{x}_{t-1}) p_{t-1}(\mathbf{x}_{t-1}|\mathbf{x}_0)}{p_t(\mathbf{x}_t|\mathbf{x}_0)},
+    p(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0) = \frac{q(\mathbf{x}_t|\mathbf{x}_{t-1}) q(\mathbf{x}_{t-1}|\mathbf{x}_0)}{q(\mathbf{x}_t|\mathbf{x}_0)},
 \end{equation}
 which allows us to have a tractable expression and to derive a tractable objective equivalent to the previous intractable KL divergence in Equation \ref{eq:kl_reverse}. 
 As a result, $p(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0)$ is a Gaussian distribution with mean and variance that can be computed in closed-form: 
 \begin{equation}
-    p(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0) = \mathcal{N}(\mathbf{x}_{t-1}; \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t), \sigma^2(t)\mathbf{I}),
+    p(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0) = \mathcal{N}(\mathbf{x}_{t-1}; \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t), \tilde\beta_t\mathbf{I}),
 \end{equation}
 where 
 \begin{equation}\label{eq:tilde_mean}
-    \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t) = \frac{\sqrt{\bar{\alpha}_{t-1}}\beta_t}{1-\bar{\alpha}_t}\mathbf{x}_0 + \frac{(1-\bar{\alpha}_{t-1})\sqrt{\alpha}_t}{1-\bar{\alpha}_t}\mathbf{x}_t, \quad \sigma^2(t) = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t.
+    \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t) = \frac{\sqrt{\bar{\alpha}_{t-1}}\beta_t}{1-\bar{\alpha}_t}\mathbf{x}_0 + \frac{(1-\bar{\alpha}_{t-1})\sqrt{\alpha}_t}{1-\bar{\alpha}_t}\mathbf{x}_t, \quad \tilde\beta_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t.
 \end{equation}
-Finally, DDPM assumes that each reverse transition kernel $p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)$ is a Gaussian distribution with mean $\mu_{\theta}(\mathbf{x}_t, t)$ 
-and variance $\sigma^2(t)\mathbf{I}$, where the variance is fixed and the mean is parameterized by a neural network with parameters $\theta$. It can be defined as 
+Recall that the previous closed form expression dependes on the original data point $\mathbf{x}_0$, which is unknown. Because of this, we approximate the target distribution 
+$p(\mathbf{x}_{t-1}|\mathbf{x}_t)$ with a learnable parametric model $p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)$, which is a Gaussian distribution with mean $\mu_{\theta}(\mathbf{x}_t, t)$ 
+and variance $\Sigma_{\theta}(\mathbf{x}_t, t)\mathbf{I}$, where the variance is usually fixed and the mean is parameterized by a neural network with parameters $\theta$. It can be defined as 
 \begin{equation}
     p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t) = \mathcal{N}(\mathbf{x}_{t-1}; \mu_{\theta}(\mathbf{x}_t, t), \sigma^2(t)\mathbf{I}).
 \end{equation}
-Using the previous conditional derivation of the unknown reverse transition kernel, we can define a closed-form expression for the KL divergence training loss:
+Using the previous conditional derivation of the unknown reverse transition kernel, we can define a closed-form expression for the KL divergence training loss (Equation \ref{eq:kl_reverse}) because 
+minimizing the KL divergence between marginal distribution is mathematically identical to minimizing the KL divergence between specific conditional distributions. We can define the training loss as follows:
 \begin{equation}\label{eq:loss_ddpm}
     \mathcal{L}(\mathbf{x}_0;\theta) = \mathbb{E}_{t, \mathbf{x}_0} \left[\frac{1}{2\sigma^2(t)} ||\mu_{\theta}(\mathbf{x}_t, t) - \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t)||^2 + C \right].
 \end{equation}
@@ -470,9 +482,45 @@ losses that are easier to optimize.
     \begin{equation}
         \mathcal{L}(\mathbf{x}_0;\theta) = \mathbb{E}_{t, \mathbf{x}_0, \epsilon} \left[\omega_t||\mathbf{x}_{\theta}(\mathbf{x}_t, t) - \mathbf{x}_0||^2 \right].
     \end{equation}
-    where $\omega_t$ is a weighting factor that depends on the noise schedule and the variance of the reverse transition kernel, which can be ignored in practice. 
+    where $\omega_t$ is a weighting factor that depends on the noise schedule defined as $\omega_t(\lambda_t) = \exp(\lambda_t)$ where $\lambda_t = \log(\bar\alpha_t / (1-\bar\alpha_t))$, which is called 
+    the signal-to-noise ratio (SNR) of the noisy sample $\mathbf{x}_t$ at time step $t$. 
 \end{itemize}
+For the training of the model, we have to sample a data point $\mathbf{x}_0$ from the training data, a time step $t$ from a uniform distribution over the time steps and a noise $\epsilon$ from a standard Gaussian distribution. 
+Then we can compute the noisy sample $\mathbf{x}_t$ using the forward process and take a gradient descent step on the loss function defined in one of the two previous parameterizations. The training algorithm 
+can be found in Algorithm~\ref{alg:ddpm_training}.
+\begin{algorithm}[ht]
+\caption{Training in DDPMs} \label{alg:ddpm_training}
+\SetKwRepeat{Repeat}{repeat}{until}
+\Repeat{converged}{
+    $\mathbf{x}_0 \sim p_{data}$\\
+    $t \sim \text{Uniform}(\{1, \dots, T\})$\\
+    $\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$\\
+    Take gradient descent step on\\
+    $\nabla_\theta \left\| \boldsymbol{\epsilon} - \boldsymbol{\epsilon}_\theta\left(\sqrt{\bar{\alpha}_t} \mathbf{x}_0 + \sqrt{1 - \bar{\alpha}_t} \boldsymbol{\epsilon}, t\right) \right\|^2$\\
+}
+\end{algorithm}
 
+\subsection{Sampling} 
+Assume we have a trained model that predicts the noise, denoted as $\epsilon_{\theta}^*(\mathbf{x}_t, t)$. We can generate a new data point by starting from a pure noise sample 
+$\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ and iteratively applying the reverse process $p_{\theta}^*(\mathbf{x}_{t-1}|\mathbf{x}_t)$ for $t = T, \dots, 1$, following the 
+update rule defined as follows:
+\begin{equation}
+    \mathbf{x}_{t-1} \leftarrow \frac{1}{\sqrt{\alpha_t}} \left( \mathbf{x}_t - \frac{1 - \alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_{\theta}^*(\mathbf{x}_t, t) \right) + \sigma_t \mathbf{z},
+\end{equation}
+where $\mathbf{z} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ is a noise sample added to the reverse process to ensure stochasticity in the generation and $\sigma_t$ is a hyperparameter 
+that controls the amount of noise added at each step. The sampling algorithm can be found in Algorithm~\ref{alg:ddpm_sampling}. One of the main limitations of this sampling process is that it 
+is very slow because we have to apply the reverse process $T$ times, which can be computationally expensive. The early steps set the global structure of the generated image, while the later 
+steps add finer details. Therefore, reducing the number of steps can lead to a significant decrease in generation quality. 
+\begin{algorithm}[ht]
+\caption{Sampling in DDPMs}
+\label{alg:ddpm_sampling}
+$\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$\\
+\For{$t = T, \dots, 1$}{
+    $\mathbf{z} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ if $t > 1$, else $\mathbf{z} = \mathbf{0}$\\
+    $\mathbf{x}_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( \mathbf{x}_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t) \right) + \sigma_t \mathbf{z}$\\
+}
+\Return $\mathbf{x}_0$
+\end{algorithm}
 
 
 
