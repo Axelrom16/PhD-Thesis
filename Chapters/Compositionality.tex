@@ -21,8 +21,30 @@ Once the slot representations are learned, they can be used for several downstre
     \item \textbf{Object discovery}: SA can be used as a part of an autoencoder model for unsupervised object discovery. The encoder encodes the image in a set of slots, and the decoder reconstructs the original image. In this case, the slots act as a representation bottleneck. They proposed the use of a spatial broadcast decoder, which removes the upsampling deconvolutions. This new decoder first broadcasts the latent vector across the space (height and width of the image), appends fixed coordinate channels and applies a fully convolutional network to produce a final tensor with 4 channels, 3 for RGB and the alpha channel. 
     \item \textbf{Set prediction}: In this scenario, we have an input image and a set of prediction targets. The main challenge is that the output order in SA is random, so there are $K!$ possible equivalent representations for a set of $K$ slots. In this case, they proposed to apply for each slot an MLP with shared parameters between slots. To overcome the problem of different prediction and label orders, they used a matching algorithm in the loss computation. 
 \end{itemize}
-
-CODA \cite{nguyen2026improvedobjectcentricdiffusionlearning}
+The next step is the \textbf{Contrastive Object-centric Diffusion Alignment} (CODA) \cite{nguyen2026improvedobjectcentricdiffusionlearning}, a diffusion-based OCL where the slots ($\mathbf{s}$) are extracted using Slot Attention over DINOv2 features and decoded with a pretrained Stable Diffusion v1.5 model. An illustration of the pipeline is presented in Figure \ref{fig:coda}.  
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{gfx/compositionality/coda.png}
+    \caption{Overview of the pipeline of the CODA method.}
+    \label{fig:coda}
+\end{figure} 
+This method introduces three key components to improve the disentanglement and the alignment between the slot and the visual components of the image. 
+\begin{itemize}
+    \item \textbf{Register Slots}. The idea is to define a set of input-independent register slots to capture the residual information, such as the background, which is usually entangled with all the slots. They proposed this method based on some experiments where reconstruction from the full set of slots resembles the input image, but using only a small set of slots, the result is a distorted image, which is not consistent with an ideal OCL model. These register slots ($\mathbf{\bar r}$) are defined as frozen embeddings by encoding with a pretrained text encoder a sequence of \texttt{PAD} tokens. 
+    \item \textbf{Finetune of Cross-Attention}. Since we are using a pre-trained SD model trained on large-scale image-text pairs, using the slot embeddings directly will introduce a bias, as it expects text embeddings. They proposed to only finetune the key, value, and output projections in cross-attention layers, which allows the model to better align slots with visual content and preserve the expressiveness of the pretrained diffusion backbone. Also, this approach is computationally and memory efficient. 
+    \item \textbf{Contrastive Alignment Loss}. Using only the diffusion loss, the model does not have explicit supervision to ensure that slots capture concepts present in the image. They proposed a contrastive alignment objective that aligns slots with image content while discouraging overlap between different slots. The idea is to assign high likelihood to the correct slot representations and low likelihood to negative slots ($\mathbf{\tilde s}$), which are created as a random shuffle between slots of two different images. 
+\end{itemize} 
+The overall training objective of CODA is defined as 
+\begin{equation}
+    \mathcal{L}(\phi, \theta) = \mathcal{L}_{dm}(\phi,\theta) + \lambda_{cl}\mathcal{L}_{cl}(\phi),
+\end{equation}
+where $\phi$ are the parameters of Slot Attention, $\theta$ the parameters of the diffusion models and $\lambda_{cl}$ controls the trade-off between the denoising and contrastive terms. The losses are defined as 
+\begin{equation}
+    \mathcal{L}_{dm}(\phi,\theta) = \mathbb{E}_{\epsilon, t, (\mathbf{x},\mathbf{s})} \left[ ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t, t, (\mathbf{s},\mathbf{\bar r}))||^2_2 \right]
+\end{equation}
+\begin{equation}
+    \mathcal{L}_{cl}(\phi) = -\mathbb{E}_{\epsilon, t, (\mathbf{x},\mathbf{\tilde s})} \left[ ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t, t, (\mathbf{\tilde s},\mathbf{\bar r}))||^2_2 \right]
+\end{equation}
 
 
 %*****************************************

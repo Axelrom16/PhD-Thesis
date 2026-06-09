@@ -2,25 +2,27 @@
 \chapter{Disentanglement}\label{ch:disentanglement}
 %************************************************
 
-\textbf{Disentanglement Representation Learning} (DRL) is a learning paradigm in which models are designed to extract and disentangle the 
-hidden factors of variation in the data, $\mathbf{z}\in\mathbb{R}^c$, given an input observation $\mathbf{x}\in\mathbb{R}^d$. 
-These generative factors are often called latent variables. The formal definition of DRL proposed in \cite{RepresentationLearning} 
-is that "Disentangled representation should separate the distinct, independent and informative generative factors of variation in 
-the data. Single latent variables are sensitive to changes in single underlying generative factors, while being relatively invariant 
-to changes in other factors". An important property is that latent variables are statistically independent. This organisation of the 
-latent space into explainable semantic representations improves the following properties of a generative model: 
+\textbf{Disentangled Representation Learning} (DRL) is a paradigm in which models are designed to extract and separate the hidden factors of variation, $\mathbf{z}\in\mathbb{R}^c$, from an input observation, $\mathbf{x}\in\mathbb{R}^d$. These generative factors are commonly referred to as latent variables. As defined in \cite{RepresentationLearning}, a "disentangled representation should separate the distinct, independent and informative generative factors of variation in the data. Single latent variables are sensitive to changes in single underlying generative factors, while being relatively invariant to changes in other factors." \\
+This definition highlights two core principles: the statistical independence of the latent variables, and the guarantee that modifying one factor alters only its corresponding visual concept, leaving all others unchanged. Organizing the latent space into these explainable semantic representations enhances a generative model in three key ways:  
 \begin{itemize}
     \item \textbf{Explanability}: the meaningful and independent representations are aligned semantically with latent generative factors. 
     \item \textbf{Generalizability}: the representations are well separated from the original entangled input, which improves the generalization ability for the generation of new samples. 
     \item \textbf{Controllability}: DRL allows for controllable generation by manipulating the learned disentangled representations of the latent space.  
 \end{itemize}
-There are several disentanglement methods in the current literature, which can be grouped based on the generative model they use \cite{wang2024disentangledrepresentationlearning}, which will be
-explained in the following sections. \\
-One important aspect of DRL is the     
+Current literature features various disentanglement methods. As discussed in the following sections, these approaches are typically categorized based on their underlying generative framework \cite{wang2024disentangledrepresentationlearning}. \\
+\\
+While the theoretical benefits of DRL are significant, achieving completely unsupervised disentanglement presents a fundamental challenge known as the identifiability problem. As demonstrated in \cite{locatello2019challengingcommonassumptionsunsupervised}, learning disentangled representations in a purely unsupervised manner is theoretically impossible without introducing explicit inductive biases on both the models and the data.  \\
+The core of this problem lies in statistical identifiability. Unsupervised generative models aim to learn the true prior distribution of the latent factors, $p(\mathbf{z})$, by observing only the marginal distribution of the data, $p(\mathbf{x})$. However, \cite{locatello2019challengingcommonassumptionsunsupervised} formally proved that there exists an infinite number of bijective transformations, $f(\mathbf{z})$, that are highly entangled but produce the exact same marginal distribution $p(\mathbf{x})$. Because the model only has access to the observational data, it has no mathematical way to distinguish between the true, disentangled latent space and an entangled, transformed equivalent. Consequently, the true generative factors are unidentifiable. \\
+To overcome this fundamental limitation, current methodologies must shift away from purely unsupervised approaches and incorporate specific constraints. This is typically achieved through three primary strategies:
+\begin{itemize}
+    \item \textbf{Inductive Biases}: Imposing strong architectural constraints or specific regularization terms (e.g., heavily penalizing total correlation) to favor disentangled solutions, assuming the data possesses a specific underlying structure.
+    \item \textbf{Weak Supervision}: Introducing limited supervisory signals, such as providing a small number of labeled samples or using paired observations that share at least one underlying generative factor (e.g., two images of the same object under different lighting). 
+    \item \textbf{Sequential and Temporal Dynamics}: Leveraging the natural continuity found in sequential data, such as video frames, where most latent factors remain constant between consecutive observations while only a few change dynamically.
+\end{itemize}
 
 
 \section{VAE-Based Models}  
-In Section -- we defined the Variational Autoencoder (VAE) model, where the loss function is defined in Equation --. This type of model 
+In Section \ref{ch:vaes} we defined the Variational Autoencoder (VAE) model, where the loss function is defined in Equation \ref{eq:vae_loss}. This type of model 
 has the potential to learn disentangled representations in simple datasets, because of the choose of the prior distribution $p(\mathbf{z})$ 
 as a normal distribution, which imposes independence constraints. In more complex datasets, the disentanglement capability presented in this model 
 is poor. \\
@@ -40,20 +42,24 @@ where a disentangled representation is achieved when $q_{\phi}(\mathbf{z})$ is c
 To gain a deep insight about the trade-off, we can break down the KL term of the loss function as
 proposed in several papers \cite{hoffman2016elbo, chen2019isolatingsourcesdisentanglementvariational}
 \begin{align}
+\begin{split}
     \mathbb{E}_{p_{data}(\mathbf{x})}\left[ KL(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z})) \right] = &\underbrace{I(\mathbf{x};\mathbf{z})}_{\text{(i) Mutual Information}} \\
     & + \underbrace{D_{KL}(q_{\phi}(\mathbf{z})||\bar q_{\phi}(\mathbf{z}))}_{\text{(ii) Total Correlation}}, \\
     & + \underbrace{D_{KL}(q_{\phi}(\mathbf{z})||p(\mathbf{z}))}_{\text{(iii) Prior KL}},
+\end{split}
 \end{align}
 where $I(\mathbf{x};\mathbf{z})$ is the mutual information between $\mathbf{x}$ and $\mathbf{z}$, Total Correlation (TC) is a measure of dependence between the variables and the prior KL prevents 
 the latents to deviate too far from the prior. Here we can clearly see that making $\beta$ larger pushes $q_{\phi}(\mathbf{z})$ towards the factorial prior $p(\mathbf{x})$ and pushes the model to find
-statistically independent factoes, improving the disentanglement, but reduces the amount of information about $\mathbf{x}$ stored in $\mathbf{z}$, producing a poor reconstruction. \\ 
+statistically independent factors, improving the disentanglement, but reduces the amount of information about $\mathbf{x}$ stored in $\mathbf{z}$, producing a poor reconstruction. \\ 
 \\
 This trade-off between reconstruction and disentanglement is the main motivation for the development of new methods based on the previous decomposition of the KL term. For example, the 
 \textbf{DIP-VAE-I} and \textbf{DIP-VAE-II} \cite{kumar2018variationalinferencedisentangledlatent} methods proposed a regularization term on the third element of the KL decomposition.
 The objective function can be defined as 
 \begin{align}
+\begin{split}
     \mathcal{L}_{ELBO}(\theta,\phi;\mathbf{x}) &= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z})) \\
     &- \lambda D_{KL}(q_{\phi}(\mathbf{z})||p(\mathbf{z})).
+\end{split}
 \end{align}
 This objective function imposes independence on the variational marginal distribution $q_{\phi}(\mathbf{z})$. To minimize the distance, they force the covariance of $q_{\phi}(\mathbf{z})$ to be close to the identity matrix. 
 The covariance is defined as 
@@ -62,18 +68,22 @@ The covariance is defined as
 \end{equation}
 The two variations of DIP-VAE differ in the way they penalise the covariance:
 \begin{align}
+\begin{split}
     & D_{KL}(q_{\phi}(\mathbf{z})||p(\mathbf{z})) = \\
     &\underbrace{ = \lambda_{od} \sum_{i\neq j} [\text{Cov}_{p_{data}}[\mu_{\phi}(\mathbf{x})]]^2_{ij} + \lambda_d \sum_i \left(\text{Cov}_{p_{data}}[\mu_{\phi}(\mathbf{x})]_{ij} - 1\right)^2}_{\text{DIP-VAE-I}}, \\
     & or \\
     &\underbrace{= \lambda_{od} \sum_{i\neq j} [\text{Cov}_{q_{\phi}(\mathbf{z})}[\mathbf{z}]]^2_{ij} + \lambda_d \sum_i \left([\text{Cov}_{q_{\phi}(\mathbf{z})}[\mathbf{z}]]_{ij} - 1\right)^2}_{\text{DIP-VAE-II}},
+\end{split}
 \end{align}
 where $\lambda_{od}$ and $\lambda_d$ are the hyperparameters that control the strength of the regularization. \\
 \\
 The next method, \textbf{FactorVAE} \cite{kim2019disentanglingfactorising}, proposed to only penalises the second component of the KL decomposition, the Total Correlation (TC), which encourage independence in the 
 latent space. The loss function in this method is defined as:
 \begin{align}
+\begin{split}
     \mathcal{L}_{ELBO}(\theta,\phi;\mathbf{x}) &= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - D_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x})||p(\mathbf{z})) \\
     &- \gamma D_{KL}(q_{\phi}(\mathbf{z})||\bar q_{\phi}(\mathbf{z})),
+\end{split}
 \end{align}
 where $\bar q_{\phi}(\mathbf{z}) = \prod_j q_{\phi}(z_j)$. TC measures the dependencies between the variables in the latent representation. Penalising this specific term encourages the latent dimensions to be 
 statistically independent, which is the core mathematical interpretation of disentanglement. \\
@@ -84,8 +94,10 @@ This approach achieves better disentanglement than $\beta$-VAE while preserving 
 The paper that proposed the decomposition of the KL term \cite{chen2019isolatingsourcesdisentanglementvariational} also proposed a method called $\beta$-\textbf{TCVAE}, which penalize 
 all the terms of the KL decomposition independently, with different hyperparameters. The loss function is defined as
 \begin{align}
+\begin{split}
    &\mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})}\left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] \\
    & - \alpha I(\mathbf{x};\mathbf{z}) - \beta D_{KL}(q_{\phi}(\mathbf{z})||\bar q_{\phi}(\mathbf{z})) - \gamma D_{KL}(q_{\phi}(\mathbf{z})||p(\mathbf{z})),
+\end{split}
 \end{align}
 All the previous methods are unsupervised with the common idea of adding extra regularization terms to the original VAE loss function to encourage disentanglement.  
 
@@ -95,28 +107,32 @@ Diffusion and Flow models are a more recent and advanced class of generative mod
 Disentangled representation learning can also be applied to these types of models with the aim to overcome the important trade-off between reconstruction and disentanglement of the VAE-based methds. \\
 \\
 One of the first approaches was DisDiff \cite{yang2023disdiffunsuperviseddisentanglementdiffusion}, which learns a disentangled representation and a disentangled gradient field 
-for each generative factor. Assume the data samples are generated by $N$ underlying ground truth factors $f^c$, $c\in\{1, \dots, N\}$. Each factor $c$ follows the distribution 
-$p(f^c)$. We can modify the original score function (Equation --) with the conditioning of the factors using the Bayes' Rule as follows: 
+for each generative factor. Assume the data samples are generated by $N$ underlying ground truth factors $\mathbf{f}^c$, $c\in\{1, \dots, N\}$. Each factor $c$ follows the distribution 
+$p(\mathbf{f}^c)$. We can modify the original score function (Equation --) with the conditioning of the factors using the Bayes' Rule as follows: 
 \begin{equation}
-    \nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t|f^c) = \nabla_{\mathbf{x}_t}\log p(f^c|\mathbf{x}_t) + \nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t),
+    \nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t|\mathbf{f}^c) = \nabla_{\mathbf{x}_t}\log p(\mathbf{f}^c|\mathbf{x}_t) + \nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t),
 \end{equation}
-where we already have the score $\nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t)$ from a pretrained unconditional model and we only have to learn $\nabla_{\mathbf{x}_t}\log p(f^c|\mathbf{x}_t)$. 
-Since we are in an unsupervised setting, we do not know $f^c$. We have to learn a set of representations $\{z^c|c=1,\dots,N\}$ that must encompass all information of the original 
-samples $\mathbf{x}_0$ and represent the true factors of variations $f^c$. To obtain these representations we use a set of encoders with learnable parameters $\phi$, defined 
-as $E_{\phi}(\mathbf{x}_0)=\{E_{\phi}^1(\mathbf{x}_0), \dots E_{\phi}^N(\mathbf{x}_0)\}=\{z^1,\dots,z^N\}$. Then, assume we have a factor subset $\mathcal{S}\subseteq\mathcal{C}$ 
-with $z^{\mathcal{S}}=\{z^c|c\in\mathcal{S}\}$, the gradient field can be defined as 
+where we already have the score $\nabla_{\mathbf{x}_t}\log p(\mathbf{x}_t)$ from a pretrained unconditional model and we only have to learn $\nabla_{\mathbf{x}_t}\log p(\mathbf{f}^c|\mathbf{x}_t)$. 
+Since we are in an unsupervised setting, we do not know $\mathbf{f}^c$. We have to learn a set of representations $\{\mathbf{z}^c|c=1,\dots,N\}$ that must encompass all information of the original 
+samples $\mathbf{x}_0$ and represent the true factors of variations $\mathbf{f}^c$. To obtain these representations we use a set of encoders with learnable parameters $\phi$, defined 
+as $E_{\phi}(\mathbf{x}_0)=\{E_{\phi}^1(\mathbf{x}_0), \dots E_{\phi}^N(\mathbf{x}_0)\}=\{\mathbf{z}^1,\dots,\mathbf{z}^N\}$. Then, assume we have a factor subset $\mathcal{S}\subseteq\mathcal{C}$ 
+with $\mathbf{z}^{\mathcal{S}}=\{\mathbf{z}^c|c\in\mathcal{S}\}$, the gradient field can be defined as 
 \begin{equation}
-    \nabla_{\mathbf{x}_t}\log p(z^{\mathcal{S}}|\mathbf{x}_t) = \sum_{c\in\mathcal{S}}\nabla_{\mathbf{x}_t}\log p(z^c|\mathbf{x}_t).
+    \nabla_{\mathbf{x}_t}\log p(\mathbf{z}^{\mathcal{S}}|\mathbf{x}_t) = \sum_{c\in\mathcal{S}}\nabla_{\mathbf{x}_t}\log p(\mathbf{z}^c|\mathbf{x}_t).
 \end{equation}
-A visual representation of this method can be seen in Figure \ref{fig:disen1}(a). Finally, to estimate the gradient fields, they used a network $G_{\psi}(\mathbf{x}_t, z^c, t)$ and the reconstruction loss is defined as 
+A visual representation of this method can be seen in Figure \ref{fig:disen1}(a). Finally, to estimate the gradient fields, they used a network $G_{\psi}(\mathbf{x}_t, \mathbf{z}^c, t)$ and the reconstruction loss is defined as 
 \begin{equation}
-    \mathcal{L}_r = \mathbb{E}_{\mathbf{x}_0,t,\epsilon} ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t, t) + \frac{\sqrt{\alpha_t}\sqrt{1-\bar\alpha_t}}{\beta_t}\sigma_t\sum_{c\in\mathcal{C}}G_{\psi}(\mathbf{x}_t,z^c,t)||.
+    \mathcal{L}_r = \mathbb{E}_{\mathbf{x}_0,t,\epsilon} ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t, t) + \frac{\sqrt{\alpha_t}\sqrt{1-\bar\alpha_t}}{\beta_t}\sigma_t\sum_{c\in\mathcal{C}}G_{\psi}(\mathbf{x}_t,\mathbf{z}^c,t)||.
 \end{equation}
-This loss formulation alone does not guarantee disentanglement among the representations $z^c$. The authors proposed a disentanglement loss that minimizes the upper bound for 
-the mutual information between $z^c$ and $z^j$, where $c\neq j$, defined as
+This loss formulation alone does not guarantee disentanglement among the representations $\mathbf{z}^c$. The authors proposed a disentanglement loss that minimizes the upper bound for 
+the mutual information between $\mathbf{z}^c$ and $\mathbf{z}^j$, where $c\neq j$, defined as
 \begin{equation}
-    \mathcal{L}_{dis}=\min_{i,j,\mathbf{x}_0,\mathbf{\hat x}_0^j} ||\hat z^{c|j}-\hat z^c|| - ||\hat z^{c|j} - z^c|| + ||\hat z^{j|j} - z^j||,
+    \mathcal{L}_{dis}=\min_{i,j,\mathbf{x}_0,\mathbf{\hat x}_0^j} ||\mathbf{\hat z}^{c|j}-\mathbf{\hat z}^c|| - ||\mathbf{\hat z}^{c|j} - \mathbf{z}^c|| + ||\mathbf{\hat z}^{j|j} - \mathbf{z}^j||,
 \end{equation}
+where $\mathbf{\hat x}_0^j$ is conditioned on $\mathbf{z}^j$, $\mathbf{\hat z}^c = E_{\phi}^c(\mathbf{\hat x}_0)$ and $\mathbf{\hat z}^{c|j} = E_{\phi}^c(\mathbf{\hat x^j_0})$ where $\mathbf{\hat x}_0$ is 
+a sampled data from the pretrained model. \\
+\\
+EncDiff \cite{yang2024diffusionmodelcrossattention} is an improvement of the previous method where an image encoder $\tau_{\phi}$ aims to provide a set of concept tokens $\mathcal{S}=\{s_1,\dots,s_N\}$. Each dimension of the encoded feature vectors is treated as a disentangled factor and maps each to a vector using a non-shared MLP layer. Then, based on Latent Diffusion Models \cite{rombach2022highresolutionimagesynthesislatent}, the idea is to use the cross-attention mechanism to map the tokens to the intermediate representations of the U-Net model. The general framework of this method is illustrated in Figure \ref{fig:disen1}(b). \\
 \begin{figure}
      \centering
      % First Image (a)
@@ -131,12 +147,9 @@ the mutual information between $z^c$ and $z^j$, where $c\neq j$, defined as
      \caption{Illustrations of the frameworks for the (a) DisDiff model \cite{yang2023disdiffunsuperviseddisentanglementdiffusion} and the (b) EncDiff model. \cite{yang2024diffusionmodelcrossattention}}
      \label{fig:disen1}
 \end{figure}
-where $\mathbf{\hat x}_0^j$ is conditioned on $z^j$, $\hat z^c = E_{\phi}^c(\mathbf{\hat x}_0)$ and $\hat z^{c|j} = E_{\phi}^c(\mathbf{\hat x^j_0})$ where $\mathbf{\hat x}_0$ is 
-a sampled data from the pretrained model. \\
-\\
-EncDiff \cite{yang2024diffusionmodelcrossattention} is an improvement of the previous method where an image encoder $\tau_{\phi}$ aims to provide a set of concept tokens $\mathcal{S}=\{s_1,\dots,s_N\}$. Each dimension of the encoded feature vectors is treated as a disentangled factor and maps each to a vector using a non-shared MLP layer. Then, based on Latent Diffusion Models \cite{rombach2022highresolutionimagesynthesislatent}, the idea is to use the cross-attention mechanism to map the tokens to the intermediate representations of the U-Net model. The general framework of this method is illustrated in Figure \ref{fig:disen1}(b). \\
-\\
-DisenBooth \cite{chen2024disenboothidentitypreservingdisentangledtuning} 
+
+\noindent
+DisenBooth \cite{chen2024disenboothidentitypreservingdisentangledtuning} \\
 \begin{figure}[htbp]
      \centering
      % First Image (a)
@@ -150,7 +163,9 @@ DisenBooth \cite{chen2024disenboothidentitypreservingdisentangledtuning}
      }
      \caption{Illustrations of the frameworks for the (a) DisenBooth model \cite{chen2024disenboothidentitypreservingdisentangledtuning} and the (b) FM Disentanglement model. \cite{chi2026disentangledrepresentationlearningflow}}
      \label{fig:disen2}
-\end{figure}
+\end{figure} 
+
+\noindent 
 After the development of several diffusion-based disentanglement methods, flow matching with good performance and deterministic formulation has gained attention in this field. In a recent paper, a Flow Matching-Based disentanglement framework \cite{chi2026disentangledrepresentationlearningflow} was presented that encourages factor-specific, non-overlapping latent transformations and explicit semantic alignment. The pipeline of this method can be seen in Figure \ref{fig:disen2}(b). Given an image $\mathbf{I}$, they encode it into a latent $\mathbf{Z}$ using a pre-trained VQ-GAN encoder, where $\mathbf{z}_1$ represents the latent of an image of the dataset. Then, a factor encoder ($T_{\gamma}(\mathbf{x})$) is trained to extract a set of $N$ factors. These factors are injected into the flow network via cross-attention, where intermediate features of the network attend to the set of factors. The model outputs a factor-conditioned velocity field $\mathbf{v}_{\theta}(\mathbf{z},T_{\gamma}(\mathbf{x}),t)$. Since the flow matching loss only takes into account the velocity field, it does not encourage disentanglement by default. The next step is to decompose the velocity into $N$ factor-aligned components. \\
 The idea is to decompose the factor-conditioned velocity field as follows: 
 \begin{equation}
@@ -176,11 +191,52 @@ where $\lambda_{orth}$ controls the strength of the regularization.
 
 
 \section{Metrics}  
-One of the initial methods for the evaluation of disentanglement representation learning was inspecting the change in reconstruction when traversing one variable in the latent space. This qualitative evaluation is useful, but it is important to have reliable quantitative metrics to measure disentanglement. As shown in the previous sections, significant advances have been made in this field, but the literature still lacks a reliable and unified metric for evaluation. As presented in --, a good metric has to evaluate the separation of interpretable factors, the capture of the diversity of the data, the invariance across changes in unrelated dimensions and the summarisation of the important information efficiently in a disentangled representation. \\
+One of the initial methods for the evaluation of disentanglement representation learning was inspecting the change in reconstruction when traversing one variable in the latent space. This qualitative evaluation is useful, but it is important to have reliable quantitative metrics to measure disentanglement. As shown in the previous sections, significant advances have been made in this field, but the literature still lacks a reliable and unified metric for evaluation. As presented in \cite{julka2024improvedmetricevaluatingdisentangled}, a good metric has to evaluate the separation of interpretable factors, the capture of the diversity of the data, the invariance across changes in unrelated dimensions and the summarisation of the important information efficiently in a disentangled representation. \\
 \\
-One of the initial metrics presented in the literature are \textbf{Z-diff}\cite{higgins2017betavae} and \textbf{Z-min Variance}\cite{kim2019disentanglingfactorising}, where both of them are supervised, i.e. we need the ground truth factors of variations. The idea is to choose a factor $k$, generate data with this factor fixed and the others varying randomly, obtain the representations through the encoder ($q_{\phi}(\mathbf{z}|\mathbf{x})$) and take the absolute value of the pairwise differences. In Z-diff, the metric trains a classifier to identify which factor is fixed and reports the accuracy value as the disentanglement metric. On the other hand, metric Z-min Variance shows that the previous one has some problems related to the training of a model and proposes to avoid training a classifier and use a majority-vote classifier with no optimisation hyperparameters. \\
+One of the initial metrics presented in the literature are \textbf{Z-diff} (also called BetaVAE) \cite{higgins2017betavae} and \textbf{Z-min Variance} (also called FactorVAE) \cite{kim2019disentanglingfactorising}, where both of them are supervised, i.e. we need the ground truth factors of variations. The idea is to choose a factor $k$, generate data with this factor fixed and the others varying randomly, obtain the representations through the encoder ($q_{\phi}(\mathbf{z}|\mathbf{x})$) and take the absolute value of the pairwise differences. In Z-diff, the metric trains a classifier to identify which factor is fixed and reports the accuracy value as the disentanglement metric. On the other hand, metric Z-min Variance shows that the previous one has some problems related to the training of a model and proposes to avoid training a classifier and use a majority-vote classifier with no optimisation hyperparameters. \\
 \\
-
+Then, we have an information-theoretic metric called \textbf{Mutual Information Gap} (MIG) \cite{chen2019isolatingsourcesdisentanglementvariational}. The idea is to evaluate the empirical mutual information between the latent variable $\mathbf{z}_j$ and ground truth factor $\mathbf{v}_k$, defined as $I(\mathbf{z}_j;\mathbf{v}_k)$. A higher mutual information implies that $\mathbf{z}_j$ contains a lot of information about $\mathbf{v}_k$. For each real factor $\mathbf{v}_k$, the metric computes the gap between the top two latent variables with the highest mutual information, and the average over all factors is the reported metric, defined as 
+\begin{equation}
+    MIG = \frac{1}{K}\sum_{k=1}^K \frac{1}{H(\mathbf{v}_k)} \left( I(\mathbf{z}_{j^{(k)}};\mathbf{v}_k) - \max_{j\neq j^{(k)}} I(\mathbf{z}_j; \mathbf{v}_k) \right),
+\end{equation}
+where $j^{(k)}=\arg\max_j I(\mathbf{z}_j;\mathbf{v}_k)$ and $K$ is the number of known factors. The metric is bounded by 0 and 1, with higher values indicating better disentanglement performance. This means that each generative factor is primarily captured by only one latent dimension. \\
+Later, some variations of the MIG metrics were proposed in the literature. MIG-sup \cite{li2020progressivelearningdisentanglementhierarchical} propose also to compute the mutual information gap but for the different latent dimensions, which is defined as 
+\begin{equation}
+    MIG\text {-sup} = \frac{1}{J}\sum_{j=1}^J \left( I(\mathbf{z}_{j};\mathbf{v}_{k^{(j)}}) - \max_{k\neq k^{(j)}} I(\mathbf{z}_j; \mathbf{v}_k) \right),
+\end{equation}
+where $J$ is the number of latent dimensions. \\
+\\
+A different disentanglement metric presented in the literature is \textbf{Separated Attribute Predictability} (SAP), which constructs a score matrix $\mathbf{S}\in\mathbb{R}^{d\times k}$ and the $(i,j)$-th element represents the linear regression or classification score of predicting $j$-th generative factor using only the $i$-th latent variable. For each column of the matrix, which corresponds to a generative factor, we take the difference of the top two entries (corresponding to the top two most predictive latent dimensions), and then take the mean of these differences as the final SAP value. Higher scores mean better disentanglement performance because it indicates that each generative factor principally corresponds to only one latent dimension, similar to MIG. \\
+\\
+The authors of \cite{eastwood2018a} proposed a framework to evaluate disentanglement from three aspects, disentanglement (D), completeness (C) and informativeness (I), to build the metric called \textbf{DCI}. For the evaluation of the aspects, we have to train $K$ regressors, where each one $f_j$ predicts $\mathbf{z}_j$ given $\mathbf{c}$ and can provide an importance score matrix $\mathbf{R}_{i,j}$ where the $(i,j)$-th elements denotes the relative importance of $\mathbf{c}_i$ in predicting $\mathbf{z}_j$. Once we have the regressors: 
+\begin{itemize}
+    \item \textbf{Disentanglement}. It is defined as the degree to which a representation factorises the underlying factors of variation. The disentanglement score $D_i$ of the code variable $\mathbf{c}_i$ is quantified by $D_i = (1 - H_K(P_{i\cdot}))$, where $H_K(P_{i\cdot})=-\sum_{k=0}^{K-1} P_{ik}\log_K P_{ik}$ denotes the entropy and $P_{ij} = R_{ij} / \sum_{k=0}^{K-1} R_{ik}$ denotes the probability of $\mathbf{c}_i$ being important for predicting $\mathbf{z}_j$. If it is important, the score will be 1. If $\mathbb{c}_i$ is equally important for predicting all generative factors, the metric will be 0. 
+    \item \textbf{Completeness}. It is the degree to which each underlying factor is captured by a single code variable. The completeness score $C_j$ in capturing the generative factor $\mathbf{z}_j$ is defined as $C_j=(1-H_D(\tilde P_{\cdot j}))$, where $H_D(\tilde P_{\cdot j}) = -\sum_{d=0}^{D-1}\tilde P_{dj}\log_D \tilde P_{dj}$. If a single latent variable contributes to the prediction of $\mathbf{z}_j$, the score will be 1. 
+    \item \textbf{Informativeness}. It is the amount of information that a representation captures about the underlying factors of variations. The informativeness of the latent $\mathbf{c}$ about the generative factor $\mathbf{z}_j$ is quantified by the prediction error $E(\mathbf{z}_j, \mathbf{\hat z}_j)$, averaged over the dataset. It is important to mention that this metric is dependent on the capacity of the regressor models $f$. 
+\end{itemize} 
+One recent metric was designed after the analysis of the previous metrics, which reflects the desired properties and is experimentally more robust. The metric is called \textbf{EDI} \cite{julka2024improvedmetricevaluatingdisentangled} and the idea is to compute the disentanglement (D), the compactness (C) and the exclusivity (E). First, we have to compute the relationship matrix, where we have to calculate $I(\mathbf{c}_i, \mathbf{z}_j)$, the mutual information between latent $\mathbf{c}_i$ and ground truth factor $\mathbf{z}_j$, then $I(\mathbf{c}_1,\dots,\mathbf{c}_d,\mathbf{z}_j)$, the mutual information between all latent codes and the factor $\mathbf{z}_j$, and $H(\mathbf{z}_j)$, the entropy of each factor. The impact intensity of factor $\mathbf{z}_j$ on the latent code $\mathbf{c}_i$ among all codes is defined as 
+\begin{equation}
+    R(\mathbf{c}_i,\mathbf{z}_j) = \frac{I(\mathbf{c}_i, \mathbf{z}_j)}{I(\mathbf{c}_i,\dots,\mathbf{c}_d,\mathbf{z}_j)}.
+\end{equation} 
+Then, another important concept is exclusivity, which can be defined as 
+\begin{equation}
+    \text{Exclusivity}(\mathbf{a}_1,\dots,\mathbf{a}_n) = \mathbf{a}_{i^*} - \sqrt{\frac{1}{n-1} \sum_{i=1, i\neq i^*}^n \mathbf{a}_i^2}, 
+\end{equation} 
+where $i^* = \arg\max_i \mathbf{a_i}$ and the aim is for the maximum value to be as high as possible, with the remainder as minimal as possible. Now, we can define the metrics used in the EDI evaluation framework: 
+\begin{itemize}
+    \item \textbf{Disentanglement}. The disentanglement of a latent code $\mathbf{c}_i$ can be defined as 
+    \begin{equation}
+        D(\mathbf{c}_i) = \text{Exclusivity}(R(\mathbf{c}_i,\mathbf{z}_1), R(\mathbf{c}_i,\mathbf{z}_2),\dots,R(\mathbf{c}_i,\mathbf{z}_k)).
+    \end{equation}
+    \item \textbf{Compactness}. The compactness of a generative factor $\mathbf{z}_j$ is defined as 
+    \begin{equation}
+        C(\mathbf{z}_j) = \text{Exclusivity}(R(\mathbf{c}_1,\mathbf{z}_j), R(\mathbf{c}_2,\mathbf{z}_j),\dots,R(\mathbf{c}_d,\mathbf{z}_j)).
+    \end{equation}
+    \item \textbf{Explicitness}. For a generative factor $\mathbf{z}_j$, the explicitness is calculated as the ratio of the combined information of all the codes relative to $\mathbf{z}_j$ to the entropy of $\mathbf{z}_j$ itself, defined as 
+    \begin{equation}
+        I(\mathbf{z}_j) = \frac{I(\mathbf{c}_i, \mathbf{c_2},\dots,\mathbf{c}_d,\mathbf{z}_j)}{H(\mathbf{z}_j)}.
+    \end{equation}
+\end{itemize}
 
 
 %*****************************************

@@ -99,9 +99,11 @@ called the \textbf{Evidence Lower Bound} (ELBO). Let's derive the log-likelihood
     %&= \underbrace{\mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[ \log \frac{p_{\theta}(\mathbf{x}, \mathbf{z})}{q_{\phi}(\mathbf{z}|\mathbf{x})} \right]}_{\text{ELBO Term}} + \underbrace{\mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[ \log \frac{q_{\phi}(\mathbf{z}|\mathbf{x})}{p_{\theta}(\mathbf{z}|\mathbf{x})} \right]}_{\text{KL Divergence}}.
 \end{align}
 We can see that for any data point $\mathbf{x}$, the log-likelihood satisfies: 
-\begin{align}
+\begin{align}\label{eq:vae_loss}
+\begin{split}
     \log p_{\theta}(\mathbf{x}) &\geq \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) \\
     & = \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})} \left[\log p_{\theta}(\mathbf{x}|\mathbf{z})\right] - \mathcal{D}_{KL}(q_{\phi}(\mathbf{z}|\mathbf{x}) || p(\mathbf{z})).
+\end{split}
 \end{align}
 %The first term is the variational lower bound (ELBO), which can be expressed as:
 %\begin{equation}\label{eq:elbos}
