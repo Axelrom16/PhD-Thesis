@@ -369,6 +369,37 @@
     \field{year}{2024}
   \endentry
 
+  \entry{eastwood2018a}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=EC}{%
+         family={Eastwood},
+         familyi={E\bibinitperiod},
+         given={Cian},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=WCKI}{%
+         family={Williams},
+         familyi={W\bibinitperiod},
+         given={Christopher K.\bibnamedelima I.},
+         giveni={C\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim
+  I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ECWCKI1}
+    \strng{fullhash}{ECWCKI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \field{booktitle}{International Conference on Learning Representations}
+    \field{title}{A framework for the quantitative evaluation of disentangled
+  representations}
+    \verb{url}
+    \verb https://openreview.net/forum?id=By-7dz-AZ
+    \endverb
+    \field{year}{2018}
+  \endentry
+
   \entry{Espinosa_Zarlenga_2023}{article}{}
     \name{author}{7}{}{%
       {{hash=EZM}{%
@@ -505,6 +536,33 @@
     \field{year}{2017}
   \endentry
 
+  \entry{hinton2002training}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HGE}{%
+         family={Hinton},
+         familyi={H\bibinitperiod},
+         given={Geoffrey\bibnamedelima E},
+         giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {MIT Press}%
+    }
+    \strng{namehash}{HGE1}
+    \strng{fullhash}{HGE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{8}
+    \field{pages}{1771\bibrangedash 1800}
+    \field{title}{Training products of experts by minimizing contrastive
+  divergence}
+    \field{volume}{14}
+    \field{journaltitle}{Neural Computation}
+    \field{year}{2002}
+  \endentry
+
   \entry{ho2020denoisingdiffusionprobabilisticmodels}{misc}{}
     \name{author}{3}{}{%
       {{hash=HJ}{%
@@ -544,6 +602,39 @@
     \field{year}{2020}
   \endentry
 
+  \entry{ho2022classifierfreediffusionguidance}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=HJ}{%
+         family={Ho},
+         familyi={H\bibinitperiod},
+         given={Jonathan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Salimans},
+         familyi={S\bibinitperiod},
+         given={Tim},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HJST1}
+    \strng{fullhash}{HJST1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{eprint}
+    \verb 2207.12598
+    \endverb
+    \field{title}{Classifier-Free Diffusion Guidance}
+    \verb{url}
+    \verb https://arxiv.org/abs/2207.12598
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2022}
+  \endentry
+
   \entry{hoffman2016elbo}{inproceedings}{}
     \name{author}{2}{}{%
       {{hash=HMD}{%
@@ -570,6 +661,50 @@
     \field{title}{ELBO surgery: yet another way to carve up the variational
   evidence lower bound}
     \field{year}{2016}
+  \endentry
+
+  \entry{hyvarinen2005estimation}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HA}{%
+         family={Hyv\"{a}rinen},
+         familyi={H\bibinitperiod},
+         given={Aapo},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {JMLR.org}%
+    }
+    \strng{namehash}{HA1}
+    \strng{fullhash}{HA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    One often wants to estimate statistical models where the probability
+  density function is known only up to a multiplicative normalization constant.
+  Typically, one then has to resort to Markov Chain Monte Carlo methods, or
+  approximations of the normalization constant. Here, we propose that such
+  models can be estimated by minimizing the expected squared distance between
+  the gradient of the log-density given by the model and the gradient of the
+  log-density of the observed data. While the estimation of the gradient of
+  log-density function is, in principle, a very difficult non-parametric
+  problem, we prove a surprising result that gives a simple formula for this
+  objective function. The density function of the observed data does not appear
+  in this formula, which simplifies to a sample average of a sum of some
+  derivatives of the log-density given by the model. The validity of the method
+  is demonstrated on multivariate Gaussian and independent component analysis
+  models, and by estimating an overcomplete filter set for natural image data.%
+    }
+    \field{issn}{1532-4435}
+    \field{pages}{695–709}
+    \field{title}{Estimation of Non-Normalized Statistical Models by Score
+  Matching}
+    \field{volume}{6}
+    \field{journaltitle}{J. Mach. Learn. Res.}
+    \field{month}{12}
+    \field{year}{2005}
   \endentry
 
   \entry{irvin2019chexpertlargechestradiograph}{misc}{}
@@ -762,6 +897,46 @@
     \field{year}{2024}
   \endentry
 
+  \entry{julka2024improvedmetricevaluatingdisentangled}{misc}{}
+    \name{author}{3}{}{%
+      {{hash=JS}{%
+         family={Julka},
+         familyi={J\bibinitperiod},
+         given={Sahib},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WY}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Yashu},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Granitzer},
+         familyi={G\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JSWYGM1}
+    \strng{fullhash}{JSWYGM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \verb{eprint}
+    \verb 2410.03056
+    \endverb
+    \field{title}{Towards an Improved Metric for Evaluating Disentangled
+  Representations}
+    \verb{url}
+    \verb https://arxiv.org/abs/2410.03056
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2024}
+  \endentry
+
   \entry{karras2018progressivegrowinggansimproved}{misc}{}
     \name{author}{4}{}{%
       {{hash=KT}{%
@@ -806,6 +981,63 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{cs.NE}
     \field{year}{2018}
+  \endentry
+
+  \entry{karras2024guidingdiffusionmodelbad}{misc}{}
+    \name{author}{6}{}{%
+      {{hash=KT}{%
+         family={Karras},
+         familyi={K\bibinitperiod},
+         given={Tero},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Aittala},
+         familyi={A\bibinitperiod},
+         given={Miika},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KT}{%
+         family={Kynkäänniemi},
+         familyi={K\bibinitperiod},
+         given={Tuomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lehtinen},
+         familyi={L\bibinitperiod},
+         given={Jaakko},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=AT}{%
+         family={Aila},
+         familyi={A\bibinitperiod},
+         given={Timo},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Laine},
+         familyi={L\bibinitperiod},
+         given={Samuli},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KT+1}
+    \strng{fullhash}{KTAMKTLJATLS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{eprint}
+    \verb 2406.02507
+    \endverb
+    \field{title}{Guiding a Diffusion Model with a Bad Version of Itself}
+    \verb{url}
+    \verb https://arxiv.org/abs/2406.02507
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2024}
   \endentry
 
   \entry{kim2019disentanglingfactorising}{misc}{}
@@ -1188,6 +1420,95 @@
     \field{year}{2025}
   \endentry
 
+  \entry{lecun2006tutorial}{article}{}
+    \name{author}{5}{}{%
+      {{hash=LY}{%
+         family={"LeCun},
+         familyi={L\bibinitperiod},
+         given={Yann"},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={"Chopra},
+         familyi={C\bibinitperiod},
+         given={Sumit"},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HR}{%
+         family={"Hadsell},
+         familyi={H\bibinitperiod},
+         given={Raia"},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={"Ranzato},
+         familyi={R\bibinitperiod},
+         given={M"},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=HF}{%
+         family={"Huang},
+         familyi={H\bibinitperiod},
+         given={F"},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LY+1}
+    \strng{fullhash}{LYCSHRRMHF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{A Tutorial on Energy-Based Learning}
+    \field{year}{2006}
+  \endentry
+
+  \entry{li2020progressivelearningdisentanglementhierarchical}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=LZ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Zhiyuan},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=MJV}{%
+         family={Murkute},
+         familyi={M\bibinitperiod},
+         given={Jaideep\bibnamedelima Vitthal},
+         giveni={J\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=GPK}{%
+         family={Gyawali},
+         familyi={G\bibinitperiod},
+         given={Prashnna\bibnamedelima Kumar},
+         giveni={P\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Linwei},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LZ+1}
+    \strng{fullhash}{LZMJVGPKWL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 2002.10549
+    \endverb
+    \field{title}{Progressive Learning and Disentanglement of Hierarchical
+  Representations}
+    \verb{url}
+    \verb https://arxiv.org/abs/2002.10549
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.LG}
+    \field{year}{2020}
+  \endentry
+
   \entry{liu2015faceattributes}{inproceedings}{}
     \name{author}{4}{}{%
       {{hash=LZ}{%
@@ -1215,7 +1536,7 @@
          giveni={X\bibinitperiod},
       }}%
     }
-    \strng{namehash}{LZ+1}
+    \strng{namehash}{LZ+2}
     \strng{fullhash}{LZLPWXTX1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
@@ -2153,6 +2474,51 @@
     \field{eprinttype}{arXiv}
     \field{eprintclass}{stat.ML}
     \field{year}{2021}
+  \endentry
+
+  \entry{wang2025ddtdecoupleddiffusiontransformer}{misc}{}
+    \name{author}{4}{}{%
+      {{hash=WS}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Shuai},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=TZ}{%
+         family={Tian},
+         familyi={T\bibinitperiod},
+         given={Zhi},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=HW}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={Weilin},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Limin},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WS+1}
+    \strng{fullhash}{WSTZHWWL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \verb{eprint}
+    \verb 2504.05741
+    \endverb
+    \field{title}{DDT: Decoupled Diffusion Transformer}
+    \verb{url}
+    \verb https://arxiv.org/abs/2504.05741
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs.CV}
+    \field{year}{2025}
   \endentry
 
   \entry{wang2024disentangledrepresentationlearning}{misc}{}

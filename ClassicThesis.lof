@@ -11,28 +11,31 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5}{\ignorespaces Illustrations of the frameworks for the (a) DisDiff model \blx@tocontentsinit {0}\cite {yang2023disdiffunsuperviseddisentanglementdiffusion} and the (b) EncDiff model. \blx@tocontentsinit {0}\cite {yang2024diffusionmodelcrossattention}\relax }}{31}{figure.caption.9}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DisDiff Framework}}}{31}{subfigure.5.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {EncDiff Framework}}}{31}{subfigure.5.2}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Illustrations of the frameworks for the (a) DisenBooth model \blx@tocontentsinit {0}\cite {chen2024disenboothidentitypreservingdisentangledtuning} and the (b) FM Disentanglement model. \blx@tocontentsinit {0}\cite {chi2026disentangledrepresentationlearningflow}\relax }}{32}{figure.caption.10}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DisenBooth Framework}}}{32}{subfigure.6.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {FM Disentanglement Framework}}}{32}{subfigure.6.2}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Illustrations of the frameworks for the (a) DisDiff model \blx@tocontentsinit {0}\cite {yang2023disdiffunsuperviseddisentanglementdiffusion} and the (b) EncDiff model. \blx@tocontentsinit {0}\cite {yang2024diffusionmodelcrossattention}\relax }}{32}{figure.caption.9}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DisDiff Framework}}}{32}{subfigure.5.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {EncDiff Framework}}}{32}{subfigure.5.2}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Illustrations of the frameworks for the (a) DisenBooth model \blx@tocontentsinit {0}\cite {chen2024disenboothidentitypreservingdisentangledtuning} and the (b) FM Disentanglement model. \blx@tocontentsinit {0}\cite {chi2026disentangledrepresentationlearningflow}\relax }}{33}{figure.caption.10}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {DisenBooth Framework}}}{33}{subfigure.6.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {FM Disentanglement Framework}}}{33}{subfigure.6.2}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7}{\ignorespaces Overview of the pipeline of the CODA method.\relax }}{40}{figure.caption.11}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {8}{\ignorespaces Architecture of a Concept Bottleneck Model (CBM). The model maps a raw inputs $\mathbf {x}$ to an interpretable intermediate concept space $\mathbf {\hat c}$ before masking the final prediction $\mathbf {\hat y}$.\relax }}{44}{figure.caption.12}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Illustration of the Concept Embedding Model framework.\relax }}{48}{figure.caption.13}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Architecture of the concept layer in the Concept Bottleneck Generative Model (CBGM) for a generic generative model.\relax }}{51}{figure.caption.14}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Architecture of the Post-hoc Concept Bottleneck Generative Model where the different loss functions are illustrated.\relax }}{52}{figure.caption.15}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Architecture of the CoBEla Model where the training and guided generation processes are illustrated.\relax }}{54}{figure.caption.16}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7}{\ignorespaces Architecture of a Concept Bottleneck Model (CBM). The model maps a raw inputs $\mathbf {x}$ to an interpretable intermediate concept space $\mathbf {\hat c}$ before masking the final prediction $\mathbf {\hat y}$.\relax }}{38}{figure.caption.11}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Illustration of the Concept Embedding Model framework.\relax }}{42}{figure.caption.12}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Architecture of the concept layer in the Concept Bottleneck Generative Model (CBGM) for a generic generative model.\relax }}{45}{figure.caption.13}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Architecture of the Post-hoc Concept Bottleneck Generative Model where the different loss functions are illustrated.\relax }}{46}{figure.caption.14}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Architecture of the CoBEla Model where the training and guided generation processes are illustrated.\relax }}{48}{figure.caption.15}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {13}{\ignorespaces Example of 4 generated X-ray images using the trained DiT-XL model and AutoGuidance (AG).\relax }}{66}{figure.caption.19}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {14}{\ignorespaces Example of reconstructed image with the Autoencoder with supervised Slot Attention and concept intervention for the slot Smiling.\relax }}{68}{figure.caption.20}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Visualization of the PCA projection of the DINOv2 features, original and reconstructed images and attention maps for the set of supervised slots in two examples.\relax }}{69}{figure.caption.21}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{69}{subfigure.15.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{69}{subfigure.15.2}%
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {12}{\ignorespaces Caption\relax }}{60}{figure.caption.18}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Caption\relax }}{60}{figure.caption.19}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Caption\relax }}{60}{figure.caption.20}%
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {15}{\ignorespaces Updated timeline of the PhD project, showing the different stages and their expected duration.\relax }}{65}{figure.caption.21}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Updated timeline of the PhD project, showing the different stages and their expected duration.\relax }}{75}{figure.caption.22}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

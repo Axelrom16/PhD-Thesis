@@ -2,7 +2,7 @@
 \chapter{Energy-Based Models}\label{ch:ebms}
 %************************************************
 
-Energy-Based Models (EBMs) \cite{LeCun2006ATO} are a general class of models that capture dependencies by associating 
+Energy-Based Models (EBMs) \cite{lecun2006tutorial} are a general class of models that capture dependencies by associating 
 a scalar energy value to each configuration of variables, acting as a measure of compatibility.
 \begin{itemize}
     \item \textbf{Training}: The general principle is to find an energy function that associates low energies to correct 
@@ -49,8 +49,8 @@ of the empirical data:
 where $Z_{\theta}$ is the partition function defined in Equation --. The first term encourages the model to assign low energy to 
 data points, while the second enforces normalization. The problem is that the partition function is intractable to compute for 
 high-dimensional data, which makes the training of EBMs challenging. To overcome this, the EBM literature relies on two broad 
-families of approximations: contrastive methods (such as Markov Chain Monte Carlo or Contrastive Divergence [Hinton, 2002]), 
-which approximate the model expectation, and non-contrastive/regularized methods (such as Score Matching [Hyvärinen, 2005] or 
+families of approximations: contrastive methods (such as Markov Chain Monte Carlo or Contrastive Divergence \cite{hinton2002training}), 
+which approximate the model expectation, and non-contrastive/regularized methods (such as Score Matching \cite{hyvarinen2005estimation} or 
 Denoising Autoencoders), which bypass the partition function entirely by restructuring the objective. \\
 \\
 In statistics, the score function of a probability distribution $p(\mathbf{x})$ is defined as the gradient of the log-probability 
