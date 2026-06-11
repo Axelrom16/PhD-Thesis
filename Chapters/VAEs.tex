@@ -3,26 +3,26 @@
 %************************************************
 
 The core initial idea for the understanding of the Variational Autoencoders (VAEs) is the concept of \textbf{Autoencoders} (AEs). 
-This are a type of model that contains two elements, the encoder and the decoder. The encoder is a function that maps the input data 
-$\mathbf{x}\in\mathbb{R}^d$ to a low-dimensional representation $\mathbf{z}\in\mathbb{R}^k$, which is usually much more smaller than
-the input dimension, $k<<d$. This representations live in a space with a more compact and interpretable structure, called the latent space. 
+This is a type of model that contains two elements, the encoder and the decoder. The encoder is a function that maps the input data 
+$\mathbf{x}\in\mathbb{R}^d$ to a low-dimensional representation $\mathbf{z}\in\mathbb{R}^k$, which is usually much smaller than
+the input dimension, $k<<d$. These representations live in a space with a more compact and interpretable structure, called the latent space. 
 Then, the decoder is a function that maps the latent representation $\mathbf{z}$ back to the input space, trying to reconstruct the 
 original data point $\mathbf{x}$. \\
 Once we have an autoencoder model trained, a natural question is how to use it as a generative model. One idea is to randomly sample
 a point $\mathbf{z}$ from the latent space and then pass it through the decoder to get a synthetic data point $\mathbf{x'}$. This method will 
-not produce realistic samples because the latent space is disorganized and irregular. Another option is to encode and image and sample 
-neighboring points in the latent space that could generate similar samples, but the reality is that the output are not meaningful samples. This 
+not produce realistic samples because the latent space is disorganized and irregular. Another option is to encode an image and sample 
+neighboring points in the latent space that could generate similar samples, but the reality is that the outputs are not meaningful samples. This 
 shows how poorly structured the latent space is. The aim of VAEs is to transform the latent space of an autoencoder into a well-structured space 
 that follows a prior distribution, which allows us to sample from it and generate realistic samples. \\
 \\
-It is also important to introduce the concept of latent variable models. This type of variables are part of the model 
+It is also important to introduce the concept of latent variable models. These types of variables are part of the model 
 but are not observed in the data, usually denoted as $\mathbf{z}$, which are the hidden factors of variation. The goal of latent variable models is to 
 learn the joint distribution $p_{\theta}(\mathbf{x}, \mathbf{z})$ of the observed data $\mathbf{x}$ and the latent variables $\mathbf{z}$. 
-The marginal likelihood, model evidence or marginal distribution over the observed data is given by:
+The marginal likelihood, model evidence, or marginal distribution over the observed data is given by:
 \begin{equation}\label{eq:p_x}
     p_{\theta}(\mathbf{x}) = \int p_{\theta}(\mathbf{x}, \mathbf{z}) d\mathbf{z}.
 \end{equation}
-When we use neural networks to parameterize the latent variable models we call them \textbf{Deep Latent Variable Models} (DLVMs). 
+When we use neural networks to parameterize the latent variable models, we call them \textbf{Deep Latent Variable Models} (DLVMs). 
 The simple and most common DLVM is given by the following factorization:
 \begin{equation}
     p_{\theta}(\mathbf{x}, \mathbf{z}) = p(\mathbf{z}) p_{\theta}(\mathbf{x} | \mathbf{z}),
@@ -34,10 +34,10 @@ is related through the Bayes' rule to the following posterior distribution:
     p_{\theta}(\mathbf{z} | \mathbf{x}) = \frac{p_{\theta}(\mathbf{x} | \mathbf{z}) p(\mathbf{z})}{p_{\theta}(\mathbf{x})},
 \end{equation}
 where we have an intractability problem due to the marginal likelihood $p_{\theta}(\mathbf{x})$ which is given by an integral over the latent variables (Equation \ref{eq:p_x}). 
-To overcome this problem we can use variational inference (VI) which is a technique to approximate the posterior distribution $p_{\theta}(\mathbf{z} | \mathbf{x})$ 
+To overcome this problem, we can use variational inference (VI), which is a technique to approximate the posterior distribution $p_{\theta}(\mathbf{z} | \mathbf{x})$ 
 with a simpler distribution $q_{\phi}(\mathbf{z} | \mathbf{x})$ that is parameterized by $\phi$.  \\
 \\
-This is the main idea behind \textbf{Variational Autoencoders} (VAEs) \cite{kingma2022autoencodingvariationalbayes} which are a type of DLVMs that use VI to learn the latent variable model. It defines a 
+This is the main idea behind \textbf{Variational Autoencoders} (VAEs) \cite{kingma2022autoencodingvariationalbayes}, which are a type of DLVMs that use VI to learn the latent variable model. It defines a 
 parametric inference model $q_{\phi}(\mathbf{z} | \mathbf{x})$, also called an \textit{encoder}, where $\phi$ are the parameters. The idea is to optimize the parameters such that: 
 \begin{equation}
     q_{\phi}(\mathbf{z} | \mathbf{x}) \approx p_{\theta}(\mathbf{z} | \mathbf{x}).
@@ -84,8 +84,8 @@ distribution, typically a Gaussian distribution $p(\mathbf{z}) = \mathcal{N}(\ma
 % Training 
 % ******
 \section{Training of VAEs} 
-For the training of the VAEs we can not directly optimize the marginal likelihood $p_{\theta}(\mathbf{x})$ due to the intractability problem, but we can optimize a lower bound of the marginal likelihood
-called the \textbf{Evidence Lower Bound} (ELBO). Let's derive the log-likelihood of the data point $\mathbf{x}$ and see how we can get the ELBO using the Jensen's inequality \cite{Kingma_2019}:
+For the training of the VAEs, we can not directly optimize the marginal likelihood $p_{\theta}(\mathbf{x})$ due to the intractability problem, but we can optimize a lower bound of the marginal likelihood
+called the \textbf{Evidence Lower Bound} (ELBO). Let's derive the log-likelihood of the data point $\mathbf{x}$ and see how we can get the ELBO using Jensen's inequality \cite{Kingma_2019}:
 \begin{align}
     \log p_{\theta}(\mathbf{x}) &= \log\int p_{\theta}(\mathbf{x},\mathbf{z})d\mathbf{z} \\ %= \mathbb{E}_{\mathbf{z}\sim q_{\phi}(\mathbf{z} | \mathbf{x})} \left[\log p_{\theta}(\mathbf{x})\right] \\
     &= \log\int q_{\phi}(\mathbf{z}|\mathbf{x})\frac{p_{\theta}(\mathbf{x}, \mathbf{z})}{q_{\phi}(\mathbf{z}|\mathbf{x})}d\mathbf{z} \\
@@ -121,7 +121,7 @@ If we maximize the previous loss with respect to the parameters $\theta$ and $\p
 \end{itemize}
 Once we have the definition of the training objective, we can use stochastic gradient descent (SGD) to perform joint optimization w.r.t. all parameters $\theta$ and $\phi$. 
 However, we have a problem with the first term of the ELBO because we can not backpropagate through the sampling process of $\mathbf{z}\sim q_{\phi}(\mathbf{z}|\mathbf{x})$, 
-as we can see in the left part of Figure \ref{fig:reparameterization}. To solve this problem we can use the \textbf{reparameterization trick} which consists in expressing the sampling 
+as we can see in the left part of Figure \ref{fig:reparameterization}. To solve this problem, we can use the \textbf{reparameterization trick}, which consists of expressing the sampling 
 process as a deterministic function of the parameters and some noise. For example, if we assume that $q_{\phi}(\mathbf{z}|\mathbf{x})$ is a Gaussian distribution with mean $\mu$ and 
 variance $\sigma^2$, we can sample from it as follows: 
 \begin{equation}
@@ -291,7 +291,7 @@ This limitation fundamentally stems from the VAE objective function and its unde
 % DDPMs 
 % ******
 \section{Denoising Diffusion Probabilistic Models}
-One important technique developed to enhance the performance of VAEs and overcome the main limitations was \textbf{Hierarchical Variational Autoencoders} (HVAEs) \cite{vahdat2021nvaedeephierarchicalvariational} which are a type of VAE that uses a hierarchical 
+One important technique developed to enhance the performance of VAEs and overcome the main limitations was \textbf{Hierarchical Variational Autoencoders} (HVAEs) \cite{vahdat2021nvaedeephierarchicalvariational}, which are a type of VAE that uses a hierarchical 
 structure in the latent space. This hierarchical structure allows the model to capture more complex and high-frequency details in the data, which can help to reduce the blurriness of the generated images. A visualization of the 
 architecture of HVAEs is shown in Figure \ref{fig:hvvae}. In this architecture, we have $L$ layers of latent variables $\mathbf{z}_1, \mathbf{z}_2, \dots, \mathbf{z}_L$, where each layer captures different levels of abstraction. \\
 In this setup, we can define the following factorization of the joint distribution: 
@@ -368,15 +368,15 @@ The inference model can be defined as:
     q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x}) = q_{\phi}(\mathbf{z}_1|\mathbf{x})\prod_{i=2}^{L} q_{\phi}(\mathbf{z}_i|\mathbf{z}_{i-1}),
 \end{equation}
 where the inference is performed progressively from the data point $\mathbf{x}$ to the latent variable $\mathbf{z}_L$. \\
-The ELBO loss is very similar to the one of the standard VAE, but we have to consider all the layers of latent variables:
+The ELBO loss is very similar to that of the standard VAE, but we have to consider all the layers of latent variables:
 \begin{align}
     \mathcal{L}_{ELBO}(\theta, \phi; \mathbf{x}) &= \mathbb{E}_{\mathbf{z}_{1:L}\sim q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x})} \left[\log \frac{p_{\theta}(\mathbf{x},\mathbf{z}_{1:L})}{q_{\phi}(\mathbf{z}_{1:L}|\mathbf{x})} \right],
 \end{align}
 which can also be decomposed into the reconstruction term and the KL divergence term. \\
 \\
-This method of deep, stacked layers revolutionized the field of generative modeling and is the basis for many state-of-the-art models. The training of HVAEs present several challenges because the encoder 
-and decoder must be trained jointly and learning becomes unstable. A clever twist to solve the main problems and maintain the hierarchical structure is the \textbf{Denoising Diffusion Probabilistic Models} (DDPMs)
-\cite{sohldickstein2015deepunsupervisedlearningusing, ho2020denoisingdiffusionprobabilisticmodels}, the next step in generative modeling, that can be defined with the following stochastic processes. 
+This method of deep, stacked layers revolutionized the field of generative modeling and is the basis for many state-of-the-art models. The training of HVAEs presents several challenges because the encoder 
+and decoder must be trained jointly, and learning becomes unstable. A clever twist to solve the main problems and maintain the hierarchical structure is the \textbf{Denoising Diffusion Probabilistic Models} (DDPMs)
+\cite{sohldickstein2015deepunsupervisedlearningusing, ho2020denoisingdiffusionprobabilisticmodels}, the next step in generative modeling, which can be defined with the following stochastic processes. 
 
 \subsection{Forward Pass}
 This is a fixed encoder (not learnable) that progressively adds noise to the data point $\mathbf{x}$ via a transition 
@@ -389,11 +389,11 @@ noise scheduler, which controls the amount of noise added at each step, as we ca
 \begin{equation}\label{eq:forward_sample}
     \mathbf{x}_t = \sqrt{\alpha_t} \mathbf{x}_{t-1} + \sqrt{1-\alpha_t} \epsilon, \quad \epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I}),
 \end{equation}
-where $\alpha_t = 1-\beta_t$. There are different options of noise schedulers that can be used, where the original DDPM paper \cite{ho2020denoisingdiffusionprobabilisticmodels} use a linear scheduler 
+where $\alpha_t = 1-\beta_t$. Different options of noise schedulers can be used, where the original DDPM paper \cite{ho2020denoisingdiffusionprobabilisticmodels} uses a linear scheduler 
 from $\beta_1 = 10^{-4}$ to $\beta_T=0.02$. Following studies demonstrate that the use of more advanced schedulers can improve the performance of the model, such as the cosine scheduler, 
 which is widely used in the literature \cite{chen2023importancenoiseschedulingdiffusion,nichol2021improveddenoisingdiffusionprobabilistic}. \\
 \\
-Another important formulation of the forward pass can be achieve by recursively applying the transition kernel (Equation \ref{eq:forward_kernel}), 
+Another important formulation of the forward pass can be achieved by recursively applying the transition kernel (Equation \ref{eq:forward_kernel}), 
 where we achieve a closed-form expression for the distribution of noisy samples at step $t$ given the original data:
 \begin{equation}
     q(\mathbf{x}_t|\mathbf{x}_0) = \mathcal{N}(\mathbf{x}_t; \sqrt{\bar{\alpha}_t}\mathbf{x}_0, (1-\bar{\alpha}_t)\mathbf{I}),
@@ -403,9 +403,9 @@ time step $t$ without having to recursively apply the transition kernel $t$ time
 \begin{equation}\label{eq:forward_sample2}
     \mathbf{x}_t = \sqrt{\bar\alpha_t} \mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(\mathbf{0}, \mathbf{I}).
 \end{equation}
-By definition $0 < \beta_t < 1$, therefore $\alpha_t < 1$ and, if we have a lot of time steps ($T \rightarrow \infty$), then $\prod_{t=1}^T \alpha_t \rightarrow 0$, which implies 
+By definition $0 < \beta_t < 1$, therefore $\alpha_t < 1$, and if we have a lot of time steps ($T \rightarrow \infty$), then $\prod_{t=1}^T \alpha_t \rightarrow 0$, which implies 
 that the distribution of the higher time step latent variable takes a simple form $p_T(\mathbf{x}_T) \rightarrow \mathcal{N}(\mathbf{x}_T; \mathbf{0}, \mathbf{I}) = p_{prior}$. 
-This shows the need of a large number of time steps to ensure that the distribution of the noisy samples at the last time step is close to a simple distribution, which is important 
+This shows the need for a large number of time steps to ensure that the distribution of the noisy samples at the last time step is close to a simple distribution, which is important 
 for the reverse pass. In the original DDPM paper \cite{ho2020denoisingdiffusionprobabilisticmodels}, the authors use $T=1000$ time steps, which is a common practice in the literature. 
 
 \subsection{Reverse Pass}
@@ -440,14 +440,14 @@ where
 \begin{equation}\label{eq:tilde_mean}
     \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t) = \frac{\sqrt{\bar{\alpha}_{t-1}}\beta_t}{1-\bar{\alpha}_t}\mathbf{x}_0 + \frac{(1-\bar{\alpha}_{t-1})\sqrt{\alpha}_t}{1-\bar{\alpha}_t}\mathbf{x}_t, \quad \tilde\beta_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t.
 \end{equation}
-Recall that the previous closed form expression dependes on the original data point $\mathbf{x}_0$, which is unknown. Because of this, we approximate the target distribution 
+Recall that the previous closed-form expression depends on the original data point $\mathbf{x}_0$, which is unknown. Because of this, we approximate the target distribution 
 $p(\mathbf{x}_{t-1}|\mathbf{x}_t)$ with a learnable parametric model $p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t)$, which is a Gaussian distribution with mean $\mu_{\theta}(\mathbf{x}_t, t)$ 
-and variance $\Sigma_{\theta}(\mathbf{x}_t, t)\mathbf{I}$, where the variance is usually fixed and the mean is parameterized by a neural network with parameters $\theta$. It can be defined as 
+and variance $\Sigma_{\theta}(\mathbf{x}_t, t)\mathbf{I}$, where the variance is usually fixed, and the mean is parameterized by a neural network with parameters $\theta$. It can be defined as 
 \begin{equation}
     p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t) = \mathcal{N}(\mathbf{x}_{t-1}; \mu_{\theta}(\mathbf{x}_t, t), \sigma^2(t)\mathbf{I}).
 \end{equation}
 Using the previous conditional derivation of the unknown reverse transition kernel, we can define a closed-form expression for the KL divergence training loss (Equation \ref{eq:kl_reverse}) because 
-minimizing the KL divergence between marginal distribution is mathematically identical to minimizing the KL divergence between specific conditional distributions. We can define the training loss as follows:
+minimizing the KL divergence between marginal distributions is mathematically identical to minimizing the KL divergence between specific conditional distributions. We can define the training loss as follows:
 \begin{equation}\label{eq:loss_ddpm}
     \mathcal{L}(\mathbf{x}_0;\theta) = \mathbb{E}_{t, \mathbf{x}_0} \left[\frac{1}{2\sigma^2(t)} ||\mu_{\theta}(\mathbf{x}_t, t) - \tilde{\mu}_t(\mathbf{x}_t, \mathbf{x}_0, t)||^2 + C \right].
 \end{equation}
@@ -487,7 +487,7 @@ losses that are easier to optimize.
     where $\omega_t$ is a weighting factor that depends on the noise schedule defined as $\omega_t(\lambda_t) = \exp(\lambda_t)$ where $\lambda_t = \log(\bar\alpha_t / (1-\bar\alpha_t))$, which is called 
     the signal-to-noise ratio (SNR) of the noisy sample $\mathbf{x}_t$ at time step $t$. 
 \end{itemize}
-For the training of the model, we have to sample a data point $\mathbf{x}_0$ from the training data, a time step $t$ from a uniform distribution over the time steps and a noise $\epsilon$ from a standard Gaussian distribution. 
+For model training, we have to sample a data point $\mathbf{x}_0$ from the training data, a time step $t$ from a uniform distribution over the time steps, and a noise $\epsilon$ from a standard Gaussian distribution. 
 Then we can compute the noisy sample $\mathbf{x}_t$ using the forward process and take a gradient descent step on the loss function defined in one of the two previous parameterizations. The training algorithm 
 can be found in Algorithm~\ref{alg:ddpm_training}.
 \begin{algorithm}[ht]
@@ -497,7 +497,7 @@ can be found in Algorithm~\ref{alg:ddpm_training}.
     $\mathbf{x}_0 \sim p_{data}$\\
     $t \sim \text{Uniform}(\{1, \dots, T\})$\\
     $\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$\\
-    Take gradient descent step on\\
+    Take a gradient descent step on\\
     $\nabla_\theta \left\| \boldsymbol{\epsilon} - \boldsymbol{\epsilon}_\theta\left(\sqrt{\bar{\alpha}_t} \mathbf{x}_0 + \sqrt{1 - \bar{\alpha}_t} \boldsymbol{\epsilon}, t\right) \right\|^2$\\
 }
 \end{algorithm}
@@ -509,8 +509,8 @@ update rule defined as follows:
 \begin{equation}
     \mathbf{x}_{t-1} \leftarrow \frac{1}{\sqrt{\alpha_t}} \left( \mathbf{x}_t - \frac{1 - \alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_{\theta}^*(\mathbf{x}_t, t) \right) + \sigma_t \mathbf{z},
 \end{equation}
-where $\mathbf{z} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ is a noise sample added to the reverse process to ensure stochasticity in the generation and $\sigma_t$ is a hyperparameter 
-that controls the amount of noise added at each step. The sampling algorithm can be found in Algorithm~\ref{alg:ddpm_sampling}. One of the main limitations of this sampling process is that it 
+where $\mathbf{z} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ is a noise sample added to the reverse process to ensure stochasticity in the generation, and $\sigma_t$ is a hyperparameter 
+that controls the amount of noise added at each step. The sampling algorithm can be found in Algorithm~\ref{alg:ddpm_sampling}. One of the main limitations of this sampling process is that it  
 is very slow because we have to apply the reverse process $T$ times, which can be computationally expensive. The early steps set the global structure of the generated image, while the later 
 steps add finer details. Therefore, reducing the number of steps can lead to a significant decrease in generation quality. 
 \begin{algorithm}[ht]

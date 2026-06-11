@@ -24,7 +24,7 @@ Recognizing the complementary strengths of these approaches, this section propos
 \end{align}
 These separated pathways are subsequently concatenated. This bifurcation enables the network to process spatial object representations distinctly from the global scene statistics or background context captured by the four register tokens. The output yields the reconstructed DINOv2 features of the input image. Ultimately, this architecture forms an Autoencoder where the latent representation consists of the supervised slot embeddings. To generate the final reconstructed image, a pre-trained RAE decoder is utilized to map the reconstructed image features back into the pixel space. \\
 \\
-To evaluate the efficacy of the training process, Principal Component Analysis (PCA) projections of both the true and reconstructed DINOv2 features are visualized alongside the original images, the reconstructed images, and the slot-specific attention maps. Figure \ref{fig:exp2_examples} presents two qualitative examples demonstrating that the attention maps successfully align with the corresponding visual pixels for the majority of the learned concepts. Notably, the Smiling concept is accurately localized in both examples, and the Eyeglasses concept in the second image yields a precise segmentation of the glasses. \\
+To evaluate the efficacy of the training process, Principal Component Analysis (PCA) projections of both the true and reconstructed DINOv2 features are visualized alongside the original and reconstructed images, and the slot-specific attention maps. Figure \ref{fig:exp2_examples} presents two qualitative examples demonstrating that the attention maps successfully align with the corresponding visual pixels for the majority of the learned concepts. Notably, the Smiling concept is accurately localized in both examples, and the Eyeglasses concept in the second image yields a precise segmentation of the glasses. \\
 \begin{figure}
      \centering
      % First Image (a)
@@ -36,7 +36,7 @@ To evaluate the efficacy of the training process, Principal Component Analysis (
      \subfloat[]{
          \includegraphics[width=\textwidth]{gfx/exp2/supervised_sa_2.png}
      }
-     \caption{Visualization of the PCA projection of the DINOv2 features, original and reconstructed images and attention maps for the set of supervised slots in two examples.}
+     \caption{Visualization of the PCA projection of the DINOv2 features, original and reconstructed images, and attention maps for the set of supervised slots in two examples.}
      \label{fig:exp2_examples}
 \end{figure}  
 
