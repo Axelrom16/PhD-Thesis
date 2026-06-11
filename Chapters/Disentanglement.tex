@@ -149,7 +149,24 @@ EncDiff \cite{yang2024diffusionmodelcrossattention} is an improvement of the pre
 \end{figure}
 
 \noindent
-DisenBooth \cite{chen2024disenboothidentitypreservingdisentangledtuning} \\
+Another similar approach proposed in the literature is DisenBooth \cite{chen2024disenboothidentitypreservingdisentangledtuning}, which proposes an identity-preserving disentangled finetune of a pretrained diffusion model. The idea is to build an identity-preserved embedding ($\mathbf{f}_s$), which contains the information of the entity (object, person, element, etc.) and its characteristics, and an identity-irrelevant embedding ($\mathbf{f}_i$), which extracts the general information of the image not relevant to the identity and is masked to remove information about the entity. The branches that defined the two embeddings can be seen in Figure \ref{fig:disen2}(a). The final embedding used for the finetuning of the pretrained diffusion model is the sum of both identity-preserved and identity-irrelevant. \\
+To finetune the model, they used LoRA adaptation to reduce the cost while maintaining the generation ability and used three different loss functions. First, the base denoising diffusion loss, which is defined as 
+\begin{equation}
+    \mathcal{L}_{diff} = \mathbb{E}_{\mathbf{x}_0,t,\epsilon,(\mathbf{f}_i+\mathbf{f}_s)} \left[ ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t,t,\epsilon,(\mathbf{f}_i+\mathbf{f}_s))|| \right],
+\end{equation}
+and, to ensure disentanglement, two auxiliary loss functions, where the first one is called the weak denoising objective, which only uses the identity-preserved embedding for the denoising process. It is defined as 
+\begin{equation}
+    \mathcal{L}_{weak} = \mathbb{E}_{\mathbf{x}_0,t,\epsilon,\mathbf{f}_s} \left[ ||\epsilon - \epsilon_{\theta}(\mathbf{x}_t,t,\epsilon,\mathbf{f}_s)|| \right]. 
+\end{equation}
+Finally, a contrastive embedding loss to minimize the cosine similarity between the two embeddings, which is defined as 
+\begin{equation}
+    \mathcal{L}_{contrastive} = \mathbb{E}_{\mathbf{f}_i,\mathbf{f}_s} \left[ \cos (\mathbf{f}_i,\mathbf{f}_s) \right]. 
+\end{equation}
+The final loss function used in the finetuning process is defined as 
+\begin{equation}
+    \mathcal{L} = \mathcal{L}_{diff} + \lambda_1 \mathcal{L}_{weak} + \lambda_2 \mathcal{L}_{contrastive},
+\end{equation}
+where $\lambda_1$ and $\lambda_2$ are hyperparameters that control the importance of the regularization losses.
 \begin{figure}[htbp]
      \centering
      % First Image (a)
