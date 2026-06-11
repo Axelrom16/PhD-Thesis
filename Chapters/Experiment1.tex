@@ -2,31 +2,38 @@
 \chapter{Unconditional Flow Matching Model for X-Ray Images}\label{ch:exp1}
 %************************************************
 
-As discussed in the literature review, the most recent techniques modify existing pre-trained generative models, often 
-by adding extra components or introducing latent space disentanglement, to improve performance, interpretability, or compositionality  
-without reducing efficiency. However, these foundational models are generally trained on large, broad datasets rather than the 
-medical data central to this thesis. To address this domain gap, I trained an unconditional flow matching model 
-directly on a medical dataset, establishing a tailored pre-trained baseline for subsequent experiments. 
-It is not intended to achieve SOTA performance, but rather to provide a baseline model to be used in the following experiments
-to study disentanglement and compositionality in the medical domain. \\
+As discussed in the literature review, contemporary techniques frequently modify existing pre-trained generative models, often by 
+integrating supplementary components or introducing latent space disentanglement, to enhance performance, interpretability, or 
+compositionality without compromising computational efficiency. However, these foundational models are predominantly trained on 
+vast, general-domain datasets rather than the specialized medical data central to this thesis. To bridge this domain gap, an 
+unconditional flow matching model was trained directly on a medical dataset, thereby establishing a tailored, pre-trained baseline 
+for subsequent experiments. Rather than aiming for SOTA performance, the primary objective of this phase is 
+to construct a foundational baseline to facilitate downstream investigations into disentanglement and compositionality within 
+the medical domain. \\
 \\
-This study utilized the NIH-Chest-X-ray dataset (see Chapter \ref{ch:data} for more details) alongside the Representation Autoencoder 
-(RAE) framework \cite{zheng2025diffusiontransformersrepresentationautoencoders}. Within this method, image latent representations are 
-generated using a pre-trained visual model, specifically, a DINOv2-Base model configured with 4 register tokens 
-\cite{oquab2024dinov2learningrobustvisual,darcet2024visiontransformersneedregisters}. The original RAE authors trained a decoder to 
-construct an autoencoder from a large pre-trained visual model, yielding latents that offer richer semantic meaning and superior 
-reconstruction quality compared to the SD-VAE latents typically used in state-of-the-art Stable Diffusion models. Subsequently, 
-they trained a flow matching model on these RAE latents using a Diffusion Transformer (DiT), achieving good results but with a high 
-computational cost because of the high-dimensional nature of the latents. To accommodate this problem, they also propose a modification 
-of the DiT that incorporates architectural modifications inspired by Decoupled Diffusion Transformer (DDT) models, which 
-prevent the need to scale the width across the entire backbone. When trained on ImageNet, this model achieved SOTA performance in both 
-FID and IS metrics compared to other pixel and latent diffusion models. \\
+This experiment utilizes the NIH Chest X-ray dataset (detailed in Chapter \ref{ch:data}) in combination with the Representation Autoencoder 
+(RAE) framework \cite{zheng2025diffusiontransformersrepresentationautoencoders}. In this approach, image latent representations are 
+extracted using a pre-trained visual model—specifically, a DINOv2-Base architecture configured with 4 register tokens 
+\cite{oquab2024dinov2learningrobustvisual,darcet2024visiontransformersneedregisters}. The original RAE methodology involves training 
+a decoder to form an autoencoder from a large-scale pre-trained vision model. This yields latent representations with enhanced 
+semantic depth and superior reconstruction fidelity compared to the standard SD-VAE latents prevalent in state-of-the-art Stable 
+Diffusion frameworks. The RAE authors subsequently trained a flow matching model on these latents using a Diffusion Transformer 
+(DiT). While this achieved strong generative performance, it incurred significant computational costs due to the high-dimensional 
+nature of the latents. To mitigate this computational bottleneck, they proposed a modified DiT architecture incorporating design 
+principles from Decoupled Diffusion Transformer (DDT) models \cite{wang2025ddtdecoupleddiffusiontransformer}, which circumvents 
+the necessity of scaling network width across the entire backbone. When evaluated on ImageNet, this modified model achieved SOTA 
+performance in both Fréchet Inception Distance (FID) and Inception Score (IS) compared to alternative pixel and latent diffusion 
+models. \\
 \\
-Because of the impressive generation quality of the model presented in the RAE paper and the quality and utility of the RAE latents, 
-I decided to train a similar model on the NIH-Chest-X-ray dataset. I decided to train a DiT-XL (DINOv2-B) model instead of the improved 
-DiT$^{DH}$-XL because I want to have a real bottleneck to perform further experiments. 
-
-\begin{table}[ht]
+Motivated by the high generation quality demonstrated in the RAE framework and the semantic utility of its latents, a comparable 
+model was trained specifically on the NIH Chest X-ray dataset. For this implementation, the standard DiT-XL architecture 
+was selected over the modified DiT$^{DH}$-XL variant. This decision was deliberately made to maintain a distinct informational bottleneck, 
+which is essential for facilitating subsequent experiments inspired by concept bottleneck generative models. The improved architecture 
+features an input bypass directly to the final projection head, a structural element that complicates latent interpretability and 
+reduces the precision of targeted latent interventions. \\
+The comprehensive hyperparameter configuration and training details are provided in Table \ref{tab:exp1_params}. The model was trained 
+over 450 epochs, requiring approximately 48 hours of compute time across four NVIDIA Hopper H100 GPUs.\\
+\begin{table}
     \centering
     \caption{Hyperparameter configuration used for training.}
     \label{tab:exp1_params}
@@ -63,22 +70,55 @@ DiT$^{DH}$-XL because I want to have a real bottleneck to perform further experi
                                 & Training steps                & $222$                 \\
         \bottomrule
     \end{tabular}
-\end{table}
-
-
-\begin{table}[ht]
+\end{table} 
+  
+\noindent
+Following the training phase, the generative performance of the model was evaluated using FID, IS, Precision, and Recall. This evaluation 
+was conducted by generating 6,000 synthetic samples and comparing them against the pre-computed 
+features of 10,000 real images from a randomly partitioned validation set. Because the model is unconditional, standard Classifier-Free 
+Guidance (CFG) \cite{ho2022classifierfreediffusionguidance} was not applicable during sampling. Instead, AutoGuidance (AG) 
+\cite{karras2024guidingdiffusionmodelbad} was evaluated to determine if sample quality could be further enhanced. In the AG framework, 
+the final prediction is formulated as a linear combination of the output of the final model and that of a lower-capacity auxiliary model 
+(trained for a fraction of the total epochs). \\
+The quantitative evaluation results are summarized in Table \ref{tab:exp1_results}, with a qualitative visualization of four generated 
+samples provided in Figure \ref{fig:generated_images}. The baseline model achieved an FID of 25.44 and an IS of 2.27 (improving marginally 
+to 25.42 and 2.28, respectively, with AG). These metrics represent a solid baseline given the high structural complexity of the dataset 
+and the unconditional nature of the generation process. Furthermore, the precision and recall scores indicate that the model successfully 
+synthesizes a diverse distribution of images while maintaining an acceptable level of visual fidelity. Nevertheless, the FID score 
+highlights an area for future optimization, suggesting that the statistical distribution of the generated samples could be further aligned 
+with the underlying real data distribution. 
+\begin{table}
     \centering
-    \caption{Performance metrics of the DiT-XL (DINOv2-B) trained on the NIH-Chest-X-ray dataset.}
+    \caption{Performance metrics of the DiT-XL trained on the NIH-Chest-X-ray dataset.}
     \label{tab:exp1_results}
     \begin{tabular}{@{}lcccccc@{}}
         \toprule
         \textbf{Model}      & \textbf{Epochs}       & \#\textbf{Params}      & \textbf{FID}$\downarrow$      & \textbf{IS}$\uparrow$     & \textbf{Precision}$\uparrow$      & \textbf{Recall}$\uparrow$     \\
         \midrule
-        DiT-XL   & --                    & --                    & --                            & --                        & --                    & --                    \\
-        DiT$^{DH}$-XL   & --                    & --                    & --                            & --                        & --                    & --                    \\
+        DiT-XL   & 450                    & 838.68M                    & 25.44                            & 2.27                        & 0.28                    & 0.45                   \\
+        DiT-XL - AG   & 450                    & 838.68M                    & 25.42                            & 2.28                        & 0.29                    & 0.45                    \\
         \bottomrule
     \end{tabular}
 \end{table}
+
+\begin{figure}
+    \centering
+    % Remove default line spacing between rows
+    \setlength{\lineskip}{0pt}
+    
+    % --- ROW 1 ---
+    \includegraphics[width=0.4\textwidth]{gfx/exp1/img_1.png}% The '%' prevents a space
+    \hspace{0.01\textwidth}% Horizontal gap (change to 0pt for touching images)
+    \includegraphics[width=0.4\textwidth]{gfx/exp1/img_2.png}\\[0.01\textwidth] % Vertical gap
+    
+    % --- ROW 2 ---
+    \includegraphics[width=0.4\textwidth]{gfx/exp1/img_3.png}%
+    \hspace{0.01\textwidth}%
+    \includegraphics[width=0.4\textwidth]{gfx/exp1/img_4.png}
+    
+    \caption{Example of 4 generated X-ray images using the trained DiT-XL model and AutoGuidance (AG).}
+    \label{fig:generated_images}
+\end{figure}
  
 
 
