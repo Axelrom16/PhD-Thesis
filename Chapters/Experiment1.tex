@@ -2,9 +2,9 @@
 \chapter{Unconditional Flow Matching Model for X-Ray Images}\label{ch:exp1}
 %************************************************
 
-As discussed in the literature review, most recent techniques modify existing pre-trained generative models, often 
+As discussed in the literature review, the most recent techniques modify existing pre-trained generative models, often 
 by adding extra components or introducing latent space disentanglement, to improve performance, interpretability, or compositionality  
-without reducing the efficiency. However, these foundational models are generally trained on large, broad datasets rather than the 
+without reducing efficiency. However, these foundational models are generally trained on large, broad datasets rather than the 
 medical data central to this thesis. To address this domain gap, I trained an unconditional flow matching model 
 directly on a medical dataset, establishing a tailored pre-trained baseline for subsequent experiments. 
 It is not intended to achieve SOTA performance, but rather to provide a baseline model to be used in the following experiments
@@ -23,7 +23,7 @@ prevent the need to scale the width across the entire backbone. When trained on 
 FID and IS metrics compared to other pixel and latent diffusion models. \\
 \\
 Because of the impressive generation quality of the model presented in the RAE paper and the quality and utility of the RAE latents, 
-I decided to train a similar model on the NIH-Chest-X-ray dataset. I decided to train a DiT-XL (DINOv2-B) model insted of the improved 
+I decided to train a similar model on the NIH-Chest-X-ray dataset. I decided to train a DiT-XL (DINOv2-B) model instead of the improved 
 DiT$^{DH}$-XL because I want to have a real bottleneck to perform further experiments. 
 
 \begin{table}[ht]
